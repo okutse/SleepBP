@@ -1,6 +1,7 @@
 ---
 title: "Preparing the NHANES Data for the Replication of: Association between sleep duration on workdays and blood pressure in non‑overweight/obese population in NHANES: a public database research"
 subtitle: "By Yingjie Su and published in Nature Scientific Reports"
+author: "Amos Okutse, Brown University"
 date: "  `r format(Sys.time(), '%d %B, %Y')` "
 header-includes:
 - \usepackage{pdflscape}
