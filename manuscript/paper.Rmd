@@ -1,0 +1,120 @@
+---
+title: "Preparing the NHANES Data for the Replication of: Association between sleep duration on workdays and blood pressure in non‑overweight/obese population in NHANES: a public database research"
+thanks: "Replication files are available on the author's Github account (http://github.com/svmiller/svm-r-markdown-templates). **Current version**: `r format(Sys.time(), '%B %d, %Y')`; **Corresponding author**: steven.v.miller@gmail.com."
+subtitle: "Short title goes here!"
+author:
+- Amos Okutse, Brown University
+- Second Author, Another Uni
+- Graduate Student, Graduate School
+abstract: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet libero justo. Pellentesque eget nibh ex. Aliquam tincidunt egestas lectus id ullamcorper. Proin tellus orci, posuere sed cursus at, bibendum ac odio. Nam consequat non ante eget aliquam. Nulla facilisis tincidunt elit. Nunc hendrerit pellentesque quam, eu imperdiet ipsum porttitor ut. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse potenti. Duis vitae nibh mauris. Duis nec sem sit amet ante dictum mattis. Suspendisse diam velit, maximus eget commodo at, faucibus et nisi. Ut a pellentesque eros, sit amet suscipit eros. Nunc tincidunt quis risus suscipit vestibulum. Quisque eu fringilla massa."
+keywords: "pandoc, r markdown, knitr"
+date: "  `r format(Sys.time(), '%d %B, %Y')` "
+geometry: margin=1in
+#mainfont: cochineal
+header-includes:
+- \usepackage{pdflscape}
+- \newcommand{\blandscape}{\begin{landscape}}
+- \newcommand{\elandscape}{\end{landscape}}
+- \usepackage{fvextra}
+- \usepackage{float}
+- \usepackage{wrapfig}
+- \usepackage{amsmath}
+- \usepackage{threeparttable} %used to fix table with notes
+- \usepackage{float}
+- \usepackage{graphicx}
+- \usepackage{microtype}
+- \usepackage{setspace}
+- \usepackage[font=singlespacing]{caption} #can change font here for captions here!!
+- \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines, commandchars=\\\{\}}
+- \singlespacing
+fontsize: 10pt
+output:
+  bookdown::pdf_document2:
+    latex_engine: xelatex
+    dev: cairo_pdf
+    toc: false
+    toc_depth: 4
+    number_sections: false
+    keep_md: false
+link-citations: yes
+colorlinks: yes
+linkcolor: blue
+urlcolor: blue
+#bibliography: refs.bib
+bibliostyle: apalike
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+# Introduction
+
+- importance of reproducibility
+- As a case on point ...?
+- Underscores the importance of reproducibility within the frame of statistical analysis. We use the study by to ...
+The current study builds on the paper by .. and starts in the manner of a replication study and extends the analyses therein. We focus on statistical analyses of these data and compare models based on varied specification of functional forms of the covariates.
+
+# Methods
+
+## Study population 
+
+Data utilized in this paper is sourced from the National Health and Nutrition Examination Survey (NHANES), a comprehensive nationwide survey administered by the National Center for Health Statistics (NCHS) via the Centers for Disease Control and Prevention (CDC). The survey assesses the health and nutrition of the entire non-institutionalized US population, spanning all ages and residing in all 50 states as well as Washington D.C. As such, the survey provides a cross-sectional view of a representative sample of the US population. Further information about NHANES can be found at www.cdc.gov/nchs/nhanes.
+
+## Data
+
+Our current analyses combine the 2015 - 2018 NHANES survey cycles to yield $n = 19225$ observations on 35 covariates. This sample size was comprised $n = 9971$ and $n = 9254$ observations from the 2015/2016 and 2017/2018 survey cycles, respectively. Analyses excluded individuals with missing data on sleep ($n = 6818$), blood pressure (BP) (n = 1055), and body mass index (BMI) or those with BMI > 25 kg/$m^2$ (overweight) (n = 5521). Individuals that reported being on anti-hypertensive medication were also excluded from further analyses (n = 2944).
+
+### Outcome definition: 
+The outcome is 
+
+
+The trained and certified examiners used the standardized protocols and calibrated equipment to get the blood
+pressure readings. Three consecutive BP readings were acquired via ausculatory means. If a BP measurement
+was not successfully completed, a fourth measurement was implemented. The average of all available measures
+was used.
+
+### Exposure:
+Sleep duration on workdays was evaluated by the questionnaire with the following questions:
+“Number of hours usually sleep on weekdays or workdays”. Sleep duration was divided into three groups, which
+were < 6 h, 6–8 h, ≥ 8 h respectively, of which 6–8 h was used as the reference group.
+
+
+
+
+
+### Covariates:
+
+Table goes here for the covariate distributional questions
+
+## Statistical modeling
+
+Model 1
+Model 3, 4, 5
+
+
+## Methods 1
+
+
+## Methods 2
+
+
+## Methods 3
+
+# Results
+
+## Results 1
+
+
+### Results 1a
+
+
+
+
+
+# Discussion and conclusion
+
+
+# References
+
+<div id="refs"></div>
+
