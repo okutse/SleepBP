@@ -48,4 +48,8 @@ po/*~
 # RStudio Connect folder
 rsconnect/
 
+# hide the data extraction file from repository
 sleepandhbp.Rmd
+
+# hide the MAC OS files from repository
+.DS_Store
