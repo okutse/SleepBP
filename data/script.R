@@ -191,7 +191,7 @@ library(ggpubr)
 library(glmnet)
 
 vis_miss(dt)
-dt <- dt %>% select(-seq_no,-hyper_meds,-sleep,-race,-smoke,-snort,-alcohol)
+dt <- dt %>% select(-hyper_meds,-sleep,-race,-smoke,-snort,-alcohol)
 dt$cycle <- as.factor(dt$cycle)
 dt <- dt %>%
   rename(sleep = sleep2,
@@ -200,6 +200,7 @@ dt <- dt %>%
          snort = snort2,
          alcohol = alcohol2)
 
+
 mod1 <- lm(dbp ~. ,data = dt)
 summary(mod1)
 
@@ -207,6 +208,14 @@ summary(mod1)
 #After removing some vairables and filtering some NAs and Changin NA to not recorded
 dt <- na.omit(dt)
 
+dt
+
+
+## declare data as survey data
+design = svydesign(id = ~psu, weights = ~weights, strata = ~strata, 
+          nest = TRUE, survey.lonely.psu = "adjust", data = dt)
+mod <- svyglm()
+View(dt)
 
 ##EXPLORATORY DATA ANALYSIS
 ggcorrplot(cor(dt %>% select_if(is.numeric)))
@@ -297,6 +306,11 @@ dt <- dt %>%
     educ_level %in% c("Dont know", "Refused") ~ "Unknown/Refused")) %>%
   mutate(educ_level = as.factor(educ_level))
 
+## SAve
+#write.csv(dt, file = "C:/Users/monic/OneDrive/Desktop/SleepBP/data", row.names = F)
+write.csv(dt, file = "C:/Users/monic/OneDrive/Desktop/SleepBP/data/dt.csv")
+
+##########DBP
 
 
 
@@ -305,7 +319,7 @@ set.seed(123)
 folds <- sample(1:10,nrow(dt),replace = T)
 
 ## Create the matrix of the model
-X <- model.matrix(dbp~., data = dt %>% select(-sbp))[,-1]
+X <- model.matrix(dbp~., data = dt %>% select(-sbp,-weights,-strata))[,-1]
 y <- dt$dbp
 
 ## Do cross validation
@@ -319,7 +333,9 @@ plot(lasso.mod.cv) #maybe choose one larger lambda that not adds more mse?
 ## Select nonzero coefficients
 coefficients <- coef(lasso.mod)
 nonzero.coef <- coefficients[,1] != 0
-nonzero.vars <- rownames(coefficients)[nonzero.coef]
+nonzero.vars.lasso <- rownames(coefficients)[nonzero.coef]
+
+write.csv(nonzero.vars.lasso, file = "C:/Users/monic/OneDrive/Desktop/SleepBP/data/lasso_res.csv")
 
 ## Filter dataframe to include only non-zero variables
 modified_dt <- dt %>% 
@@ -339,7 +355,7 @@ library(leaps)
 
 k <- 10
 n <- nrow(dt)
-p <- 26
+p <- ncol(dt %>% select(-sbp,-weights,-strata)) -1
 
 set.seed(1)
 #folds <- sample(1:k, n, replace=TRUE)
@@ -347,6 +363,7 @@ set.seed(1)
 #ISSUES  for stepwise selection 
 cv.errors <- matrix(NA,k,p,
                     dimnames = list(NULL, paste(1:p))) #This takes too long, maybe use only variables of lasso??
+modified_dt <- dt %>% select(-sbp,-weights,-strata)
 for (j in 1:k) {
   best.fit <- regsubsets(dbp ~., 
                          data = modified_dt[folds != j, ],
@@ -375,6 +392,8 @@ reg.best <- regsubsets(dbp~., data = modified_dt, nvmax = p)
 summary(reg.best)
 coef_reg <- coef(reg.best, best_k) #levels of variables but not whole variables
 #should we fit a new model like below?
+coef_reg <- as.data.frame(names(coef_reg))
+write.csv(coef_reg, file = "C:/Users/monic/OneDrive/Desktop/SleepBP/data/reg_res.csv")
 
 ## Fit model to get summary
 mod.regbest <- lm(dbp~ total_chol+hemoglobin+hypertension+race+alcohol,data=modified_dt)
