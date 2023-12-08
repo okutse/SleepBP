@@ -462,3 +462,106 @@ ggplot(coef_values, aes(x = variables, y = V1)) +
   labs(x = "Variables", y = "Variable Importance") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+
+
+
+
+
+
+
+
+
+
+
+##############
+#SYSTOLIC
+library(leaps)
+# Perform forward subset selection
+# Cross-Validation
+
+k <- 10
+n <- nrow(dt)
+p <- ncol(dt %>% select(-dbp,-weights,-strata,-seq_no, -psu,-hypertension)) -1
+set.seed(123)
+folds <- sample(1:k, n, replace=TRUE)
+
+#ISSUES  for stepwise selection 
+cv.errors.sbp <- matrix(NA,k,p,
+                    dimnames = list(NULL, paste(1:p))) #This takes too long, maybe use only variables of lasso??
+modified_dt <- dt %>% dplyr::select(-dbp,-weights,-strata,-seq_no, -psu, - hypertension)
+for (j in 1:k) {
+  best.fit <- regsubsets(sbp ~., 
+                         data = modified_dt[folds != j, ],
+                         nvmax = p, 
+                         really.big = T)
+  print(j) 
+  for (i in 1:p) {
+    coefi <- coef(best.fit, id = i)
+    test.mat <- model.matrix(sbp ~., data = modified_dt[folds == j,])
+    pred <- test.mat[,names(coefi)] %*% coefi
+    cv.errors.sbp[j,i]  <- mean((modified_dt[folds == j,]$sbp - pred)^2)
+    print(i)
+  }
+}
+errors.sbp <- data.frame(subset_size = 1:p, error = colMeans(cv.errors.sbp))
+best_k.sbp <- which.min(errors.sbp$error)
+ggplot(errors.sbp, aes(x = subset_size, y = error, color = subset_size == best_k.sbp)) +geom_point()+theme_minimal()+
+  geom_line()+
+  scale_color_manual(values = c("TRUE" = "red", "FALSE" = "black"))+
+  scale_x_continuous(breaks = 1:p)+
+  guides(color = "none")+ggtitle("Cross Valiation for Foward Setsize")
+
+
+## Get coefficients with best_k
+reg.best.sbp <- regsubsets(sbp~., data = modified_dt, nvmax = p)
+
+
+
+##########
+##DYstolic
+k <- 10
+n <- nrow(dt)
+p <- ncol(dt %>% select(-sbp,-weights,-strata,-seq_no, -psu,-hypertension)) -1
+set.seed(123)
+folds <- sample(1:k, n, replace=TRUE)
+
+#ISSUES  for stepwise selection 
+cv.errors.dbp <- matrix(NA,k,p,
+                        dimnames = list(NULL, paste(1:p))) #This takes too long, maybe use only variables of lasso??
+modified_dt <- dt %>% dplyr::select(-sbp,-weights,-strata,-seq_no, -psu, - hypertension)
+for (j in 1:k) {
+  best.fit <- regsubsets(dbp ~., 
+                         data = modified_dt[folds != j, ],
+                         nvmax = p, 
+                         really.big = T)
+  print(j) 
+  for (i in 1:p) {
+    coefi <- coef(best.fit, id = i)
+    test.mat <- model.matrix(dbp ~., data = modified_dt[folds == j,])
+    pred <- test.mat[,names(coefi)] %*% coefi
+    cv.errors.dbp[j,i]  <- mean((modified_dt[folds == j,]$dbp - pred)^2)
+    print(i)
+  }
+}
+errors.dbp <- data.frame(subset_size = 1:p, error = colMeans(cv.errors.dbp))
+best_k.dbp <- which.min(errors.dbp$error)
+ggplot(errors.dbp, aes(x = subset_size, y = error, color = subset_size == best_k.dbp)) +geom_point()+theme_minimal()+
+  geom_line()+
+  scale_color_manual(values = c("TRUE" = "red", "FALSE" = "black"))+
+  scale_x_continuous(breaks = 1:p)+
+  guides(color = "none")+ggtitle("Cross Valiation for Foward Setsize")
+
+
+## Get coefficients with best_k
+reg.best.dbp <- regsubsets(dbp~., data = modified_dt, nvmax = p)
+
+
+
+
+
+
+
+
+
+
