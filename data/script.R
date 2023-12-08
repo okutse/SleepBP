@@ -139,3 +139,4 @@ table1 <- dt2 %>% gtsummary::tbl_summary(by = gender,
   as_kable(format = "pipe", caption = "Baseline participant characteristics", digits = 2) #%>% 
 #kable_styling(latex_options = "scale_down")
 table1
+
