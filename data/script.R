@@ -308,7 +308,7 @@ dt <- dt %>%
 
 ## SAve
 #write.csv(dt, file = "C:/Users/monic/OneDrive/Desktop/SleepBP/data", row.names = F)
-write.csv(dt, file = "C:/Users/monic/OneDrive/Desktop/SleepBP/data/dt.csv")
+#write.csv(dt, file = "C:/Users/monic/OneDrive/Desktop/SleepBP/data/dt.csv")
 
 ##########DBP
 
@@ -319,8 +319,8 @@ set.seed(123)
 folds <- sample(1:10,nrow(dt),replace = T)
 
 ## Create the matrix of the model
-X <- model.matrix(dbp~., data = dt %>% select(-sbp,-weights,-strata))[,-1]
-y <- dt$dbp
+X <- model.matrix(sbp~., data = dt %>% select(-dbp,-weights,-strata))[,-1]
+y <- dt$sbp
 
 ## Do cross validation
 lasso.mod.cv <- cv.glmnet(X, y, alpha=1, nfolds = 10, foldid = folds)
@@ -333,9 +333,9 @@ plot(lasso.mod.cv) #maybe choose one larger lambda that not adds more mse?
 ## Select nonzero coefficients
 coefficients <- coef(lasso.mod)
 nonzero.coef <- coefficients[,1] != 0
-nonzero.vars.lasso <- rownames(coefficients)[nonzero.coef]
+nonzero.vars.lasso_sbp <- rownames(coefficients)[nonzero.coef]
 
-write.csv(nonzero.vars.lasso, file = "C:/Users/monic/OneDrive/Desktop/SleepBP/data/lasso_res.csv")
+write.csv(nonzero.vars.lasso_sbp, file = "C:/Users/monic/OneDrive/Desktop/SleepBP/data/lasso_res_sbp.csv")
 
 ## Filter dataframe to include only non-zero variables
 modified_dt <- dt %>% 
@@ -355,7 +355,7 @@ library(leaps)
 
 k <- 10
 n <- nrow(dt)
-p <- ncol(dt %>% select(-sbp,-weights,-strata)) -1
+p <- ncol(dt %>% select(-dbp,-weights,-strata)) -1
 
 set.seed(1)
 #folds <- sample(1:k, n, replace=TRUE)
@@ -363,23 +363,25 @@ set.seed(1)
 #ISSUES  for stepwise selection 
 cv.errors <- matrix(NA,k,p,
                     dimnames = list(NULL, paste(1:p))) #This takes too long, maybe use only variables of lasso??
-modified_dt <- dt %>% select(-sbp,-weights,-strata)
+modified_dt <- dt %>% select(-dbp,-weights,-strata)
 for (j in 1:k) {
-  best.fit <- regsubsets(dbp ~., 
+  best.fit <- regsubsets(sbp ~., 
                          data = modified_dt[folds != j, ],
                          nvmax = p, 
                          really.big = T)
   print(j) 
   for (i in 1:p) {
     coefi <- coef(best.fit, id = i)
-    test.mat <- model.matrix(dbp ~., data = modified_dt[folds == j,])
+    test.mat <- model.matrix(sbp ~., data = modified_dt[folds == j,])
     pred <- test.mat[,names(coefi)] %*% coefi
-    cv.errors[j,i]  <- mean((modified_dt[folds == j,]$dbp - pred)^2)
+    cv.errors[j,i]  <- mean((modified_dt[folds == j,]$sbp - pred)^2)
     print(i)
   }
 }
 errors <- data.frame(subset_size = 1:p, error = colMeans(cv.errors))
+errors %>% arrange(error)
 best_k <- which.min(errors$error)
+best_k_2 <- 14
 ggplot(errors, aes(x = subset_size, y = error, color = subset_size == best_k)) +geom_point()+theme_minimal()+
   geom_line()+
   scale_color_manual(values = c("TRUE" = "red", "FALSE" = "black"))+
@@ -388,12 +390,15 @@ ggplot(errors, aes(x = subset_size, y = error, color = subset_size == best_k)) +
 
 
 ## Get coefficients with best_k
-reg.best <- regsubsets(dbp~., data = modified_dt, nvmax = p)
+reg.best <- regsubsets(sbp~., data = modified_dt, nvmax = p)
 summary(reg.best)
-coef_reg <- coef(reg.best, best_k) #levels of variables but not whole variables
+coef_reg_bestk_sbp <- coef(reg.best, best_k) #levels of variables but not whole variables
+coef_reg_k2_sbp <- coef(reg.best, best_k_2) 
 #should we fit a new model like below?
-coef_reg <- as.data.frame(names(coef_reg))
-write.csv(coef_reg, file = "C:/Users/monic/OneDrive/Desktop/SleepBP/data/reg_res.csv")
+coef_reg_bestk_sbp <- as.data.frame(names(coef_reg_bestk_sbp))
+coef_reg_k2_sbp <- as.data.frame(names(coef_reg_k2_sbp))
+write.csv(coef_reg_bestk_sbp, file = "C:/Users/monic/OneDrive/Desktop/SleepBP/data/reg_res_sbp_bestk.csv")
+write.csv(coef_reg_k2_sbp, file = "C:/Users/monic/OneDrive/Desktop/SleepBP/data/reg_res_sbp_k2.csv")
 
 ## Fit model to get summary
 mod.regbest <- lm(dbp~ total_chol+hemoglobin+hypertension+race+alcohol,data=modified_dt)
