@@ -320,13 +320,13 @@ set.seed(123)
 folds <- sample(1:10,nrow(dt),replace = T)
 
 ## Create the matrix of the model
-X <- model.matrix(dbp~., data = dt %>% select(-sbp,-weights,-strata,-seq_no))[,-1]
-y <- dt$dbp
+X <- model.matrix(sbp~., data = dt %>% select(-dbp,-weights,-strata,-seq_no,-psu))[,-1]
+y <- dt$sbp
 
 ## Do cross validation
 lasso.mod.cv <- cv.glmnet(X, y, alpha=1, nfolds = 10, foldid = folds)
 lasso.mod.cv$lambda.min
-lasso.mod <- glmnet(X,y,alpha = 1,lambda = lasso.mod.cv$lambda.1se)
+lasso.mod <- glmnet(X,y,alpha = 1,lambda = lasso.mod.cv$lambda.min)
 
 ## Plot cross validation results
 plot(lasso.mod.cv) #maybe choose one larger lambda that not adds more mse?
@@ -334,9 +334,9 @@ plot(lasso.mod.cv) #maybe choose one larger lambda that not adds more mse?
 ## Select nonzero coefficients
 coefficients <- coef(lasso.mod)
 nonzero.coef <- coefficients[,1] != 0
-nonzero.vars.lasso_dbp_1se <- rownames(coefficients)[nonzero.coef]
+nonzero.vars.lasso_sbp_min <- rownames(coefficients)[nonzero.coef]
 
-write.csv(nonzero.vars.lasso_dbp_1se, file = "C:/Users/monic/OneDrive/Desktop/SleepBP/data/lasso_res_dbp_1se.csv")
+write.csv(nonzero.vars.lasso_sbp_min, file = "C:/Users/monic/OneDrive/Desktop/SleepBP/data/lasso_res_sbp_min.csv")
 
 ## Filter dataframe to include only non-zero variables
 modified_dt <- dt %>% 
@@ -356,7 +356,7 @@ library(leaps)
 
 k <- 10
 n <- nrow(dt)
-p <- ncol(dt %>% select(-dbp,-weights,-strata,-seq_no)) -1
+p <- ncol(dt %>% select(-dbp,-weights,-strata,-seq_no, -psu)) -1
 
 set.seed(1)
 #folds <- sample(1:k, n, replace=TRUE)
