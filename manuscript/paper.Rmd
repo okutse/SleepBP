@@ -62,7 +62,7 @@ Data utilized in this paper is sourced from the National Health and Nutrition Ex
 
 ## Data
 
-Our current analyses combine the 2015 - 2018 NHANES survey cycles to yield $n = 19225$ observations on 35 covariates. This sample size was comprised $n = 9971$ and $n = 9254$ observations from the 2015/2016 and 2017/2018 survey cycles, respectively. Analyses excluded individuals with missing data on sleep ($n = 6818$), blood pressure (BP) (n = 1055), and body mass index (BMI) or those with BMI > 25 kg/$m^2$ (overweight) (n = 5521). Individuals that reported being on anti-hypertensive medication were also excluded from further analyses (n = 2944).
+Our current analyses combine the 2015 - 2018 NHANES survey cycles to yield $n = 19225$ observations on 35 covariates. This sample size was comprised $n = 9971$ and $n = 9254$ observations from the 2015/2016 and 2017/2018 survey cycles, respectively. Analyses excluded individuals with missing data on sleep ($n = 6818$), blood pressure (BP) (n = 1055), and body mass index (BMI) or those with BMI > 25 kg/$m^2$ (overweight) (n = 5521). Individuals that reported being on anti-hypertensive medication were also excluded from further analyses (n = 2944). 
 
 ### Outcome definition: 
 The outcome is 
@@ -85,6 +85,7 @@ were < 6 h, 6–8 h, ≥ 8 h respectively, of which 6–8 h was used as the refe
 ### Covariates:
 
 Table goes here for the covariate distributional questions
+
 
 ## Statistical modeling
 

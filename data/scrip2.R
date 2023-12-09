@@ -9,11 +9,10 @@ library(gtsummary)
 library(survey)
 
 ## Load Data
-dt <- read.csv("../SleepBP/data/dt.csv")
+dt <- read.csv("../ProjectFinal/data/dt.csv")
 dt <- dt %>% select(-X)
 dt <- dt %>%
   mutate_if(is.character,as.factor)
-#View(dt)
 
 
 ## Get Summary Statistics

@@ -1,0 +1,27 @@
+﻿Variable ,Name,Description
+SEQN,sequence number,Respondent number
+SDMVPSU,psu,Masked variance unit pseudo-PSU variable for variance estimation
+WTINT2YR,weights,Full sample 2-year interview weights
+SDMVSTRA,strata,Masked variance unit pseudo-stratum variable for variance estimation
+RIAGENDR,gender,Respondent's number
+RIDAGEYR,age (yrs),Respondent's age in years
+DMDMARTL,marital status,Marital status
+INDFMIN2,income category,Total family income (reported as a range value in dollars)
+RIDRETH3,race,"Recode of reported race and Hispanic origin information, with Non-Hispanic Asian Category"
+DMDHHSZA,children <5,Number of children aged 5 years or younger in the household
+DMDEDUC2,education level,What is the highest grade or level of school {you have/SP has} completed or the highest degree {you have/s/he has} received?
+DMDCITZN,citizenship status,{Are you/Is SP} a citizen of the United States? [Information about citizenship is being collected by the U.S. Public Health Serv
+SLD012,sleep,Number of hours usually sleep on weekdays or workdays
+BMXBMI,bmi,Body mass index
+ALQ121,alcohol use,"In the past 12 months, how often did you drink any type of alcoholic beverage?"
+LBDHDDSI,hdl,High density lipoprotein
+LBDSALSI,albumin,Albumin (g/L)
+DIQ010,diabetes,Have you ever been told by a doctor or health professional that you have diabetes or sugar diabetes?
+BPQ020,hypertension,"{Have you/Has SP} ever been told by a doctor or other health professional that {you/s/he} had hypertension, also called high blood pressure?"
+URXCRS,creatinine,"Creatinine, urine (umol/L)"
+SLQ040,snort,"In the past 12 months, how often did {you/SP} snort, gasp, or stop breathing while {you were/s/he was} asleep?"
+LBDTCSI,total cholestrol levels,Total cholesterol (mmol/L)
+LBXHGB,hemoglobin,Hemoglobin (g/dL)
+LBXSASSI,AST,Aspertate aminotransferase
+SMQ040,smoke,Do you now smoke cigarettes?
+BPXDI,blood pressure,Systolic and diastolic blood pressure taken as the average of the first three measurements
