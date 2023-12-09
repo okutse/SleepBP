@@ -564,16 +564,33 @@ ggplot(errors.dbp, aes(x = subset_size, y = error, color = subset_size == best_k
 ## Get coefficients with best_k
 reg.best.dbp <- regsubsets(dbp~., data = modified_dt, nvmax = p)
 
+
+
+
+best_k.dbp
+best_k.sbp
 reg.best.dbp <- as.data.frame(coef(reg.best.dbp,id=best_k.dbp))
 reg.best.sbp <- as.data.frame(coef(reg.best.sbp,id=best_k.sbp))
+
+reg.best.dbp$K = best_k.dbp
+reg.best.sbp$K <- best_k.sbp
 
 write.csv(reg.best.dbp, file = "C:/Users/monic/OneDrive/Desktop/SleepBP/data/reg.dbp.csv")
 write.csv(reg.best.sbp, file = "C:/Users/monic/OneDrive/Desktop/SleepBP/data/reg.sbp.csv")
 
 
 
+summary(reg.best.dbp)
 
 
 
+## Get coefficients with best_k
+reg.best <- regsubsets(sbp~., data = modified_dt, nvmax = p)
+
+reg.best.dbp
+summary(reg.best.dbp)
+reg.best.dbp$call
 
 
+coef_reg_bestk_sbp <- coef(reg.best, best_k) #levels of variables but not whole variables
+ coef(reg.best.dbp, id=13) 

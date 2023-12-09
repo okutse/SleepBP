@@ -1,21 +1,21 @@
-"","coef(reg.best.dbp, id = best_k.dbp)"
-"(Intercept)",46.3392159224632
-"bmi",0.236597595979534
-"total_chol",0.79464243195652
-"hemoglobin",0.718870768737058
-"albumin",0.160691574803058
-"AST",0.0381786983301479
-"diabetesYes",-2.7471253495021
-"children..51",-1.12204318373079
-"children..52",-1.6924662657592
-"children..53 or more",-2.22705328680406
-"marital_statusLiving with partner",-1.86376518031161
-"marital_statusNever married",-2.80421795411046
-"marital_statusWidowed",1.58816615506871
-"cycle",2.38142524905027
-"sleep>8hrs",-2.27471032494112
-"sleep6-8hrs",-2.25209355948171
-"raceMexican American",-2.63352121181356
-"raceWhite",-2.07648785531796
-"snortNot recorded",-1.97734497511815
-"alcoholNot recorded",-1.34071341326628
+"","coef(reg.best.dbp, id = best_k.dbp)","K"
+"(Intercept)",46.3392159224632,19
+"bmi",0.236597595979534,19
+"total_chol",0.79464243195652,19
+"hemoglobin",0.718870768737058,19
+"albumin",0.160691574803058,19
+"AST",0.0381786983301479,19
+"diabetesYes",-2.7471253495021,19
+"children..51",-1.12204318373079,19
+"children..52",-1.6924662657592,19
+"children..53 or more",-2.22705328680406,19
+"marital_statusLiving with partner",-1.86376518031161,19
+"marital_statusNever married",-2.80421795411046,19
+"marital_statusWidowed",1.58816615506871,19
+"cycle",2.38142524905027,19
+"sleep>8hrs",-2.27471032494112,19
+"sleep6-8hrs",-2.25209355948171,19
+"raceMexican American",-2.63352121181356,19
+"raceWhite",-2.07648785531796,19
+"snortNot recorded",-1.97734497511815,19
+"alcoholNot recorded",-1.34071341326628,19

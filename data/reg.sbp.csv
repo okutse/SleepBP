@@ -1,1 +1,15 @@
-""
+"","coef(reg.best.sbp, id = best_k.sbp)","K"
+"(Intercept)",84.783818645399,13
+"bmi",0.442124026724044,13
+"total_chol",1.46333011345241,13
+"creatinine",-0.000134497718235883,13
+"educ_levelHighschool",2.13345954936899,13
+"genderMale",4.81569392283732,13
+"age_yr",0.459255129069418,13
+"marital_statusNever married",2.97065697064129,13
+"marital_statusWidowed",7.19425009053412,13
+"sleep6-8hrs",-1.88171818263995,13
+"raceMexican American",-4.73546208290369,13
+"raceOther",-4.41862728878329,13
+"raceWhite",-5.60850948872746,13
+"income_categoryVaried/High income",-2.52958547404987,13
