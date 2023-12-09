@@ -148,18 +148,28 @@ vars %>% kable(booktabs = T) %>% kable_styling(latex_options = "scale_down")
 
 ## Statistical modeling
 
-In order to select variables impacting blood pressure, we proceed by
-doing some variable selection with regularization techniques. We first
-employ best subset selection by using 10-fold cross validation to select
-the best number of subsets. For syastolic blood pressure, forward best
-subset selection choose 13 variables and for diastolic blood pressure 19
-variables. These variables are showed, along with its significance in
-Table \@ref(tab:tabreg)
+With the purpose of identifying influential variables impacting blood
+pressure, a variable selection process was conducted. The initial
+approach involved employing best subset selection with 10-fold
+cross-validation to ascertain the optimal number of subsets. Notably,
+for systolic blood pressure, the forward best subset selection method
+discerned 13 variables, whereas diastolic blood pressure exhibited 19
+selected variables. However, a limitation inherent in forward best
+subset selection is its inability to eliminate previously selected
+features, potentially disregarding their relevance in light of newly
+added variables. Consequently, this methodology may yield suboptimal
+variable selections due to its lack of adaptability.
 
-```{r tabref, echo=FALSE}
-tab.ref %>% as_kable_extra(booktabs = T, caption ="Coefficients for Foward Best Subset Selection") %>% kable_styling(latex_options = "scale_down")
-
-```
+In an effort to mitigate this limitation and introduce regularization,
+LASSO regularization was employed. This involved a 10-fold
+cross-validation process to determine the optimal penalty parameter,
+$\lambda$ . For diastolic blood pressure, the $\lambda$ value associated
+with the lowest mean squared error (MSE) led to the selection of 25
+variables. Conversely, when considering systolic blood pressure, the
+$\lambda$ value minimizing the MSE resulted in the exclusion of a sole
+variable. Subsequently, a $\lambda$ value was strategically chosen to
+ensure a negligible increase of no more than 1% in MSE, ultimately
+leading to the inclusion of 29 variables in the model.
 
 # Results
 
@@ -197,6 +207,68 @@ tabsum %>%
   kable_styling(latex_options = "scale_down")
 ```
 
+### Foward Stepwise Best Subset
+
+```{=tex}
+\begin{align*}
+\text{sbp} = &\, 85.65 + 0.47 \times \text{BMI} + 1.49 \times \text{total\_chol} - 0.00 \times \text{creatinine} \\
+&+ 3.06 \times \text{educ\_levelHighschool} + 2.00 \times \text{educ\_levelLess12grade} + 1.31 \times \text{educ\_levelsomCollege} \\
+&+ 4.59 \times \text{genderMale} + 0.47 \times \text{age\_yr} + 2.05 \times \text{marital\_statusLiving with partner} \\
+&- 0.12 \times \text{marital\_statusMarried} + 3.30 \times \text{marital\_statusNever married} \\
+&- 0.99 \times \text{marital\_statusSeparated} + 7.01 \times \text{marital\_statusWidowed} - 1.30 \times \text{sleep>8hrs} \\
+&- 2.82 \times \text{sleep6-8hrs} - 4.60 \times \text{raceMexican American} - 3.78 \times \text{raceOther} \\
+&- 5.03 \times \text{raceWhite income\_categoryLower-middle income} - 3.02 \times \text{income\_categoryMiddle income} \\
+&- 2.88 \times \text{income\_categoryUnknown/Refused} - 2.70 \times \text{income\_categoryUpper-middle income} \\
+&- 4.30 \times \text{income\_categoryVaried/High income}
+\end{align*}
+```
+```{=tex}
+\begin{align*}
+\text{dbp} = &\, 53.55 + 0.22 \times \text{BMI} + 0.78 \times \text{total\_chol} + 0.85 \times \text{hemoglobin} + 0.02 \times \text{albumin} \\
+&+ 0.03 \times \text{AST} - 0.89 \times \text{diabetesNo} - 3.37 \times \text{diabetesYes} - 1.06 \times \text{children..51} \\
+&- 1.67 \times \text{children..52} - 1.83 \times \text{children..53 or more} - 1.90 \times \text{marital\_statusLiving with partner} \\
+&+ 0.00 \times \text{marital\_statusMarried} - 2.78 \times \text{marital\_statusNever married} + 0.91 \times \text{marital\_statusSeparated} \\
+&+ 1.72 \times \text{marital\_statusWidowed} - 2.40 \times \text{sleep>8hrs} - 2.37 \times \text{sleep6-8hrs} - 2.76 \times \text{raceMexican American} \\
+&+ 0.14 \times \text{raceOther} - 1.98 \times \text{raceWhite} - 2.16 \times \text{snortNot recorded} \\
+&- 0.57 \times \text{snortYes} - 2.33 \times \text{alcoholNo drinking} - 1.79 \times \text{alcoholNot recorded}
+\end{align*}
+```
+### LASSO
+
+```{=tex}
+\begin{align*}
+\text{sbp} = &\, 84.13 \times \text{(Intercept)} + 0.52 \times \text{bmi} + 0.79 \times \text{hdl} + 1.43 \times \text{total\_chol} + 0.04 \times \text{AST} \\
+&- 0.17 \times \text{diabetesNo} + 1.88 \times \text{diabetesYes} - 14.02 \times \text{citizenship\_statusDon't Know} \\
+&- 0.59 \times \text{citizenship\_statusNot a citizen of the US} - 12.06 \times \text{citizenship\_statusRefused} \\
+&+ 3.09 \times \text{educ\_levelHighschool} + 2.19 \times \text{educ\_levelLess12grade} + 1.16 \times \text{educ\_levelsomeCollege} \\
+&- 0.99 \times \text{children..51} - 1.17 \times \text{children..52} + 0.90 \times \text{children..53 or more} \\
+&+ 4.42 \times \text{genderMale} + 0.44 \times \text{age\_yr} + 1.77 \times \text{marital\_statusLiving with partner} \\
+&+ 0.01 \times \text{marital\_statusMarried} + 2.95 \times \text{marital\_statusNever married} - 1.05 \times \text{marital\_statusSeparated} \\
+&+ 7.19 \times \text{marital\_statusWidowed} - 1.47 \times \text{sleep>8hrs} - 2.95 \times \text{sleep6-8hrs} \\
+&- 4.11 \times \text{raceMexican American} - 3.43 \times \text{raceOther} - 5.14 \times \text{raceWhite} \\
+&+ 1.75 \times \text{smokeNot Smoking} + 0.22 \times \text{smokeSmoking} - 2.74 \times \text{snortNot recorded} \\
+&- 0.61 \times \text{snortYes} - 1.69 \times \text{alcoholNo drinking} - 0.28 \times \text{alcoholNot recorded} \\
+&- 1.62 \times \text{income\_categoryLower-middle income} - 3.04 \times \text{income\_categoryMiddle income} \\
+&- 2.64 \times \text{income\_categoryUnknown/Refused} - 2.71 \times \text{income\_categoryUpper-middle income} \\
+&- 4.54 \times \text{income\_categoryVaried/High income}
+\end{align*}
+```
+```{=tex}
+\begin{align*}
+\text{dbp} = &\, 47.99 + 0.24 \times \text{bmi} + 0.80 \times \text{total\_chol} + 0.58 \times \text{hemoglobin} + 0.17 \times \text{albumin} \\
+&+ 0.04 \times \text{AST} - 0.42 \times \text{diabetesNo} - 3.18 \times \text{diabetesYes} + 1.36 \times \text{citizenship\_statusDon't Know} \\
+&- 0.60 \times \text{citizenship\_statusNot a citizen of the US} - 1.78 \times \text{citizenship\_statusRefused} \\
+&- 0.11 \times \text{educ\_levelHighschool} - 0.92 \times \text{educ\_levelLess12grade} - 0.39 \times \text{educ\_levelsomeCollege} \\
+&- 0.99 \times \text{children..51} - 1.39 \times \text{children..52} - 2.08 \times \text{children..53 or more} \\
+&+ 0.59 \times \text{genderMale} + 0.01 \times \text{age\_yr} - 1.77 \times \text{marital\_statusLiving with partner} \\
+&+ 0.12 \times \text{marital\_statusMarried} - 2.67 \times \text{marital\_statusNever married} + 0.94 \times \text{marital\_statusSeparated} \\
+&+ 1.69 \times \text{marital\_statusWidowed} + 2.21 \times \text{cycle} - 2.21 \times \text{sleep>8hrs} \\
+&- 2.25 \times \text{sleep6-8hrs} - 2.08 \times \text{raceMexican American} + 0.31 \times \text{raceOther} \\
+&- 2.09 \times \text{raceWhite} + 0.44 \times \text{smokeNot Smoking} + 0.75 \times \text{smokeSmoking} \\
+&- 2.15 \times \text{snortNot recorded} - 0.50 \times \text{snortYes} - 1.28 \times \text{alcoholNo drinking} \\
+&- 1.17 \times \text{alcoholNot recorded}
+\end{align*}
+```
 # Discussion and conclusion
 
 # References
