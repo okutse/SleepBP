@@ -11,10 +11,10 @@ library(ggcorrplot)
 library(kableExtra)
 
 ## Load Data
-dt <- read.csv("data/dt.csv")
+dt <- read.csv("C:/Users/monic/OneDrive/Desktop/SleepBP/data/dt.csv")
 
 ## load the variable name file
-vars <- read.csv("data/vars.csv")
+vars <- read.csv("C:/Users/monic/OneDrive/Desktop/SleepBP/data/vars.csv")
 
 ## some pre-processing
 dt <- dt %>% select(-X)
@@ -61,7 +61,7 @@ tabsum <- dt %>%
 
  ## Systolic Blood Pressure
  ## Load variables selected by LASSO
-lasso.coef.min <- read.csv("data/lasso_res_sbp_min.csv")
+lasso.coef.min <- read.csv("C:/Users/monic/OneDrive/Desktop/SleepBP/data/lasso_res_sbp_min.csv")
 lasso.coef.min$x
 names.lasso.min <- c("bmi", "hdl", "total_chol","AST",
                      "creatinine", "diabetes", "citizenship_status",
@@ -114,7 +114,7 @@ AIC(modlasso.dbp.min, modlasso.sbp.min)
 ## Best Subset
 ## Systolic
 ## Load selected coefficients
-reg.coef.sbp <- read.csv("data/reg.sbp.csv") #K=13
+reg.coef.sbp <- read.csv("C:/Users/monic/OneDrive/Desktop/SleepBP/data/reg.sbp.csv") #K=13
 reg.coef.sbp$X
 names.reg <- c("bmi","total_chol", "creatinine", "educ_level", "gender", "age_yr", 
                "marital_status","sleep", "race", "income_category")
@@ -130,7 +130,7 @@ sum((pred-dt$sbp)^2)/nrow(dt)
 ## Best Subset
 ## Diastolic
 ## Load selected coefficients
-reg.coef.dbp <- read.csv("data/reg.dbp.csv") #K=19
+reg.coef.dbp <- read.csv("C:/Users/monic/OneDrive/Desktop/SleepBP/data/reg.dbp.csv") #K=19
 reg.coef.dbp$X
 names.reg <- c("bmi","total_chol", "hemoglobin", "albumin", "AST", "diabetes",
                "children..5", "marital_status",
@@ -154,10 +154,10 @@ tab2.reg <- tbl_regression(modref.dbp, include = everything()) %>%
   modify_spanning_header(
     c(estimate, std.error, ci,p.value) ~ 
       "**Diastolic Blood Pressure**")
-
+tab.ref <- tbl_merge(tbls = list(tab1.reg, tab2.reg),tab_spanner = c("**Systolic BP**", "**Diasstolic BP**"))
 
 
 tab.lasso <- tbl_merge(tbls = list(tab1.lasso, tab2.lasso),tab_spanner = c("**Systolic BP**", "**Dystolic BP**"))
-tab.reg <- tbl_merge(tbls = list(tab1.reg, tab2.reg), tab_spanner = c("**Systolic BP**", "**Dystolic BP**"))
+tab.reg <- tbl_merge(tbls = list(tab1.reg, tab2.reg), tab_spanner = c("**Systolic BP**", "**Diastolic BP**"))
 
 

@@ -52,8 +52,9 @@ editor_options:
 
 ```{r source-file, echo=FALSE, include=FALSE}
 # source file 
-source(file = "/Users/aokutse/Desktop/PhD/Fall 2023/PHP2601 Linear Models/ProjectFinal/data/scrip2.R")
+source(file = "C:/Users/monic/OneDrive/Desktop/SleepBP/data/scrip2.R")
 ```
+
 # Introduction
 
 -   importance of reproducibility
@@ -81,75 +82,121 @@ NHANES can be found at www.cdc.gov/nchs/nhanes.
 
 ## Data
 
-Our current analyses combine the 2015 - 2018 NHANES survey cycles to yield $n = 19225$ observations on 35 covariates. This sample size was comprised $n = 9971$ and $n = 9254$ observations from the 2015/2016 and 2017/2018 survey cycles, respectively. Analyses excluded individuals with missing data on sleep ($n = 6818$), blood pressure (BP) (n = 1055), and body mass index (BMI) or those with BMI > 25 kg/$m^2$ (overweight) (n = 5521). Individuals that reported being on anti-hypertensive medication were also excluded from further analyses (n = 2944). 
+Our current analyses combine the 2015 - 2018 NHANES survey cycles to
+yield $n = 19225$ observations on 35 covariates. This sample size was
+comprised $n = 9971$ and $n = 9254$ observations from the 2015/2016 and
+2017/2018 survey cycles, respectively. Analyses excluded individuals
+with missing data on sleep ($n = 6818$), blood pressure (BP) (n = 1055),
+and body mass index (BMI) or those with BMI \> 25 kg/$m^2$ (overweight)
+(n = 5521). Individuals that reported being on anti-hypertensive
+medication were also excluded from further analyses (n = 2944).
 
 ### Outcome definition:
 
-We defined our outcome as systolic and diastolic blood pressure. These variables are measured by trained examiners using standardized procedures. Given that systolic and diastolic blood pressure measurements are taken at least four times on an individual, our definition of these outcome is based on an average of the first three blood pressure measurements. 
-
+We defined our outcome as systolic and diastolic blood pressure. These
+variables are measured by trained examiners using standardized
+procedures. Given that systolic and diastolic blood pressure
+measurements are taken at least four times on an individual, our
+definition of these outcome is based on an average of the first three
+blood pressure measurements.
 
 ### Exposure:
 
 Sleep duration on workdays was evaluated by the questionnaire with the
 following questions: "Number of hours usually sleep on weekdays or
-workdays". Sleep duration was divided into three groups, which were < 6
+workdays". Sleep duration was divided into three groups, which were \< 6
 h, 6--8 h, ≥ 8 h respectively, of which 6--8 h was used as the reference
 group.
 
 ### Covariates:
 
-In addition to the exposure and outcome variables, our analyses included the following as covariates: Race divided into four groups as Mexican American, white, black and other race. Alcohol consumption was grouped into drinking, no drinking, not recorded. Smoking status as smoking, not smoking, not recorded. Diabetes was defined as yes, no, borderline, or not recorded. Hypertension was defined as yes, no, or not
-recorded. Snorting was defined as yes, no, and not recorded. US citizenship status was defined as citizen by birth or naturalization, don't know, not a citizen, or refused to answer. Education level was grouped into four categories including graduate studies, high school, less than grade 12 or some college. Additional covariates included marital status, gender, age, albumin, creatinine,hemoglobin, total cholesterol (TC), aspertate aminotransferase (AST), high-density lipoprotein (HDL), and body mass index (BMI). Details about these variables can be found at https://wwwn.cdc.gov/nchs/nhanes/search/default.aspx. Age, albumin, creatinine, hemoglobin, TC, AST, HDL, and BMI were analyzed as continuous variables whereas gender, alcohol consumption, diabetes, smoking,
-race, hypertension, and snorting were analyzed as categorical variables. Table \@ref{tab:tabone} highlights the variable names and descriptions as utilized in this study. 
+In addition to the exposure and outcome variables, our analyses included
+the following as covariates: Race divided into four groups as Mexican
+American, white, black and other race. Alcohol consumption was grouped
+into drinking, no drinking, not recorded. Smoking status as smoking, not
+smoking, not recorded. Diabetes was defined as yes, no, borderline, or
+not recorded. Hypertension was defined as yes, no, or not recorded.
+Snorting was defined as yes, no, and not recorded. US citizenship status
+was defined as citizen by birth or naturalization, don't know, not a
+citizen, or refused to answer. Education level was grouped into four
+categories including graduate studies, high school, less than grade 12
+or some college. Additional covariates included marital status, gender,
+age, albumin, creatinine,hemoglobin, total cholesterol (TC), aspertate
+aminotransferase (AST), high-density lipoprotein (HDL), and body mass
+index (BMI). Details about these variables can be found at
+<https://wwwn.cdc.gov/nchs/nhanes/search/default.aspx>. Age, albumin,
+creatinine, hemoglobin, TC, AST, HDL, and BMI were analyzed as
+continuous variables whereas gender, alcohol consumption, diabetes,
+smoking, race, hypertension, and snorting were analyzed as categorical
+variables. Table \@ref{tab:tabone} highlights the variable names and
+descriptions as utilized in this study.
 
 ```{r tabone, echo=FALSE}
-tab.one <- kable(vars, caption = "Variable names and descriptions", 
-                 format = "latex") %>% 
-  kable_styling(latex_options = c("HOLD_position")) %>% 
-  row_spec(c(0), bold = TRUE) %>% 
-  column_spec(c(1, 2), bold = TRUE, width = "2cm") %>% 
-  column_spec(3, width = "8cm")
-tab.one
-```
+#tab.one <- as_kable_extra(vars, caption = "Variable names and descriptions", 
+#                 format = "latex", booktabs = TRUE) %>% 
+#  kable_styling(latex_options = c("HOLD_position") %>% 
+#  row_spec(c(0), bold = TRUE) %>% 
+#  column_spec(c(1, 2), bold = TRUE, width = "2cm") %>% 
+#  column_spec(3, width = "8cm")
+#tab.one
 
+
+vars %>% kable(booktabs = T) %>% kable_styling(latex_options = "scale_down")
+
+
+```
 
 ## Statistical modeling
 
+In order to select variables impacting blood pressure, we proceed by
+doing some variable selection with regularization techniques. We first
+employ best subset selection by using 10-fold cross validation to select
+the best number of subsets. For syastolic blood pressure, forward best
+subset selection choose 13 variables and for diastolic blood pressure 19
+variables. These variables are showed, along with its significance in
+Table \@ref(tab:tabreg)
 
+```{r tabref, echo=FALSE}
+tab.ref %>% as_kable_extra(booktabs = T, caption ="Coefficients for Foward Best Subset Selection") %>% kable_styling(latex_options = "scale_down")
 
-
-
+```
 
 # Results
 
-Table \@ref(tab:tabtwo) summarizes participant characteristics in the 2015 - 2018 NHANES survey cycles stratified by gender. Among the participants, the proportion of males and females were 44.81% (n = 1378) and 55.19% (n = 1509),
-respectively. With ethnicity, the proportion of Mexican American, White and Black were 6.27%, 64.62% and
-9.94%, respectively. Overall, the mean (SD) values for age, albumin, creatinine, SBP, DBP, hemoglobin, TC, AST,
-HDL, BMI were 38.54 (17.72) years, 43.48 (3.58) g/L, 73.21 (19.73) umol/L, 115.33 (14.56) mmHg, 68.47 (10.08)
-mmHg, 14.07(1.44)g/dL, 4.67 (1.01) mmol/L, 23.18 (13.01) IU/L, 1.59 (0.43) mmol/L, and 21.97(2.06) kg/m2,
-respectively. Among the participants, 66.01% were consumed alcohol drinkers, 2.61% were diabetes, 3.16% were
-hypertension, 6.72% have snort or stop breathing. 17.99% were smokers. Sleep duration was divided into three
-groups, which were < 6 h, 6–8 h, ≥ 8 h, each with a proportion of 6.26%, 40.53%, 53.21%, respectively. 
+Table \@ref(tab:tabtwo) summarizes participant characteristics in the
+2015 - 2018 NHANES survey cycles stratified by gender. Among the
+participants, the proportion of males and females were 44.81% (n = 1378)
+and 55.19% (n = 1509), respectively. With ethnicity, the proportion of
+Mexican American, White and Black were 6.27%, 64.62% and 9.94%,
+respectively. Overall, the mean (SD) values for age, albumin,
+creatinine, SBP, DBP, hemoglobin, TC, AST, HDL, BMI were 38.54 (17.72)
+years, 43.48 (3.58) g/L, 73.21 (19.73) umol/L, 115.33 (14.56) mmHg,
+68.47 (10.08) mmHg, 14.07(1.44)g/dL, 4.67 (1.01) mmol/L, 23.18 (13.01)
+IU/L, 1.59 (0.43) mmol/L, and 21.97(2.06) kg/m2, respectively. Among the
+participants, 66.01% were consumed alcohol drinkers, 2.61% were
+diabetes, 3.16% were hypertension, 6.72% have snort or stop breathing.
+17.99% were smokers. Sleep duration was divided into three groups, which
+were \< 6 h, 6--8 h, ≥ 8 h, each with a proportion of 6.26%, 40.53%,
+53.21%, respectively.
 
-Male and female participants differed significantly on characteristics including 
+Male and female participants differed significantly on characteristics
+including
 
-
-The univariate
-analysis of potential confounding factors is shown in Table 2.
+The univariate analysis of potential confounding factors is shown in
+Table 2.
 
 ```{r tabtwo, echo=FALSE}
-tabsum %>% 
-  as_kable_extra(format = "latex", caption = "Unweighted summary characteristics of the participants in the NHANES 2015 - 2018 survey cycles stratified by gender.", digits = 2, longtable = T) %>% 
-  kable_styling(latex_options = c("HOLD_position"))
+#tabsum %>% 
+#  as_kable_extra(format = "latex", caption = "Unweighted summary characteristics of the participants in the NHANES 2015 - 2018 survey cycles stratified by gender.", digits = 2, longtable = T) %>% 
+#  kable_styling(latex_options = c("HOLD_position"))
+
+tabsum %>%
+  as_kable_extra(booktabs = TRUE, 
+                 caption = "Unweighted summary characteristics of the participants in the NHANES 2015 - 2018 survey cycles stratified by gender.", 
+                 longtable = TRUE) %>%
+  kable_styling(latex_options = "scale_down")
 ```
 
-
-
-
 # Discussion and conclusion
-
-
-
-
 
 # References
