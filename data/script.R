@@ -320,23 +320,31 @@ set.seed(123)
 folds <- sample(1:10,nrow(dt),replace = T)
 
 ## Create the matrix of the model
-X <- model.matrix(sbp~., data = dt %>% select(-dbp,-weights,-strata,-seq_no,-psu))[,-1]
-y <- dt$sbp
+X <- model.matrix(dbp~., 
+                  data = dt %>% select(-sbp,-weights,-strata,-seq_no,-psu,-hypertension))[,-1]
+y <- dt$dbp
 
 ## Do cross validation
 lasso.mod.cv <- cv.glmnet(X, y, alpha=1, nfolds = 10, foldid = folds)
 lasso.mod.cv$lambda.min
 lasso.mod <- glmnet(X,y,alpha = 1,lambda = lasso.mod.cv$lambda.min)
 
+(191.9156-190.1472)/190.1472*100 #29 
+lambda.log = -1.305027684
+lambda = exp(lambda.log)
+## Check for best lambda
+cbind(log(lasso.mod.cv$lambda),lasso.mod.cv$cvup, lasso.mod.cv$nzero)
+ 
+
 ## Plot cross validation results
 plot(lasso.mod.cv) #maybe choose one larger lambda that not adds more mse?
-
+title("Diastolic Blood Pressure", line = 2.5)
 ## Select nonzero coefficients
 coefficients <- coef(lasso.mod)
 nonzero.coef <- coefficients[,1] != 0
-nonzero.vars.lasso_sbp_min <- rownames(coefficients)[nonzero.coef]
+nonzero.vars.lasso_dbp_min <- rownames(coefficients)[nonzero.coef]
 
-write.csv(nonzero.vars.lasso_sbp_min, file = "C:/Users/monic/OneDrive/Desktop/SleepBP/data/lasso_res_sbp_min.csv")
+write.csv(nonzero.vars.lasso_dbp_min, file = "C:/Users/monic/OneDrive/Desktop/SleepBP/data/lasso_res_dbp_min.csv")
 
 ## Filter dataframe to include only non-zero variables
 modified_dt <- dt %>% 
@@ -523,7 +531,7 @@ reg.best.sbp <- regsubsets(sbp~., data = modified_dt, nvmax = p)
 k <- 10
 n <- nrow(dt)
 p <- ncol(dt %>% select(-sbp,-weights,-strata,-seq_no, -psu,-hypertension)) -1
-set.seed(123)
+#set.seed(123)
 folds <- sample(1:k, n, replace=TRUE)
 
 #ISSUES  for stepwise selection 
@@ -556,7 +564,11 @@ ggplot(errors.dbp, aes(x = subset_size, y = error, color = subset_size == best_k
 ## Get coefficients with best_k
 reg.best.dbp <- regsubsets(dbp~., data = modified_dt, nvmax = p)
 
+reg.best.dbp <- as.data.frame(coef(reg.best.dbp,id=best_k.dbp))
+reg.best.sbp <- as.data.frame(coef(reg.best.sbp,id=best_k.sbp))
 
+write.csv(reg.best.dbp, file = "C:/Users/monic/OneDrive/Desktop/SleepBP/data/reg.dbp.csv")
+write.csv(reg.best.sbp, file = "C:/Users/monic/OneDrive/Desktop/SleepBP/data/reg.sbp.csv")
 
 
 
