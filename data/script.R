@@ -4,9 +4,6 @@
 ## Monica Colon-Vargas      #
 #############################
 
-##Set Working Directory
-setwd("C:/Users/monic/OneDrive/Desktop/LinearModelsProject/")
-
 ## load required libraries
 library(nhanesA)
 library(knitr)
@@ -14,6 +11,7 @@ library(kableExtra)
 library(tidyverse)
 library(gtsummary)
 library(survey)
+library(leaps)
 
 ## load the 2015 cycle and add an indicator of survey cycle
 load("nhanes2015.RData")
@@ -72,8 +70,17 @@ dt <- df %>%
 
 ## Table of questions used when extracting variables from the NHANES database
 
+tbl_one <- data.frame(Variable = as.character(), Name = as.character(), Description = as.character()) %>% 
+  add_row(Variable = "SEQN", Name = "sequence number", Description = "Respondent sequence number") %>% 
+  add_row(Variable = "SDMVPSU", Name = "psu", Description = "Masked variance unit pseudo-PSU variable for variance estimation") %>% 
+  add_row(Variable = "SDMVSTRA", Name = "strata", Description = "Masked variance unit pseudo-stratum variable for variance estimation") %>% 
+  add_row(Variable = "RIAGENDR", Name = "gender", Description = "Gender of the participant") %>% 
+  add_row(Variable = "", )
+  
+
+
 ## Check missing values per variable
-#Count missing data accros each variable
+#Count missing data across each variable
 missing_table <- dt %>% 
   summarise(across(everything(), ~ sum(is.na(.x)))) %>%
   t() %>% 
@@ -176,11 +183,6 @@ table1 <- dt2 %>% gtsummary::tbl_summary(by = gender,
 #kable_styling(latex_options = "scale_down")
 table1
 
-
-
-
-
-
 #age alcohol sleep and smoking status
 
 library(tidyverse)
@@ -281,9 +283,7 @@ ggarrange(p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,ncol = 3,nrow = 5,legen
 
 
 dt$income_range %>% levels()
-# Recategorizing income ranges
-
-
+# Re-categorizing income ranges
 dt$income_category <- case_when(
   dt$income_range %in% c("$ 0 to $ 4,999", "$ 5,000 to $ 9,999") ~ "Low income",
   dt$income_range %in% c("$10,000 to $14,999", "$15,000 to $19,999", "$20,000 to $24,999") ~ "Lower-middle income",
@@ -358,7 +358,7 @@ summary(lm(dbp~. ,data = modified_dt))
 
 #############
 ##########################################################
-library(leaps)
+
 # Perform forward subset selection
 # Cross-Validation
 
