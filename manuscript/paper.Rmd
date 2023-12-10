@@ -52,7 +52,7 @@ editor_options:
 
 ```{r source-file, echo=FALSE, include=FALSE}
 # source file 
-source(file = "C:/Users/monic/OneDrive/Desktop/SleepBP/data/scrip2.R")
+source(file = "../SleepBP/data/scrip2.R")
 ```
 
 # Introduction
