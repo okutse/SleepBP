@@ -11,10 +11,10 @@ library(ggcorrplot)
 library(kableExtra)
 
 ## Load Data
-dt <- read.csv("../SleepBP/data/dt.csv")
+dt <- read.csv("C:/Users/monic/OneDrive/Desktop/SleepBP/data/dt.csv")
 
 ## load the variable name file
-vars <- read.csv("../SleepBP/data/vars.csv")
+vars <- read.csv("C:/Users/monic/OneDrive/Desktop/SleepBP/data/vars.csv")
 dt$cycle <- as.factor(dt$cycle)
 ## some pre-processing
 dt <- dt %>% select(-X)
