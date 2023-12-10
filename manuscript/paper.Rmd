@@ -52,19 +52,55 @@ editor_options:
 
 ```{r source-file, echo=FALSE, include=FALSE}
 # source file 
-source(file = "../SleepBP/data/scrip2.R")
+source(file = "C:/Users/monic/OneDrive/Desktop/SleepBP/data/scrip2.R")
 ```
 
 # Introduction
 
--   importance of reproducibility
--   As a case on point ...?
--   Underscores the importance of reproducibility within the frame of
-    statistical analysis. We use the study by to ... The current study
-    builds on the paper by .. and starts in the manner of a replication
-    study and extends the analyses therein. We focus on statistical
-    analyses of these data and compare models based on varied
-    specification of functional forms of the covariates.
+The clinical importance of systolic blood pressure (SBP) stands as a
+cornerstone extensively acknowledged and documented across the continuum
+of medical literature's data collection. Elevated SBP stands as an
+precursor linked with a spectrum of critical health conditions, notably
+encompassing cardiovascular disease, stroke, and renal impairment, among
+others. This nexus between heightened SBP and these significant health
+adversities underscores the gravity of SBP as a predictive marker for
+adverse health outcomes. Noteworthy is the pivotal concern surrounding
+the trajectory of SBP in the natural aging process, a trajectory
+observed ubiquitously across diverse populations.
+
+Within Western societies aged 40 years and above, a demonstrable pattern
+emerges, revealing an approximate elevation of 7 mmHg in SBP per decade
+[**CITE**]. This discernible and consistent increment in SBP with
+advancing age accentuates its profound impact within the broader context
+of aging-related health dynamics. Concurrently, diastolic blood pressure
+(DBP), while demonstrating a concurrent rise correlating with age,
+presents a substantially lower rate of increase when juxtaposed against
+the ascending trajectory observed in SBP. Thus, in light of the
+significance attached to SBP dynamics within aging populations and the
+intricate interplay between age and blood pressure alterations, our
+investigative focus is oriented towards the exploration of variables
+that exert potential influence on systolic blood pressure (SBP). This
+deliberate focus aims to elucidate the multifaceted nature of factors
+contributing to SBP variability, enabling a more comprehensive
+understanding of its determinants within the framework of health and
+aging.
+
+Beyond age, the basal metabolic rate (BMI) emerges as a recognized
+contributor to systolic blood pressure (SBP), with individuals
+exhibiting higher BMI values demonstrating a propensity for elevated
+SBP. Gender also holds a discernible association with SBP dynamics.
+Empirical evidence in CITE demonstrates that women typically manifest
+lower SBP than men until the onset of menopause, after which women
+exhibit higher SBP levels compared to men. Additionally, heightened
+levels of cholesterol are closely linked to vascular damage. The
+accumulation of cholesterol deposits and calcium within arteries
+precipitates arterial stiffening, necessitating augmented cardiac
+efforts to circulate blood, potentially culminating in elevated blood
+pressure. This study endeavors to examine the interrelationships between
+age and cholesterol levels, emphasizing consideration of potential
+confounding variables. Table 1 comprehensively delineates the array of
+variables under scrutiny, ensuring a comprehensive analysis of their
+collective impact
 
 # Methods
 
@@ -132,7 +168,7 @@ variables. Table \@ref{tab:tabone} highlights the variable names and
 descriptions as utilized in this study.
 
 | Variable | Name                    | Description                                                                                                                                  |
-|-----------------|-----------------|--------------------------------------|
+|------------------|------------------|-------------------------------------|
 | SEQN     | sequence number         | Respondent number                                                                                                                            |
 | SDMVPSU  | psu                     | Masked variance unit pseudo-PSU variable for variance estimation                                                                             |
 | WTINT2YR | weights                 | Full sample 2-year interview weights                                                                                                         |
@@ -301,3 +337,11 @@ tabsum %>%
 # Discussion and conclusion
 
 # References
+
+\@article{Gurven_Blackwell_Rodríguez_Stieglitz_Kaplan_2012a, title={Does
+blood pressure inevitably rise with age?}, volume={60},
+url={[https://doi.org/10.1161/hypertensionaha.111.189100},](https://doi.org/10.1161/hypertensionaha.111.189100},)
+DOI={[10.1161/hypertensionaha.111.189100](https://doi.org/10.1161/hypertensionaha.111.189100)},
+number={1}, journal={Hypertension}, author={Gurven, Michael and
+Blackwell, Aaron D. and Rodríguez, Daniel and Stieglitz, Jonathan and
+Kaplan, Hillard}, year={2012}, month=jul, pages={25--33} }
