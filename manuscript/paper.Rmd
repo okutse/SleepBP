@@ -89,7 +89,7 @@ comprised $n = 9971$ and $n = 9254$ observations from the 2015/2016 and
 with missing data on sleep ($n = 6818$), blood pressure (BP) (n = 1055),
 and body mass index (BMI) or those with BMI \> 25 kg/$m^2$ (overweight)
 (n = 5521). Individuals that reported being on anti-hypertensive
-medication were also excluded from further analyses (n = 2944).
+medication were also excluded from further analyses (n = 2944). Our final analyses were based on a sample of n = 1977 observations on 28 covariates. 
 
 ### Outcome definition:
 
@@ -100,13 +100,13 @@ measurements are taken at least four times on an individual, our
 definition of these outcome is based on an average of the first three
 blood pressure measurements.
 
-### Exposure:
+### Exposures:
 
 Sleep duration on workdays was evaluated by the questionnaire with the
 following questions: "Number of hours usually sleep on weekdays or
-workdays". Sleep duration was divided into three groups, which were \< 6
-h, 6--8 h, ≥ 8 h respectively, of which 6--8 h was used as the reference
-group.
+workdays". We then categorized this variable into three groups, that is, \< 6
+h, 6--8 h, ≥ 8 h respectively, and used < 6 h as the reference
+group in our analysis. We also explored the association between total cholestrol (in mmol/L) level on systolic blood pressure including potential effect modification by other factors.
 
 ### Covariates:
 
