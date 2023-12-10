@@ -204,16 +204,21 @@ dbpfull
 merged.mult <- tbl_merge(tbls = list(sbpfull, dbpfull), tab_spanner = c("SBP", "DBP"))
 merged.mult
 
-## 
-## Interacted regressions including all two-way dependencies
+##------------------------------------
+## Interacted regressions including all two-way dependencies: saved only results where p < 0.05
 ## sbp
 int.sbp <- lm(sbp ~ .^2, data = dt.sbp)
-summary(int.sbp)
+coefficients <- summary(int.sbp)$coefficients
+coef_df <- as.data.frame(coefficients)
+significant_results <- coef_df[coef_df$`Pr(>|t|)` < 0.05, ]
+print(significant_results)
 
 ## dbp
 int.dbp <- lm(dbp ~ .^2, data = dt.dbp)
-summary(int.dbp)
-
+coefficients <- summary(int.dbp)$coefficients
+coef_df <- as.data.frame(coefficients)
+significant_results <- coef_df[coef_df$`Pr(>|t|)` < 0.05, ]
+print(significant_results)
 
 ##-------------------------------------
 ## Variable-selection based regressions
