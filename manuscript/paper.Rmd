@@ -132,7 +132,7 @@ variables. Table \@ref{tab:tabone} highlights the variable names and
 descriptions as utilized in this study.
 
 | Variable | Name                    | Description                                                                                                                                  |
-|-------------|---------------|---------------------------------------------|
+|-----------------|-----------------|--------------------------------------|
 | SEQN     | sequence number         | Respondent number                                                                                                                            |
 | SDMVPSU  | psu                     | Masked variance unit pseudo-PSU variable for variance estimation                                                                             |
 | WTINT2YR | weights                 | Full sample 2-year interview weights                                                                                                         |
@@ -186,7 +186,7 @@ discerned 13 variables, whereas diastolic blood pressure exhibited 19
 selected variables. However, a limitation inherent in forward best
 subset selection is its inability to eliminate previously selected
 features, potentially disregarding their relevance in light of newly
-added variables. Consequently, this methodology may yield suboptimal
+added variables. Consequently, this methodology may yield sub-optimal
 variable selections due to its lack of adaptability.
 
 In an effort to mitigate this limitation and introduce regularization,
@@ -221,7 +221,7 @@ were \< 6 h, 6--8 h, ≥ 8 h, each with a proportion of 6.26%, 40.53%,
 Male and female participants differed significantly on characteristics
 including
 
-The univariate analysis of potential confounding factors is shown in
+The uni-variate analysis of potential confounding factors is shown in
 Table 2.
 
 ```{r tabtwo, echo=FALSE}
