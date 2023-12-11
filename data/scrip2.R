@@ -11,10 +11,13 @@ library(ggcorrplot)
 library(kableExtra)
 
 ## Load Data
-dt <- read.csv("C:/Users/monic/OneDrive/Desktop/SleepBP/data/dt.csv")
+## dt <- read.csv("C:/Users/monic/OneDrive/Desktop/SleepBP/data/dt.csv")
+dt <- read.csv("/Users/aokutse/Desktop/PhD/Fall 2023/PHP2601 Linear Models/SleepBP/data/dt.csv")
 
 ## load the variable name file
-vars <- read.csv("C:/Users/monic/OneDrive/Desktop/SleepBP/data/vars.csv")
+## vars <- read.csv("C:/Users/monic/OneDrive/Desktop/SleepBP/data/vars.csv")
+## vars <- read.csv("/Users/aokutse/Desktop/PhD/Fall 2023/PHP2601 Linear Models/SleepBP/data/vars.csv")
+
 dt$cycle <- as.factor(dt$cycle)
 ## some pre-processing
 dt <- dt %>% select(-X)
@@ -22,7 +25,8 @@ dt <- dt %>%
   mutate_if(is.character, as.factor)
 
 ## edit the citizenship levels: Citizen, not citizen/other
-## Marital status: single/never married, married or living with partner, divorced or separated, widowed 
+
+levels(dt$citizenship_status) <- c("Citizen", "Unknown", "Non-citizen", "Refused")
 
 ## summarize the data by gender
 tabsum <- dt %>%  
@@ -57,6 +61,7 @@ tabsum <- dt %>%
   modify_header(label ~ "**Variable**") %>%
   bold_labels() %>% 
   add_p()
+tabsum
 
 ####################################
 ## Statistical Modeling
@@ -103,37 +108,37 @@ sbp.univariate
 
 
 ## Univariate regressions (2) dbp
-dt.dbp <- dt %>% select(-c("seq_no", "psu", "strata", "sbp", "weights", "hypertension"))
-dbp.univariate <- tbl_uvregression(data = dt.dbp, y = dbp, method = lm,
-                                   hide_n = TRUE,
-                                   label = list(bmi ~ "BMI",
-                                                hdl ~ "HDL",
-                                                total_chol ~ "TC",
-                                                hemoglobin ~ "Hemoglobin",
-                                                albumin ~ "Albumin",
-                                                creatinine ~ "Creatinine",
-                                                #hypertension ~ "Hypertension",
-                                                diabetes ~ "Diabetes",
-                                                citizenship_status ~ "Citizenship",
-                                                educ_level ~ "Education",
-                                                children..5 ~ "Children > 5 yrs",
-                                                age_yr ~ "Age (yrs)",
-                                                marital_status ~ "Marital status",
-                                                cycle ~ "Survey cycle",
-                                                sleep ~ "Sleep",
-                                                race ~ "Race",
-                                                smoke ~ "Smoking status",
-                                                snort ~ "Snort",
-                                                alcohol ~ "Alcohol",
-                                                income_category ~ "Income",
-                                                gender ~ "Gender"
-                                   )) %>% 
-  modify_header(label ~ "**Variable**") %>%
-  bold_labels()
-
-## merge the univariate regression results
-merged.univariate <- tbl_merge(tbls = list(sbp.univariate, dbp.univariate), tab_spanner = c("SBP", "DBP"))
-merged.univariate
+# dt.dbp <- dt %>% select(-c("seq_no", "psu", "strata", "sbp", "weights", "hypertension"))
+# dbp.univariate <- tbl_uvregression(data = dt.dbp, y = dbp, method = lm,
+#                                    hide_n = TRUE,
+#                                    label = list(bmi ~ "BMI",
+#                                                 hdl ~ "HDL",
+#                                                 total_chol ~ "TC",
+#                                                 hemoglobin ~ "Hemoglobin",
+#                                                 albumin ~ "Albumin",
+#                                                 creatinine ~ "Creatinine",
+#                                                 #hypertension ~ "Hypertension",
+#                                                 diabetes ~ "Diabetes",
+#                                                 citizenship_status ~ "Citizenship",
+#                                                 educ_level ~ "Education",
+#                                                 children..5 ~ "Children > 5 yrs",
+#                                                 age_yr ~ "Age (yrs)",
+#                                                 marital_status ~ "Marital status",
+#                                                 cycle ~ "Survey cycle",
+#                                                 sleep ~ "Sleep",
+#                                                 race ~ "Race",
+#                                                 smoke ~ "Smoking status",
+#                                                 snort ~ "Snort",
+#                                                 alcohol ~ "Alcohol",
+#                                                 income_category ~ "Income",
+#                                                 gender ~ "Gender"
+#                                    )) %>% 
+#   modify_header(label ~ "**Variable**") %>%
+#   bold_labels()
+# 
+# ## merge the univariate regression results
+# merged.univariate <- tbl_merge(tbls = list(sbp.univariate, dbp.univariate), tab_spanner = c("SBP", "DBP"))
+# merged.univariate
 
 
 ###################################
@@ -172,69 +177,43 @@ sbpfull
 
 
 ## dbp full model
-dbp.full <- lm(dbp ~., data = dt.dbp)
-summary(dbp.full)
-dbpfull <- tbl_regression(dbp.full,
-                          label = list(bmi ~ "BMI",
-                                       hdl ~ "HDL",
-                                       total_chol ~ "TC",
-                                       hemoglobin ~ "Hemoglobin",
-                                       albumin ~ "Albumin",
-                                       creatinine ~ "Creatinine",
-                                       #hypertension ~ "Hypertension",
-                                       diabetes ~ "Diabetes",
-                                       citizenship_status ~ "Citizenship",
-                                       educ_level ~ "Education",
-                                       children..5 ~ "Children > 5 yrs",
-                                       age_yr ~ "Age (yrs)",
-                                       marital_status ~ "Marital status",
-                                       cycle ~ "Survey cycle",
-                                       sleep ~ "Sleep",
-                                       race ~ "Race",
-                                       smoke ~ "Smoking status",
-                                       snort ~ "Snort",
-                                       alcohol ~ "Alcohol",
-                                       income_category ~ "Income",
-                                       gender ~ "Gender"
-                          )) %>% 
-  modify_header(label ~ "**Variable**") %>%
-  bold_labels()
-dbpfull
-## merge the full regression analysis results
-merged.mult <- tbl_merge(tbls = list(sbpfull, dbpfull), tab_spanner = c("SBP", "DBP"))
-merged.mult
+# dbp.full <- lm(dbp ~., data = dt.dbp)
+# summary(dbp.full)
+# dbpfull <- tbl_regression(dbp.full,
+#                           label = list(bmi ~ "BMI",
+#                                        hdl ~ "HDL",
+#                                        total_chol ~ "TC",
+#                                        hemoglobin ~ "Hemoglobin",
+#                                        albumin ~ "Albumin",
+#                                        creatinine ~ "Creatinine",
+#                                        #hypertension ~ "Hypertension",
+#                                        diabetes ~ "Diabetes",
+#                                        citizenship_status ~ "Citizenship",
+#                                        educ_level ~ "Education",
+#                                        children..5 ~ "Children > 5 yrs",
+#                                        age_yr ~ "Age (yrs)",
+#                                        marital_status ~ "Marital status",
+#                                        cycle ~ "Survey cycle",
+#                                        sleep ~ "Sleep",
+#                                        race ~ "Race",
+#                                        smoke ~ "Smoking status",
+#                                        snort ~ "Snort",
+#                                        alcohol ~ "Alcohol",
+#                                        income_category ~ "Income",
+#                                        gender ~ "Gender"
+#                           )) %>% 
+#   modify_header(label ~ "**Variable**") %>%
+#   bold_labels()
+# dbpfull
+# ## merge the full regression analysis results
+# merged.mult <- tbl_merge(tbls = list(sbpfull, dbpfull), tab_spanner = c("SBP", "DBP"))
+# merged.mult
 
 
 ##--------------------------------------
 ## sbp full model with age and cholestrol interaction
 sbp.fullc <- lm(sbp ~. + total_chol:age_yr, data = dt.sbp)
 summary(sbp.fullc)
-sbpfullc <- tbl_regression(sbp.fullc,
-                          label = list(bmi ~ "BMI",
-                                       hdl ~ "HDL",
-                                       total_chol ~ "TC",
-                                       hemoglobin ~ "Hemoglobin",
-                                       albumin ~ "Albumin",
-                                       creatinine ~ "Creatinine",
-                                       #hypertension ~ "Hypertension",
-                                       diabetes ~ "Diabetes",
-                                       citizenship_status ~ "Citizenship",
-                                       educ_level ~ "Education",
-                                       children..5 ~ "Children > 5 yrs",
-                                       age_yr ~ "Age (yrs)",
-                                       marital_status ~ "Marital status",
-                                       cycle ~ "Survey cycle",
-                                       sleep ~ "Sleep",
-                                       race ~ "Race",
-                                       smoke ~ "Smoking status",
-                                       snort ~ "Snort",
-                                       alcohol ~ "Alcohol",
-                                       income_category ~ "Income",
-                                       gender ~ "Gender"
-                          )) %>% 
-  modify_header(label ~ "**Variable**") %>%
-  bold_labels()
-sbpfullc
 
 ##--------------------------------------
 ## Adjusting for only significant factors 
@@ -247,8 +226,8 @@ summary(adj.sbp)
 #+ total_chol:age_yr
 
 ### dbp
-adj.dbp <- lm(dbp ~ bmi + total_chol + gender + age_yr + marital_status + sleep + income_category , data = dt.dbp)
-summary(adj.dbp)
+# adj.dbp <- lm(dbp ~ bmi + total_chol + gender + age_yr + marital_status + sleep + income_category , data = dt.dbp)
+# summary(adj.dbp)
 
 ## All two way-interactions from above
 ##--------------------------------------
@@ -261,8 +240,8 @@ summary(adj.sbp.int2)
 
 
 ### dbp
-adj.dbp.int <- lm(dbp ~ (bmi + total_chol + gender + age_yr + marital_status + sleep + income_category)^2 , data = dt.dbp)
-summary(adj.dbp)
+# adj.dbp.int <- lm(dbp ~ (bmi + total_chol + gender + age_yr + marital_status + sleep + income_category)^2 , data = dt.dbp)
+# summary(adj.dbp)
 
 ##-------------------------------------
 ## Interacted regressions including all two-way dependencies: 
@@ -276,11 +255,11 @@ significant_sbp <- coef_df[coef_df$`Pr(>|t|)` < 0.05, ]
 print(significant_sbp)
 
 ## dbp
-int.dbp <- lm(dbp ~ .^2, data = dt.dbp)
-coefficients <- summary(int.dbp)$coefficients
-coef_df <- as.data.frame(coefficients)
-significant_dbp <- coef_df[coef_df$`Pr(>|t|)` < 0.05, ]
-print(significant_dbp)
+# int.dbp <- lm(dbp ~ .^2, data = dt.dbp)
+# coefficients <- summary(int.dbp)$coefficients
+# coef_df <- as.data.frame(coefficients)
+# significant_dbp <- coef_df[coef_df$`Pr(>|t|)` < 0.05, ]
+# print(significant_dbp)
 
 ##-------------------------------------
 ## Variable-selection based regressions
@@ -432,8 +411,8 @@ colnames(AdjR) <- "Adjusted R^2"
 
 ## merge all the results
 model.checks <- cbind(aic, bic, MSE, R, AdjR)[, -3]
+rownames(model.checks) <- c("Model 1", "Model 2", "Model 3", "Model 4", "Model 5", "Model 6", "Model 7")
 model.checks
-
 ###-----------------------------------------------
 ## Model comparisons using LRT
 ## H0: the nested models are equivalent, and the extra parameters in the larger model do not improve the fit significantly. 
@@ -463,3 +442,6 @@ anova.five
 ## Regression diagnostics
 par(mfrow = c(2,2))
 plot(adj.sbp.int2)
+
+
+# Having high cholesterol, especially high LDL (bad) cholesterol or low HDL (good) cholesterol, can increase the risk of atherosclerosis, which is the buildup of plaque in the arteries. Atherosclerosis can lead to heart attack, stroke, and other complications.

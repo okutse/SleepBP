@@ -1,11 +1,10 @@
 ---
-title: "Preparing the NHANES Data for the Replication of: Association between sleep duration on workdays and blood pressure in non‑overweight/obese population in NHANES: a public database research"
+title: "Weekday sleep, total cholestrol and the modifying effect of age on systolic blood pressure: An analysis of the 2015-2018 non-obese NHANES population"
 thanks: "Replication files are available on the author's Github account (http://github.com/okutse/sleepBP). **Current version**: `r format(Sys.time(), '%B %d, %Y')`"
-subtitle: "Short title goes here!"
+#subtitle: "Short title goes here!"
 author:
 - Amos Okutse, Brown University
-- Second Author, Another Uni
-- Graduate Student, Graduate School
+- Monic Colon-Vargas, Brown University
 abstract: "**Introduction:** Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet libero justo. Pellentesque eget nibh ex. Aliquam tincidunt egestas lectus id ullamcorper. 
 
 
@@ -43,7 +42,7 @@ link-citations: yes
 colorlinks: yes
 linkcolor: blue
 urlcolor: blue
-#bibliography: refs.bib
+bibliography: bibfile.bib
 bibliostyle: apalike
 editor_options: 
   markdown: 
@@ -52,32 +51,35 @@ editor_options:
 
 ```{r source-file, echo=FALSE, include=FALSE}
 # source file 
-source(file = "C:/Users/monic/OneDrive/Desktop/SleepBP/data/scrip2.R")
+# source(file = "C:/Users/monic/OneDrive/Desktop/SleepBP/data/scrip2.R")
+source("/Users/aokutse/Desktop/PhD/Fall 2023/PHP2601 Linear Models/SleepBP/data/scrip2.R")
 ```
+
 
 # Introduction
 
 The clinical importance of systolic blood pressure (SBP) stands as a
 cornerstone extensively acknowledged and documented across the continuum
-of medical literature's data collection. Elevated SBP stands as an
-precursor linked with a spectrum of critical health conditions, notably
-encompassing cardiovascular disease, stroke, and renal impairment, among
+of medical literature's data collection [@gurven2012does; @su2022association]. Elevated SBP stands as a
+precursor linked with a spectrum of critical health conditions, 
+encompassing cardiovascular diseases, stroke, and renal impairment, among
 others. This nexus between heightened SBP and these significant health
 adversities underscores the gravity of SBP as a predictive marker for
 adverse health outcomes. Noteworthy is the pivotal concern surrounding
 the trajectory of SBP in the natural aging process, a trajectory
 observed ubiquitously across diverse populations.
 
-Within Western societies aged 40 years and above, a demonstrable pattern
-emerges, revealing an approximate elevation of 7 mmHg in SBP per decade
-[**CITE**]. This discernible and consistent increment in SBP with
+In western societies aged 40 years and above, a demonstrable pattern
+emerges, revealing an approximate elevation of 7 mmHg in SBP per decade among individuals above 40 years. 
+This discernible and consistent increment in SBP with
 advancing age accentuates its profound impact within the broader context
-of aging-related health dynamics. Concurrently, diastolic blood pressure
-(DBP), while demonstrating a concurrent rise correlating with age,
+of aging-related health dynamics. Similarly, while diastolic blood pressure
+(DBP), demonstrates a concurrent rise correlating with age,
 presents a substantially lower rate of increase when juxtaposed against
-the ascending trajectory observed in SBP. Thus, in light of the
+the ascending trajectory observed in SBP [@gurven2012does; @su2022association]. 
+Thus, in light of the
 significance attached to SBP dynamics within aging populations and the
-intricate interplay between age and blood pressure alterations, our
+intricate interplay between age, sleep, cholestrol levels and blood pressure alterations, our
 investigative focus is oriented towards the exploration of variables
 that exert potential influence on systolic blood pressure (SBP). This
 deliberate focus aims to elucidate the multifaceted nature of factors
@@ -85,22 +87,22 @@ contributing to SBP variability, enabling a more comprehensive
 understanding of its determinants within the framework of health and
 aging.
 
-Beyond age, the basal metabolic rate (BMI) emerges as a recognized
-contributor to systolic blood pressure (SBP), with individuals
-exhibiting higher BMI values demonstrating a propensity for elevated
-SBP. Gender also holds a discernible association with SBP dynamics.
-Empirical evidence in CITE demonstrates that women typically manifest
-lower SBP than men until the onset of menopause, after which women
-exhibit higher SBP levels compared to men. Additionally, heightened
-levels of cholesterol are closely linked to vascular damage. The
-accumulation of cholesterol deposits and calcium within arteries
-precipitates arterial stiffening, necessitating augmented cardiac
-efforts to circulate blood, potentially culminating in elevated blood
-pressure. This study endeavors to examine the interrelationships between
-age and cholesterol levels, emphasizing consideration of potential
-confounding variables. Table 1 comprehensively delineates the array of
-variables under scrutiny, ensuring a comprehensive analysis of their
-collective impact
+<!-- Beyond age, the basal metabolic rate (BMI) emerges as a recognized -->
+<!-- contributor to systolic blood pressure (SBP), with individuals -->
+<!-- exhibiting higher BMI values demonstrating a propensity for elevated -->
+<!-- SBP. Gender also holds a discernible association with SBP dynamics. -->
+<!-- Empirical evidence in CITE demonstrates that women typically manifest -->
+<!-- lower SBP than men until the onset of menopause, after which women -->
+<!-- exhibit higher SBP levels compared to men. Additionally, heightened -->
+<!-- levels of cholesterol are closely linked to vascular damage. The -->
+<!-- accumulation of cholesterol deposits and calcium within arteries -->
+<!-- precipitates arterial stiffening, necessitating augmented cardiac -->
+<!-- efforts to circulate blood, potentially culminating in elevated blood -->
+<!-- pressure. This study endeavors to examine the interrelationships between -->
+<!-- age and cholesterol levels, emphasizing consideration of potential -->
+<!-- confounding variables. Table 1 comprehensively delineates the array of -->
+<!-- variables under scrutiny, ensuring a comprehensive analysis of their -->
+<!-- collective impact -->
 
 # Methods
 
@@ -125,7 +127,8 @@ comprised $n = 9971$ and $n = 9254$ observations from the 2015/2016 and
 with missing data on sleep ($n = 6818$), blood pressure (BP) (n = 1055),
 and body mass index (BMI) or those with BMI \> 25 kg/$m^2$ (overweight)
 (n = 5521). Individuals that reported being on anti-hypertensive
-medication were also excluded from further analyses (n = 2944). Our final analyses were based on a sample of n = 1977 observations on 28 covariates. 
+medication were also excluded from further analyses (n = 2944). 
+Our final analyses were based on a sample of n = 1977 observations on 28 covariates. 
 
 ### Outcome definition:
 
@@ -167,48 +170,58 @@ smoking, race, hypertension, and snorting were analyzed as categorical
 variables. Table \@ref{tab:tabone} highlights the variable names and
 descriptions as utilized in this study.
 
-| Variable | Name                    | Description                                                                                                                                  |
-|------------------|------------------|-------------------------------------|
-| SEQN     | sequence number         | Respondent number                                                                                                                            |
-| SDMVPSU  | psu                     | Masked variance unit pseudo-PSU variable for variance estimation                                                                             |
-| WTINT2YR | weights                 | Full sample 2-year interview weights                                                                                                         |
-| SDMVSTRA | strata                  | Masked variance unit pseudo-stratum variable for variance estimation                                                                         |
-| RIAGENDR | gender                  | Respondent's number                                                                                                                          |
-| RIDAGEYR | age (yrs)               | Respondent's age in years                                                                                                                    |
-| DMDMARTL | marital status          | Marital status                                                                                                                               |
-| INDFMIN2 | income category         | Total family income (reported as a range value in dollars)                                                                                   |
-| RIDRETH3 | race                    | Recode of reported race and Hispanic origin information, with Non-Hispanic Asian Category                                                    |
-| DMDHHSZA | children \<5            | Number of children aged 5 years or younger in the household                                                                                  |
-| DMDEDUC2 | education level         | What is the highest grade or level of school {you have/SP has} completed or the highest degree {you have/s/he has} received?                 |
-| DMDCITZN | citizenship status      | {Are you/Is SP} a citizen of the United States? [Information about citizenship is being collected by the U.S. Public Health Serv             |
-| SLD012   | sleep                   | Number of hours usually sleep on weekdays or workdays                                                                                        |
-| BMXBMI   | bmi                     | Body mass index                                                                                                                              |
-| ALQ121   | alcohol use             | In the past 12 months, how often did you drink any type of alcoholic beverage?                                                               |
-| LBDHDDSI | hdl                     | High density lipoprotein                                                                                                                     |
-| LBDSALSI | albumin                 | Albumin (g/L)                                                                                                                                |
-| DIQ010   | diabetes                | Have you ever been told by a doctor or health professional that you have diabetes or sugar diabetes?                                         |
-| BPQ020   | hypertension            | {Have you/Has SP} ever been told by a doctor or other health professional that {you/s/he} had hypertension, also called high blood pressure? |
-| URXCRS   | creatinine              | Creatinine, urine (umol/L)                                                                                                                   |
-| SLQ040   | snort                   | In the past 12 months, how often did {you/SP} snort, gasp, or stop breathing while {you were/s/he was} asleep?                               |
-| LBDTCSI  | total cholestrol levels | Total cholesterol (mmol/L)                                                                                                                   |
-| LBXHGB   | hemoglobin              | Hemoglobin (g/dL)                                                                                                                            |
-| LBXSASSI | AST                     | Aspartate aminotransferase                                                                                                                   |
-| SMQ040   | smoke                   | Do you now smoke cigarettes?                                                                                                                 |
-| BPXDI    | blood pressure          | Systolic and diastolic blood pressure taken as the average of the first three measurements                                                   |
+\begin{table}[H]
 
-```{r tabone, echo=FALSE}
-#tab.one <- as_kable_extra(vars, caption = "Variable names and descriptions", 
-#                 format = "latex", booktabs = TRUE) %>% 
-#  kable_styling(latex_options = c("HOLD_position") %>% 
-#  row_spec(c(0), bold = TRUE) %>% 
-#  column_spec(c(1, 2), bold = TRUE, width = "2cm") %>% 
-#  column_spec(3, width = "8cm")
-#tab.one
+\caption{\label{tab:tabone}Variable descriptions}
+\centering
+\begin{tabular}[t]{>{\raggedright\arraybackslash}p{2cm}>{\raggedright\arraybackslash}p{2cm}>{\raggedright\arraybackslash}p{8cm}}
+\toprule
+\textbf{Variable} & \textbf{Name} & \textbf{Description}\\
+\midrule
+\textbf{SEQN} & \textbf{sequence number} & Respondent number\\
+\textbf{SDMVPSU} & \textbf{psu} & Masked variance unit pseudo-PSU variable for variance estimation\\
+\textbf{WTINT2YR} & \textbf{weights} & Full sample 2-year interview weights\\
+\textbf{SDMVSTRA} & \textbf{strata} & Masked variance unit pseudo-stratum variable for variance estimation\\
+\textbf{RIAGENDR} & \textbf{gender} & Respondent's number\\
+\addlinespace
+\textbf{RIDAGEYR} & \textbf{age (yrs)} & Respondent's age in years\\
+\textbf{DMDMARTL} & \textbf{marital status} & Marital status\\
+\textbf{INDFMIN2} & \textbf{income category} & Total family income (reported as a range value in dollars)\\
+\textbf{RIDRETH3} & \textbf{race} & Recode of reported race and Hispanic origin information, with Non-Hispanic Asian Category\\
+\textbf{DMDHHSZA} & \textbf{children <5} & Number of children aged 5 years or younger in the household\\
+\addlinespace
+\textbf{DMDEDUC2} & \textbf{education level} & What is the highest grade or level of school\{you have/SP has\} completed or the highest degree \{you have/s/he has\} received?\\
+\textbf{DMDCITZN} & \textbf{citizenship status} & \{Are you/Is SP\} a citizen of the United States? [Information about citizenship is being collected by the U.S. Public Health Serv\\
+\textbf{SLD012} & \textbf{sleep} & Number of hours usually sleep on weekdays or workdays\\
+\textbf{BMXBMI} & \textbf{bmi} & Body mass index\\
+\textbf{ALQ121} & \textbf{alcohol use} & In the past 12 months, how often did you drink any type of alcoholic beverage?\\
+\addlinespace
+\textbf{LBDHDDSI} & \textbf{hdl} & High density lipoprotein\\
+\textbf{LBDSALSI} & \textbf{albumin} & Albumin (g/L)\\
+\textbf{DIQ010} & \textbf{diabetes} & Have you ever been told by a doctor or health professional that you have diabetes or sugar diabetes?\\
+\textbf{BPQ020} & \textbf{hypertension} & \{Have you/Has SP\} ever been told by a doctor or other health professional that \{you/s/he\} had hypertension, also called high blood pressure?\\
+\textbf{URXCRS} & \textbf{creatinine} & Creatinine, urine (umol/L)\\
+\addlinespace
+\textbf{SLQ040} & \textbf{snort} & In the past 12 months, how often did \{you/SP\} snort, gasp, or stop breathing while \{you were/s/he was\} asleep?\\
+\textbf{LBDTCSI} & \textbf{total cholestrol levels} & Total cholesterol (mmol/L)\\
+\textbf{LBXHGB} & \textbf{hemoglobin} & Hemoglobin (g/dL)\\
+\textbf{LBXSASSI} & \textbf{AST} & Aspertate aminotransferase\\
+\textbf{SMQ040} & \textbf{smoke} & Do you now smoke cigarettes?\\
+\addlinespace
+\textbf{BPXDI} & \textbf{blood pressure} & Systolic and diastolic blood pressure taken as the average of the first three measurements\\
+\bottomrule
+\end{tabular}
+\end{table}
 
 
-#vars %>% kable(booktabs = T) %>% kable_styling(latex_options = "scale_down")
-
-
+```{r tabone, echo=FALSE, eval=FALSE}
+tab.one <- vars %>% 
+  kable(format = "latex", caption = "Variable descriptions", booktabs = TRUE) %>% 
+  kable_styling(latex_options = c("HOLD_position")) %>%
+  row_spec(c(0), bold = TRUE) %>%
+  column_spec(c(1, 2), bold = TRUE, width = "2cm") %>%
+  column_spec(3, width = "8cm")
+tab.one
 ```
 
 ## Statistical modeling
@@ -236,112 +249,131 @@ variable. Subsequently, a $\lambda$ value was strategically chosen to
 ensure a negligible increase of no more than 1% in MSE, ultimately
 leading to the inclusion of 29 variables in the model.
 
+## Model Evaluations
+
+Table \@ref(tab:tabmodel) summarizes the performance metrics across the different models fitted to the data in our investigation.
+
+
+\begin{table}
+
+\caption{\label{tab:tabmodel}Summary model performance measures.}
+\centering
+\begin{tabular}[t]{lrrrrrr}
+\toprule
+  & df & AIC & BIC & MSE & $R^2$ & Adjusted $R^2$\\
+\midrule
+Model 1 & 44 & 15888.48 & 16134.41 & 173.17 & 0.36 & 0.34\\
+Model 2 & 45 & 15849.26 & 16100.78 & 169.60 & 0.37 & 0.36\\
+Model 3 & 39 & 15883.76 & 16101.74 & 173.63 & 0.36 & 0.34\\
+Model 4 & 600 & 16156.48 & 19510.09 & 113.00 & 0.58 & 0.40\\
+Model 5 & 40 & 15848.93 & 16072.50 & 170.43 & 0.37 & 0.35\\
+\addlinespace
+Model 6 & 41 & 15888.38 & 16117.55 & 173.69 & 0.36 & 0.34\\
+Model 7 & 25 & 15877.41 & 16017.15 & 2657.01 & 0.35 & 0.34\\
+\bottomrule
+\multicolumn{7}{l}{\textsuperscript{a} df = degrees of freedom}\\
+\multicolumn{7}{l}{\textsuperscript{b} AIC = Akaike Information Criteria}\\
+\multicolumn{7}{l}{\textsuperscript{c} BIC = Bayesian Information Criteria}\\
+\multicolumn{7}{l}{\textsuperscript{d} MSE = Mean Squared Error}\\
+\end{tabular}
+\end{table}
+
+
+```{r tabmodel, eval=FALSE, echo=FALSE}
+## Model performance
+tabmodel <- model.checks %>% 
+  kable(format = "latex", caption = "Summary model performance measures.", digits = 2, booktabs = TRUE, col.names = c("df", "AIC", "BIC", "MSE", "R^2", "Adjusted R2"), escape = FALSE) %>% 
+  add_footnote(label = c("df = degrees of freedom", "AIC = Akaike Information Criteria", "BIC = Bayesian Information Criteria", "MSE = Mean Squared Error"))
+tabmodel
+```
+
 # Results
 
+## Descriptive statistics
+
 Table \@ref(tab:tabtwo) summarizes participant characteristics in the
-2015 - 2018 NHANES survey cycles stratified by gender. Among the
-participants, the proportion of males and females were 44.81% (n = 1378)
-and 55.19% (n = 1509), respectively. With ethnicity, the proportion of
-Mexican American, White and Black were 6.27%, 64.62% and 9.94%,
-respectively. Overall, the mean (SD) values for age, albumin,
-creatinine, SBP, DBP, hemoglobin, TC, AST, HDL, BMI were 38.54 (17.72)
-years, 43.48 (3.58) g/L, 73.21 (19.73) umol/L, 115.33 (14.56) mmHg,
-68.47 (10.08) mmHg, 14.07(1.44)g/dL, 4.67 (1.01) mmol/L, 23.18 (13.01)
-IU/L, 1.59 (0.43) mmol/L, and 21.97(2.06) kg/m2, respectively. Among the
-participants, 66.01% were consumed alcohol drinkers, 2.61% were
-diabetes, 3.16% were hypertension, 6.72% have snort or stop breathing.
-17.99% were smokers. Sleep duration was divided into three groups, which
-were \< 6 h, 6--8 h, ≥ 8 h, each with a proportion of 6.26%, 40.53%,
-53.21%, respectively.
+2015 - 2018 NHANES survey cycles stratified by gender. The 2015-2016 survey cycle comprised 53.77% of the total analyzed sample whereas the 2017 - 2018 survey cycle comprised 46.23% of the total analyzed sample. 
+Among the
+participants, the proportion of males and females were 53.76% (n = 1063)
+and 46.23% (n = 914), respectively. With race, the proportion of
+Mexican American, White and Black were 9.16%, 34.90% and 17.10%,
+respectively. Overall, the mean (SD) values for age, albumin, 
+SBP, DBP, hemoglobin, TC, AST, HDL, BMI were 43.79 (17.43)
+years, 43.04 (3.59) g/L, 118.61 (16.41) mmHg,
+69.60 (11.18) mmHg, 13.94 (1.46)g/dL, 4.81 (1.02) mmol/L, 23.47 (13.17)
+IU/L, 1.60 (0.43) mmol/L, and 22.08 (2.03) kg/m2, respectively. 
+Among the
+participants, 73.70% were alcohol drinkers, 5.06% were
+diabetic, 7.79% were hypertensive, 13.76% experienced snorting whereas
+21.60% were smokers. Sleep duration was divided into three groups, which
+were \< 6 h, 6--8 h, ≥ 8 h, each with a proportion of 7.89%, 40.06%,
+52.05%, respectively. Male and female participants differed significantly on all characteristics
+except citizenship status, and the cycle of the survey.
 
-Male and female participants differed significantly on characteristics
-including
-
-The uni-variate analysis of potential confounding factors is shown in
-Table 2.
-
-```{r tabtwo, echo=FALSE}
-#tabsum %>% 
-#  as_kable_extra(format = "latex", caption = "Unweighted summary characteristics of the participants in the NHANES 2015 - 2018 survey cycles stratified by gender.", digits = 2, longtable = T) %>% 
-#  kable_styling(latex_options = c("HOLD_position"))
-
+```{r tabtwo, echo=FALSE, message=FALSE, warning=FALSE}
 tabsum %>%
   as_kable_extra(booktabs = TRUE, 
-                 caption = "Unweighted summary characteristics of the participants in the NHANES 2015 - 2018 survey cycles stratified by gender.", 
-                 longtable = TRUE) %>%
-  kable_styling(latex_options = "scale_down")
+                 caption = "Unweighted summary characteristics of the participants in the NHANES 2015 - 2018 survey cycles stratified by gender. BMI = Body Mass Index; HDL = High Density Lipoprotein, TC = Total Cholestrol level; AST = aspertate aminotransferase. SBP = Systolic blood pressure, DBP = Diastolic blood pressure.", 
+                 longtable = TRUE)
 ```
 
-### Foward Stepwise Best Subset
 
-```{=tex}
-\begin{align*}
-\text{sbp} = &\, 85.65 + 0.47 \times \text{BMI} + 1.49 \times \text{total\_chol} - 0.00 \times \text{creatinine} \\
-&+ 3.06 \times \text{educ\_levelHighschool} + 2.00 \times \text{educ\_levelLess12grade} + 1.31 \times \text{educ\_levelsomCollege} \\
-&+ 4.59 \times \text{genderMale} + 0.47 \times \text{age\_yr} + 2.05 \times \text{marital\_statusLiving with partner} \\
-&- 0.12 \times \text{marital\_statusMarried} + 3.30 \times \text{marital\_statusNever married} \\
-&- 0.99 \times \text{marital\_statusSeparated} + 7.01 \times \text{marital\_statusWidowed} - 1.30 \times \text{sleep>8hrs} \\
-&- 2.82 \times \text{sleep6-8hrs} - 4.60 \times \text{raceMexican American} - 3.78 \times \text{raceOther} \\
-&- 5.03 \times \text{raceWhite income\_categoryLower-middle income} - 3.02 \times \text{income\_categoryMiddle income} \\
-&- 2.88 \times \text{income\_categoryUnknown/Refused} - 2.70 \times \text{income\_categoryUpper-middle income} \\
-&- 4.30 \times \text{income\_categoryVaried/High income}
-\end{align*}
-```
-```{=tex}
-\begin{align*}
-\text{dbp} = &\, 53.55 + 0.22 \times \text{BMI} + 0.78 \times \text{total\_chol} + 0.85 \times \text{hemoglobin} + 0.02 \times \text{albumin} \\
-&+ 0.03 \times \text{AST} - 0.89 \times \text{diabetesNo} - 3.37 \times \text{diabetesYes} - 1.06 \times \text{children..51} \\
-&- 1.67 \times \text{children..52} - 1.83 \times \text{children..53 or more} - 1.90 \times \text{marital\_statusLiving with partner} \\
-&+ 0.00 \times \text{marital\_statusMarried} - 2.78 \times \text{marital\_statusNever married} + 0.91 \times \text{marital\_statusSeparated} \\
-&+ 1.72 \times \text{marital\_statusWidowed} - 2.40 \times \text{sleep>8hrs} - 2.37 \times \text{sleep6-8hrs} - 2.76 \times \text{raceMexican American} \\
-&+ 0.14 \times \text{raceOther} - 1.98 \times \text{raceWhite} - 2.16 \times \text{snortNot recorded} \\
-&- 0.57 \times \text{snortYes} - 2.33 \times \text{alcoholNo drinking} - 1.79 \times \text{alcoholNot recorded}
-\end{align*}
-```
-### LASSO
+## Univariate regression analysis
 
-```{=tex}
-\begin{align*}
-\text{sbp} = &\, 84.13 \times \text{(Intercept)} + 0.52 \times \text{bmi} + 0.79 \times \text{hdl} + 1.43 \times \text{total\_chol} + 0.04 \times \text{AST} \\
-&- 0.17 \times \text{diabetesNo} + 1.88 \times \text{diabetesYes} - 14.02 \times \text{citizenship\_statusDon't Know} \\
-&- 0.59 \times \text{citizenship\_statusNot a citizen of the US} - 12.06 \times \text{citizenship\_statusRefused} \\
-&+ 3.09 \times \text{educ\_levelHighschool} + 2.19 \times \text{educ\_levelLess12grade} + 1.16 \times \text{educ\_levelsomeCollege} \\
-&- 0.99 \times \text{children..51} - 1.17 \times \text{children..52} + 0.90 \times \text{children..53 or more} \\
-&+ 4.42 \times \text{genderMale} + 0.44 \times \text{age\_yr} + 1.77 \times \text{marital\_statusLiving with partner} \\
-&+ 0.01 \times \text{marital\_statusMarried} + 2.95 \times \text{marital\_statusNever married} - 1.05 \times \text{marital\_statusSeparated} \\
-&+ 7.19 \times \text{marital\_statusWidowed} - 1.47 \times \text{sleep>8hrs} - 2.95 \times \text{sleep6-8hrs} \\
-&- 4.11 \times \text{raceMexican American} - 3.43 \times \text{raceOther} - 5.14 \times \text{raceWhite} \\
-&+ 1.75 \times \text{smokeNot Smoking} + 0.22 \times \text{smokeSmoking} - 2.74 \times \text{snortNot recorded} \\
-&- 0.61 \times \text{snortYes} - 1.69 \times \text{alcoholNo drinking} - 0.28 \times \text{alcoholNot recorded} \\
-&- 1.62 \times \text{income\_categoryLower-middle income} - 3.04 \times \text{income\_categoryMiddle income} \\
-&- 2.64 \times \text{income\_categoryUnknown/Refused} - 2.71 \times \text{income\_categoryUpper-middle income} \\
-&- 4.54 \times \text{income\_categoryVaried/High income}
-\end{align*}
+Table \@ref(tab:tabthree) presents the summary of univariate regression analysis results exploring the association between the exposures, selected potential confounding variables and systolic blood pressure. We found substantial associations between ...
+
+
+```{r tabthree, echo=FALSE}
+## univariate analysis
+sbp.univariate %>% 
+  as_kable_extra(format = "latex", booktabs = TRUE, digits = 2, caption = "Univariate analyses of exposures, potential confounding factors and systolic blood pressure. BMI = Body Mass Index; HDL = High Density Lipoprotein, TC = Total Cholestrol level; AST = aspertate aminotransferase.", longtable = TRUE)
 ```
-```{=tex}
-\begin{align*}
-\text{dbp} = &\, 47.99 + 0.24 \times \text{bmi} + 0.80 \times \text{total\_chol} + 0.58 \times \text{hemoglobin} + 0.17 \times \text{albumin} \\
-&+ 0.04 \times \text{AST} - 0.42 \times \text{diabetesNo} - 3.18 \times \text{diabetesYes} + 1.36 \times \text{citizenship\_statusDon't Know} \\
-&- 0.60 \times \text{citizenship\_statusNot a citizen of the US} - 1.78 \times \text{citizenship\_statusRefused} \\
-&- 0.11 \times \text{educ\_levelHighschool} - 0.92 \times \text{educ\_levelLess12grade} - 0.39 \times \text{educ\_levelsomeCollege} \\
-&- 0.99 \times \text{children..51} - 1.39 \times \text{children..52} - 2.08 \times \text{children..53 or more} \\
-&+ 0.59 \times \text{genderMale} + 0.01 \times \text{age\_yr} - 1.77 \times \text{marital\_statusLiving with partner} \\
-&+ 0.12 \times \text{marital\_statusMarried} - 2.67 \times \text{marital\_statusNever married} + 0.94 \times \text{marital\_statusSeparated} \\
-&+ 1.69 \times \text{marital\_statusWidowed} + 2.21 \times \text{cycle} - 2.21 \times \text{sleep>8hrs} \\
-&- 2.25 \times \text{sleep6-8hrs} - 2.08 \times \text{raceMexican American} + 0.31 \times \text{raceOther} \\
-&- 2.09 \times \text{raceWhite} + 0.44 \times \text{smokeNot Smoking} + 0.75 \times \text{smokeSmoking} \\
-&- 2.15 \times \text{snortNot recorded} - 0.50 \times \text{snortYes} - 1.28 \times \text{alcoholNo drinking} \\
-&- 1.17 \times \text{alcoholNot recorded}
-\end{align*}
+
+
+## Multivariable Regression Analysis
+
+
+```{r tabfour, echo=FALSE}
+## Final selected multiple linear regression model
+tbl_regression(adj.sbp.int2,
+               label = list(bmi ~ "BMI",
+                            #hdl ~ "HDL",
+                            total_chol ~ "TC",
+                            #hemoglobin ~ "Hemoglobin",
+                            albumin ~ "Albumin",
+                            creatinine ~ "Creatinine",
+                            #hypertension ~ "Hypertension",
+                            #diabetes ~ "Diabetes",
+                            citizenship_status ~ "Citizenship",
+                            educ_level ~ "Education",
+                            children..5 ~ "Children > 5 yrs",
+                            age_yr ~ "Age (yrs)",
+                            marital_status ~ "Marital status",
+                            #cycle ~ "Survey cycle",
+                            sleep ~ "Sleep",
+                            race ~ "Race",
+                            smoke ~ "Smoking status",
+                            snort ~ "Snort",
+                            alcohol ~ "Alcohol",
+                            income_category ~ "Income",
+                            gender ~ "Gender"
+               )) %>% modify_header(label ~ "**Variable**") %>%
+  bold_labels() %>% 
+  as_kable_extra(format = "latex", digits = 2, caption = "Adjusted effect of sleep duration and total cholestrol on systolic blood pressure (SBP). BMI = Body Mass Index, TC = Total Cholestrol, AST = Aspertate aminotransferase.", booktabs = TRUE, longtable = TRUE)
+
 ```
+
+
+## Subgroup analysis by gender
+
+
+
+
 # Discussion and conclusion
+
+
+
+
 
 # References
 
-\@article{Gurven_Blackwell_Rodríguez_Stieglitz_Kaplan_2012a, title={Does
-blood pressure inevitably rise with age?}, volume={60},
-url={[https://doi.org/10.1161/hypertensionaha.111.189100},](https://doi.org/10.1161/hypertensionaha.111.189100},)
-DOI={[10.1161/hypertensionaha.111.189100](https://doi.org/10.1161/hypertensionaha.111.189100)},
-number={1}, journal={Hypertension}, author={Gurven, Michael and
-Blackwell, Aaron D. and Rodríguez, Daniel and Stieglitz, Jonathan and
-Kaplan, Hillard}, year={2012}, month=jul, pages={25--33} }
