@@ -51,57 +51,73 @@ editor_options:
 
 ```{r source-file, echo=FALSE, include=FALSE}
 # source file 
-# source(file = "C:/Users/monic/OneDrive/Desktop/SleepBP/data/scrip2.R")
-source("/Users/aokutse/Desktop/PhD/Fall 2023/PHP2601 Linear Models/SleepBP/data/scrip2.R")
-```
+source(file = "C:/Users/monic/OneDrive/Desktop/SleepBP/data/scrip2.R")
 
+#source("/Users/aokutse/Desktop/PhD/Fall 2023/PHP2601 Linear Models/SleepBP/data/scrip2.R")
+```
 
 # Introduction
 
 The clinical importance of systolic blood pressure (SBP) stands as a
 cornerstone extensively acknowledged and documented across the continuum
-of medical literature's data collection [@gurven2012does; @su2022association]. Elevated SBP stands as a
-precursor linked with a spectrum of critical health conditions, 
-encompassing cardiovascular diseases, stroke, and renal impairment, among
-others. This nexus between heightened SBP and these significant health
-adversities underscores the gravity of SBP as a predictive marker for
-adverse health outcomes. Noteworthy is the pivotal concern surrounding
-the trajectory of SBP in the natural aging process, a trajectory
-observed ubiquitously across diverse populations.
+of medical literature's data collection [@gurven2012does;
+@su2022association]. Elevated SBP stands as a precursor linked with a
+spectrum of critical health conditions, encompassing cardiovascular
+diseases, stroke, and renal impairment, among others. This nexus between
+heightened SBP and these significant health adversities underscores the
+gravity of SBP as a predictive marker for adverse health outcomes.
+Noteworthy is the pivotal concern surrounding the trajectory of SBP in
+the natural aging process, a trajectory observed ubiquitously across
+diverse populations.
 
 In western societies aged 40 years and above, a demonstrable pattern
-emerges, revealing an approximate elevation of 7 mmHg in SBP per decade among individuals above 40 years. 
-This discernible and consistent increment in SBP with
-advancing age accentuates its profound impact within the broader context
-of aging-related health dynamics. Similarly, while diastolic blood pressure
-(DBP), demonstrates a concurrent rise correlating with age,
-presents a substantially lower rate of increase when juxtaposed against
-the ascending trajectory observed in SBP [@gurven2012does; @su2022association]. 
-Thus, in light of the
+emerges, revealing an approximate elevation of 7 mmHg in SBP per decade
+among individuals above 40 years. This discernible and consistent
+increment in SBP with advancing age accentuates its profound impact
+within the broader context of aging-related health dynamics. Similarly,
+while diastolic blood pressure (DBP), demonstrates a concurrent rise
+correlating with age, presents a substantially lower rate of increase
+when juxtaposed against the ascending trajectory observed in SBP
+[@gurven2012does; @su2022association]. Thus, in light of the
 significance attached to SBP dynamics within aging populations and the
-intricate interplay between age, sleep, cholestrol levels and blood pressure alterations, our
-investigative focus is oriented towards the exploration of variables
-that exert potential influence on systolic blood pressure (SBP). This
-deliberate focus aims to elucidate the multifaceted nature of factors
-contributing to SBP variability, enabling a more comprehensive
-understanding of its determinants within the framework of health and
-aging.
+intricate interplay between age, sleep, cholestrol levels and blood
+pressure alterations, our investigative focus is oriented towards the
+exploration of variables that exert potential influence on systolic
+blood pressure (SBP). This deliberate focus aims to elucidate the
+multifaceted nature of factors contributing to SBP variability, enabling
+a more comprehensive understanding of its determinants within the
+framework of health and aging.
 
 <!-- Beyond age, the basal metabolic rate (BMI) emerges as a recognized -->
+
 <!-- contributor to systolic blood pressure (SBP), with individuals -->
+
 <!-- exhibiting higher BMI values demonstrating a propensity for elevated -->
+
 <!-- SBP. Gender also holds a discernible association with SBP dynamics. -->
+
 <!-- Empirical evidence in CITE demonstrates that women typically manifest -->
+
 <!-- lower SBP than men until the onset of menopause, after which women -->
+
 <!-- exhibit higher SBP levels compared to men. Additionally, heightened -->
+
 <!-- levels of cholesterol are closely linked to vascular damage. The -->
+
 <!-- accumulation of cholesterol deposits and calcium within arteries -->
+
 <!-- precipitates arterial stiffening, necessitating augmented cardiac -->
+
 <!-- efforts to circulate blood, potentially culminating in elevated blood -->
+
 <!-- pressure. This study endeavors to examine the interrelationships between -->
+
 <!-- age and cholesterol levels, emphasizing consideration of potential -->
+
 <!-- confounding variables. Table 1 comprehensively delineates the array of -->
+
 <!-- variables under scrutiny, ensuring a comprehensive analysis of their -->
+
 <!-- collective impact -->
 
 # Methods
@@ -127,8 +143,9 @@ comprised $n = 9971$ and $n = 9254$ observations from the 2015/2016 and
 with missing data on sleep ($n = 6818$), blood pressure (BP) (n = 1055),
 and body mass index (BMI) or those with BMI \> 25 kg/$m^2$ (overweight)
 (n = 5521). Individuals that reported being on anti-hypertensive
-medication were also excluded from further analyses (n = 2944). 
-Our final analyses were based on a sample of n = 1977 observations on 28 covariates. 
+medication were also excluded from further analyses (n = 2944). Our
+final analyses were based on a sample of n = 1977 observations on 28
+covariates.
 
 ### Outcome definition:
 
@@ -143,9 +160,11 @@ blood pressure measurements.
 
 Sleep duration on workdays was evaluated by the questionnaire with the
 following questions: "Number of hours usually sleep on weekdays or
-workdays". We then categorized this variable into three groups, that is, \< 6
-h, 6--8 h, ≥ 8 h respectively, and used < 6 h as the reference
-group in our analysis. We also explored the association between total cholestrol (in mmol/L) level on systolic blood pressure including potential effect modification by other factors.
+workdays". We then categorized this variable into three groups, that is,
+\< 6 h, 6--8 h, ≥ 8 h respectively, and used \< 6 h as the reference
+group in our analysis. We also explored the association between total
+cholestrol (in mmol/L) level on systolic blood pressure including
+potential effect modification by other factors.
 
 ### Covariates:
 
@@ -170,6 +189,7 @@ smoking, race, hypertension, and snorting were analyzed as categorical
 variables. Table \@ref{tab:tabone} highlights the variable names and
 descriptions as utilized in this study.
 
+```{=tex}
 \begin{table}[H]
 
 \caption{\label{tab:tabone}Variable descriptions}
@@ -212,8 +232,7 @@ descriptions as utilized in this study.
 \bottomrule
 \end{tabular}
 \end{table}
-
-
+```
 ```{r tabone, echo=FALSE, eval=FALSE}
 tab.one <- vars %>% 
   kable(format = "latex", caption = "Variable descriptions", booktabs = TRUE) %>% 
@@ -251,9 +270,10 @@ leading to the inclusion of 29 variables in the model.
 
 ## Model Evaluations
 
-Table \@ref(tab:tabmodel) summarizes the performance metrics across the different models fitted to the data in our investigation.
+Table \@ref(tab:tabmodel) summarizes the performance metrics across the
+different models fitted to the data in our investigation.
 
-
+```{=tex}
 \begin{table}
 
 \caption{\label{tab:tabmodel}Summary model performance measures.}
@@ -277,8 +297,7 @@ Model 7 & 25 & 15877.41 & 16017.15 & 2657.01 & 0.35 & 0.34\\
 \multicolumn{7}{l}{\textsuperscript{d} MSE = Mean Squared Error}\\
 \end{tabular}
 \end{table}
-
-
+```
 ```{r tabmodel, eval=FALSE, echo=FALSE}
 ## Model performance
 tabmodel <- model.checks %>% 
@@ -292,23 +311,23 @@ tabmodel
 ## Descriptive statistics
 
 Table \@ref(tab:tabtwo) summarizes participant characteristics in the
-2015 - 2018 NHANES survey cycles stratified by gender. The 2015-2016 survey cycle comprised 53.77% of the total analyzed sample whereas the 2017 - 2018 survey cycle comprised 46.23% of the total analyzed sample. 
-Among the
-participants, the proportion of males and females were 53.76% (n = 1063)
-and 46.23% (n = 914), respectively. With race, the proportion of
-Mexican American, White and Black were 9.16%, 34.90% and 17.10%,
-respectively. Overall, the mean (SD) values for age, albumin, 
-SBP, DBP, hemoglobin, TC, AST, HDL, BMI were 43.79 (17.43)
-years, 43.04 (3.59) g/L, 118.61 (16.41) mmHg,
-69.60 (11.18) mmHg, 13.94 (1.46)g/dL, 4.81 (1.02) mmol/L, 23.47 (13.17)
-IU/L, 1.60 (0.43) mmol/L, and 22.08 (2.03) kg/m2, respectively. 
-Among the
-participants, 73.70% were alcohol drinkers, 5.06% were
-diabetic, 7.79% were hypertensive, 13.76% experienced snorting whereas
-21.60% were smokers. Sleep duration was divided into three groups, which
-were \< 6 h, 6--8 h, ≥ 8 h, each with a proportion of 7.89%, 40.06%,
-52.05%, respectively. Male and female participants differed significantly on all characteristics
-except citizenship status, and the cycle of the survey.
+2015 - 2018 NHANES survey cycles stratified by gender. The 2015-2016
+survey cycle comprised 53.77% of the total analyzed sample whereas the
+2017 - 2018 survey cycle comprised 46.23% of the total analyzed sample.
+Among the participants, the proportion of males and females were 53.76%
+(n = 1063) and 46.23% (n = 914), respectively. With race, the proportion
+of Mexican American, White and Black were 9.16%, 34.90% and 17.10%,
+respectively. Overall, the mean (SD) values for age, albumin, SBP, DBP,
+hemoglobin, TC, AST, HDL, BMI were 43.79 (17.43) years, 43.04 (3.59)
+g/L, 118.61 (16.41) mmHg, 69.60 (11.18) mmHg, 13.94 (1.46)g/dL, 4.81
+(1.02) mmol/L, 23.47 (13.17) IU/L, 1.60 (0.43) mmol/L, and 22.08 (2.03)
+kg/m2, respectively. Among the participants, 73.70% were alcohol
+drinkers, 5.06% were diabetic, 7.79% were hypertensive, 13.76%
+experienced snorting whereas 21.60% were smokers. Sleep duration was
+divided into three groups, which were \< 6 h, 6--8 h, ≥ 8 h, each with a
+proportion of 7.89%, 40.06%, 52.05%, respectively. Male and female
+participants differed significantly on all characteristics except
+citizenship status, and the cycle of the survey.
 
 ```{r tabtwo, echo=FALSE, message=FALSE, warning=FALSE}
 tabsum %>%
@@ -317,11 +336,12 @@ tabsum %>%
                  longtable = TRUE)
 ```
 
-
 ## Univariate regression analysis
 
-Table \@ref(tab:tabthree) presents the summary of univariate regression analysis results exploring the association between the exposures, selected potential confounding variables and systolic blood pressure. We found substantial associations between ...
-
+Table \@ref(tab:tabthree) presents the summary of univariate regression
+analysis results exploring the association between the exposures,
+selected potential confounding variables and systolic blood pressure. We
+found substantial associations between ...
 
 ```{r tabthree, echo=FALSE}
 ## univariate analysis
@@ -329,9 +349,7 @@ sbp.univariate %>%
   as_kable_extra(format = "latex", booktabs = TRUE, digits = 2, caption = "Univariate analyses of exposures, potential confounding factors and systolic blood pressure. BMI = Body Mass Index; HDL = High Density Lipoprotein, TC = Total Cholestrol level; AST = aspertate aminotransferase.", longtable = TRUE)
 ```
 
-
 ## Multivariable Regression Analysis
-
 
 ```{r tabfour, echo=FALSE}
 ## Final selected multiple linear regression model
@@ -363,17 +381,8 @@ tbl_regression(adj.sbp.int2,
 
 ```
 
-
 ## Subgroup analysis by gender
-
-
-
 
 # Discussion and conclusion
 
-
-
-
-
 # References
-
