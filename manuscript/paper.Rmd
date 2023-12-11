@@ -142,8 +142,6 @@ measurements are taken at least four times on an individual, our
 definition of these outcome is based on an average of the first three
 blood pressure measurements.
 
-```{=html}
-<!-- 
 ### Exposures:
 
 Sleep duration on workdays was evaluated by the questionnaire with the
@@ -153,8 +151,7 @@ workdays". We then categorized this variable into three groups, that is,
 group in our analysis. We also explored the association between total
 cholestrol (in mmol/L) level on systolic blood pressure including
 potential effect modification by other factors.
--->
-```
+
 ### Covariates:
 
 ```{=html}
@@ -182,11 +179,8 @@ index (BMI). Details about these variables can be found at
 creatinine, hemoglobin, TC, AST, HDL, and BMI were analyzed as
 continuous variables whereas gender, alcohol consumption, diabetes,
 smoking, race, hypertension, and snorting were analyzed as categorical
-variables. Sleep duration on workdays was also recorded and was
-categorized into three groups, that is, \< 6 h, 6--8 h, ≥ 8 h
-respectively, and used \< 6 h as the reference group in our analysis.
-Table \@ref{tab:tabone} highlights the variable names and descriptions
-as utilized in this study.
+variables. Table \@ref{tab:tabone} highlights the variable names and
+descriptions as utilized in this study.
 
 ```{=tex}
 \begin{table}[H]
@@ -386,7 +380,7 @@ tabmodel
 
 ## Discussion
 
-## Limitations  
+## Limitations
 
 Our study encountered a significant challenge with missing data,
 resulting in a notable reduction in our sample size. Despite initially
