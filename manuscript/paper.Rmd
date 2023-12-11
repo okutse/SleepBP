@@ -250,9 +250,10 @@ including only covariates that had a statistically significant
 association with SBP in univariate analyses excluding HDL, hemoglobin,
 diabetes, survey cycle, and alcohol consumption. Model 4 included
 similar covariates as Model 3 but examined, in addition, all possible
-two-way interactions between the covariates. This model is essentially overfit to the data. Model 5 included the same
-set of covariates as Model 3 in addition to an interaction term between
-age and total cholesterol levels.
+two-way interactions between the covariates. This model is essentially
+overfit to the data. Model 5 included the same set of covariates as
+Model 3 in addition to an interaction term between age and total
+cholesterol levels.
 
 ### Variable selection based on LASSO and best subsets
 
@@ -298,7 +299,8 @@ null hypothesis that the nested models are equivalent, and the extra
 parameters in the larger model do not improve the fit significantly,
 that is, these terms have effect sizes equivalent to 0.
 \@ref(tab:tabmodel) summarizes the model performance metrics compared
-for all models implemented in this investigation. The final model superiority was based on likelihood ratio tests.
+for all models implemented in this investigation. The final model
+superiority was based on likelihood ratio tests.
 
 # Results
 
@@ -343,50 +345,19 @@ sbp.univariate %>%
   as_kable_extra(format = "latex", booktabs = TRUE, digits = 2, caption = "Univariate analyses of exposures, potential confounding factors and systolic blood pressure. BMI = Body Mass Index; HDL = High Density Lipoprotein, TC = Total Cholestrol level; AST = aspertate aminotransferase.", longtable = TRUE)
 ```
 
-## Multivariable Regression Analysis
-
-```{r tabfour, echo=FALSE}
-## Final selected multiple linear regression model
-tbl_regression(adj.sbp.int2,
-               label = list(bmi ~ "BMI",
-                            #hdl ~ "HDL",
-                            total_chol ~ "TC",
-                            #hemoglobin ~ "Hemoglobin",
-                            albumin ~ "Albumin",
-                            creatinine ~ "Creatinine",
-                            #hypertension ~ "Hypertension",
-                            #diabetes ~ "Diabetes",
-                            citizenship_status ~ "Citizenship",
-                            educ_level ~ "Education",
-                            children..5 ~ "Children > 5 yrs",
-                            age_yr ~ "Age (yrs)",
-                            marital_status ~ "Marital status",
-                            #cycle ~ "Survey cycle",
-                            sleep ~ "Sleep",
-                            race ~ "Race",
-                            smoke ~ "Smoking status",
-                            snort ~ "Snort",
-                            alcohol ~ "Alcohol",
-                            income_category ~ "Income",
-                            gender ~ "Gender"
-               )) %>% modify_header(label ~ "**Variable**") %>%
-  bold_labels() %>% 
-  as_kable_extra(format = "latex", digits = 2, caption = "Adjusted effect of sleep duration and total cholestrol on systolic blood pressure (SBP). BMI = Body Mass Index, TC = Total Cholestrol, AST = Aspertate aminotransferase.", booktabs = TRUE, longtable = TRUE)
-
-```
-
 ## Model performance evaluation
 
-Table \@ref(tab:tabmodel) presents an overview of the performance measures of the various models applied
-to our data set. Model 6, utilizing best subset selection, revealed
-notably high MSE, suggesting limited predictive efficacy. Models 1 and
-2, not including variable selection techniques, highlight the impact of
-incorporating the age-cholesterol interaction term with notable reduction
-in MSE. Models 3, 4, and 5 included solely significant univariate
-regression variables. Model 5, with the lowest AIC and second lowest
-BIC, demonstrates an acceptable MSE. Model 4, with the lowest MSE and
-highest \$R\^2\$, demonstrated a high predictive power, although its extensive number of terms
-raise concerns of potential overfitting. Model 3, based solely on
+Table \@ref(tab:tabmodel) presents an overview of the performance
+measures of the various models applied to our data set. Model 6,
+utilizing best subset selection, revealed notably high MSE, suggesting
+limited predictive efficacy. Models 1 and 2, not including variable
+selection techniques, highlight the impact of incorporating the
+age-cholesterol interaction term with notable reduction in MSE. Models
+3, 4, and 5 included solely significant univariate regression variables.
+Model 5, with the lowest AIC and second lowest BIC, demonstrates an
+acceptable MSE. Model 4, with the lowest MSE and highest \$R\^2\$,
+demonstrated a high predictive power, although its extensive number of
+terms raise concerns of potential overfitting. Model 3, based solely on
 significant univariate covariates, performed well but exhibited a higher
 MSE than Models 4 and 5, suggesting the probable influence of
 interaction terms. Models 7 and 8, employing LASSO, exhibited comparable
@@ -420,8 +391,56 @@ Model 8 & 42 & 15849.19 & 16083.94 & 170.11  & 0.37 & 0.36\\
 \end{tabular}
 \end{table}
 ```
+Likelihood ratio tests showed a statistically significant difference
+between Model 1 and 2 with evidence of in favor of the latter
+($\chi^2_{(1)} = 7064; p>0.05$). Model 2 which adjusted for all
+potentially confounding covariates in \@ref(tab:tabthree) including an
+interaction between cholestrol level and age was then compared to Model
+3 which adjusted for only covariates we found significant in univariate
+analyses. Results here similarly showed evidence in favor of Model 2
+($\chi^2_{(1)} = 7979; p>0.05$). Comparing Model 2 to Model 3 revealed a
+non-statistically difference in model fit suggesting that Model 3, even
+though smaller performed comparably well. Model 3 was thus selected and
+compared to Model 4, 5, 6, and 7 with evidence based on the LRT favoring
+its choice as the best model ($p>0.05$). Additional regression
+diagnostics for Model 3 including residual versus fitted value plots,
+Q-Q plots for checking the normality of residuals, Cook's distance for
+outliers, residual and high leverage point plots did not reveal
+substantial deviations from linear regression assumptions. Model 3 was
+thus selected as the best model. Reported results are thus based on this
+model.
 
-Likelihood ratio tests showed a statistically significant difference between Model 1 and 2 with evidence of in favor of the latter ($\chi^2_{(1)} = 7064; p>0.05$). Model 2 which adjusted for all potentially confounding covariates in \@ref(tab:tabthree) including an interaction between cholestrol level and age was then compared to Model 3 which adjusted for only covariates we found significant in univariate analyses. Results here similarly showed evidence in favor of Model 2 ($\chi^2_{(1)} = 7979; p>0.05$). Comparing Model 2 to Model 3 revealed a non-statistically difference in model fit suggesting that Model 3, even though smaller performed comparably well. Model 3 was thus selected and compared to Model 4, 5, 6, and 7 with evidence based on the LRT favoring its choice as the best model ($p>0.05$). Additional regression diagnostics for Model 3 including residual versus fitted value plots, Q-Q plots for checking the normality of residuals, Cook's distance for outliers, residual and high leverage point plots did not reveal substantial deviations from linear regression assumptions. Model 3 was thus selected as the best model. Reported results are thus based on this model.
+## Multivariable Regression Analysis
+
+```{r tabfour, echo=FALSE}
+## Final selected multiple linear regression model
+tbl_regression(adj.sbp.int2,
+               label = list(bmi ~ "BMI",
+                            #hdl ~ "HDL",
+                            total_chol ~ "TC",
+                            #hemoglobin ~ "Hemoglobin",
+                            albumin ~ "Albumin",
+                            creatinine ~ "Creatinine",
+                            #hypertension ~ "Hypertension",
+                            #diabetes ~ "Diabetes",
+                            citizenship_status ~ "Citizenship",
+                            educ_level ~ "Education",
+                            children..5 ~ "Children > 5 yrs",
+                            age_yr ~ "Age (yrs)",
+                            marital_status ~ "Marital status",
+                            #cycle ~ "Survey cycle",
+                            sleep ~ "Sleep",
+                            race ~ "Race",
+                            smoke ~ "Smoking status",
+                            snort ~ "Snort",
+                            alcohol ~ "Alcohol",
+                            income_category ~ "Income",
+                            gender ~ "Gender"
+               )) %>% modify_header(label ~ "**Variable**") %>%
+  bold_labels() %>% 
+  as_kable_extra(format = "latex", digits = 2, caption = "MODEL 5: Adjusted effect of sleep duration and total cholestrol on systolic blood pressure (SBP). BMI = Body Mass Index, TC = Total Cholestrol, AST = Aspertate aminotransferase.", booktabs = TRUE, longtable = TRUE)
+
+```
 
 ```{r tabmodel, eval=FALSE, echo=FALSE}
 ## Model performance
