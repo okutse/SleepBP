@@ -377,8 +377,22 @@ tbl_regression(adj.sbp.int2,
 
 ## Model Evaluations
 
-Table \@ref(tab:tabmodel) summarizes the performance metrics across the
-different models fitted to the data in our investigation.
+Table \@ref(tab:tabmodel) presents an overview of various models applied
+to our dataset. Model 6, utilizing best subset selection, reveals
+notably high MSE, suggesting limited predictive efficacy. Models 1 and
+2, not including variable selection techniques, highlight the impact of
+incorporating the age-cholesterol interaction term, showing a reduction
+in MSE. Models 3, 4, and 5 included solely significant univariate
+regression variables. Model 5, with the lowest AIC and second lowest
+BIC, demonstrates an acceptable MSE. Model 4, with the lowest MSE and
+highest \$R\^2\$, implies predictive power, although its extensive terms
+raise concerns of potential overfitting. Model 3, based solely on
+significant univariate covariates, performs well but exhibits a higher
+MSE than Models 4 and 5, suggesting the probable influence of
+interaction terms. Models 7 and 8, employing LASSO, exhibit comparable
+performance metrics, with Model 8 displaying reduced BIC and MSE,
+attributed chiefly to the significant inclusion of an Age-Cholesterol
+interaction term.
 
 ```{=tex}
 \begin{table}[H]
@@ -387,7 +401,7 @@ different models fitted to the data in our investigation.
 \centering
 \begin{tabular}[t]{lrrrrrr}
 \toprule
-  & df & AIC & BIC & MSE & $R^2$ & Adjusted $R^2$\\
+  & $\text{df}^a$ & $\text{AIC}^b$ & $\text{BIC}^c$ & $\text{MSE}^d$ & $R^2$ & Adjusted $R^2$\\
 \midrule
 Model 1 & 44 & 15888.48 & 16134.41 & 173.17 & 0.36 & 0.34\\
 Model 2 & 45 & 15849.26 & 16100.78 & 169.60 & 0.37 & 0.36\\
