@@ -286,6 +286,9 @@ on the outcome variable.
 
 ## Model performance evaluation
 
+<<<<<<< HEAD
+All models fitted to the data in this investigation were nested and evaluations were based on information criteria including Akaike Information Criteria (AIC) and Bayesian Information Criteria (BIC). Additionally, we also used performance measures including the mean squared error (MSE), r-squared, and adjusted r-squared. The likelihood ratio test (LRT) was used in competing model comparisons testing the null hypothesis that the nested models are equivalent, and the extra parameters in the larger model do not improve the fit significantly, that is, these terms have effect sizes equivalent to 0. \@ref(tab:tabmodel) summarizes the model performance metrics compared for all models implemented in this investigation.
+=======
 All models fitted to the data in this investigation were nested and
 evaluations were based on information criteria including Akaike
 Information Criteria (AIC) and Bayesian Information Criteria (BIC). The
@@ -303,6 +306,7 @@ for all models implemented in this investigation.
 Here is where we add something....
 
 ## compare model 5 with model 2 because they have competing BIC and Adj R\^2
+>>>>>>> b6ff8790776393797eb8abedc2f623a0fa5e6816
 
 # Results
 
@@ -383,6 +387,9 @@ tbl_regression(adj.sbp.int2,
 
 Table \@ref(tab:tabmodel) summarizes the performance metrics across the
 different models fitted to the data in our investigation.
+
+
+
 
 ```{=tex}
 \begin{table}[H]
