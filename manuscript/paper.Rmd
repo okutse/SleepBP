@@ -242,17 +242,16 @@ tab.one
 
 ### Variable selection based on LASSO and best subsets
 
-With the purpose of identifying influential variables impacting blood
-pressure, a variable selection process was conducted. The initial
-approach involved employing best subset selection with 10-fold
-cross-validation to ascertain the optimal number of subsets. Notably,
-for systolic blood pressure, the forward best subset selection method
-discerned 13 variables, whereas diastolic blood pressure exhibited 19
-selected variables. However, a limitation inherent in forward best
-subset selection is its inability to eliminate previously selected
-features, potentially disregarding their relevance in light of newly
-added variables. Consequently, this methodology may yield sub-optimal
-variable selections due to its lack of adaptability.
+Furthermore, we conducted two distinct variable selection methodologies,
+similarly excluding hypertension. Model 6 was based on best subset
+selection with 10-fold cross-validation to ascertain the optimal number
+of subsets. Notably, for systolic blood pressure, the forward best
+subset selection method discerned 13 variables, whereas diastolic blood
+pressure exhibited 19 selected variables. However, a limitation inherent
+in forward best subset selection is its inability to eliminate
+previously selected features, potentially disregarding their relevance
+in light of newly added variables. Consequently, this methodology may
+yield sub-optimal variable selections due to its lack of adaptability.
 
 In an effort to mitigate this limitation and introduce regularization,
 LASSO regularization was employed. This involved a 10-fold
@@ -263,7 +262,13 @@ variables. Conversely, when considering systolic blood pressure, the
 $\lambda$ value minimizing the MSE resulted in the exclusion of a sole
 variable. Subsequently, a $\lambda$ value was strategically chosen to
 ensure a negligible increase of no more than 1% in MSE, ultimately
-leading to the inclusion of 29 variables in the model.
+leading to the inclusion of 29 variables in the model. Model 7 consisted
+in variables selected by the LASSO regression. In addition, our study
+incorporated an alternative model that not only incorporated the
+variables identified through LASSO but also introduced an interaction
+term involving age and cholesterol levels; Model 8. This extended model
+aimed to explore potential combined effects between age and cholesterol
+on the outcome variable.
 
 # Results
 

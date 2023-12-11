@@ -232,7 +232,7 @@ summary(adj.sbp)
 ## All two way-interactions from above
 ##--------------------------------------
 adj.sbp.int <- lm(sbp ~ (bmi + total_chol + gender + age_yr + marital_status + sleep + income_category + albumin + AST + creatinine + citizenship_status + educ_level + children..5 + race + smoke + snort + alcohol)^2 , data = dt.sbp)
-summary(adj.sbp.int)
+summary(adj.sbp.int) 
 
 ## sbp with total_chol and age
 adj.sbp.int2 <- lm(sbp ~ bmi + total_chol + gender + age_yr + marital_status + sleep + income_category + albumin + AST + creatinine + citizenship_status + educ_level + children..5 + race + smoke + snort + alcohol + total_chol:age_yr , data = dt.sbp)
@@ -248,7 +248,7 @@ summary(adj.sbp.int2)
 ## saved only results where p < 0.05
 
 ## sbp
-int.sbp <- lm(sbp ~ .^2, data = dt.sbp)
+int.sbp <- lm(sbp ~ .^2, data = dt.sbp)  ####check
 coefficients <- summary(int.sbp)$coefficients
 coef_df <- as.data.frame(coefficients)
 significant_sbp <- coef_df[coef_df$`Pr(>|t|)` < 0.05, ]
@@ -285,7 +285,13 @@ sum((predlasso-dt$sbp)^2)/nrow(dt)
 
 tbl_regression(modlasso.sbp.min, include = everything()) %>%
 modify_column_unhide(column = std.error)
- 
+
+
+##WITH interactin 
+modlasso.sbp.min.INT <- lm(sbp ~. + total_chol:age_yr ,data = dt %>% select(all_of(names.lasso.min),sbp)
+)
+summary(modlasso.sbp.min)
+predlasso.INT <- predict(modlasso.sbp.min.INT, newdata = dt %>% select(all_of(names.lasso.min)))
 ## Diastolic Blood Pressure
 ##---------------------------------------------
 ## Load variables selected by LASSO
@@ -329,7 +335,9 @@ modref.sbp <- lm(sbp ~. ,data = dt %>% select(all_of(names.reg),sbp))
 summary(modref.sbp)
 pred <- predict(modref.sbp, newdata = dt %>% select(all_of(names.reg)))
 sum((pred-dt$sbp)^2)/nrow(dt)
+plot(pred,dt$sbp)
 
+sum((pred-modref.sbp$fitted.values)^2)/nrow(dt)
 
 ## Best Subset
 ## Diastolic
@@ -371,8 +379,8 @@ tab.reg <- tbl_merge(tbls = list(tab1.reg, tab2.reg), tab_spanner = c("**Systoli
 ##############################################
 
 ## Models for sbp
-aic = AIC(sbp.full, sbp.fullc, adj.sbp, adj.sbp.int, adj.sbp.int2, modlasso.sbp.min, modref.sbp)
-bic = BIC(sbp.full, sbp.fullc, adj.sbp, adj.sbp.int, adj.sbp.int2, modlasso.sbp.min, modref.sbp)
+aic = AIC(sbp.full, sbp.fullc, adj.sbp, adj.sbp.int, adj.sbp.int2, modref.sbp, modlasso.sbp.min, modlasso.sbp.min.INT)
+bic = BIC(sbp.full, sbp.fullc, adj.sbp, adj.sbp.int, adj.sbp.int2, modref.sbp, modlasso.sbp.min, modlasso.sbp.min.INT)
 
 ## MSE
 MSE = t(data.frame(sbp.full = sum((fitted(sbp.full)-dt.sbp$sbp)^2)/nrow(dt.sbp),
@@ -380,8 +388,10 @@ MSE = t(data.frame(sbp.full = sum((fitted(sbp.full)-dt.sbp$sbp)^2)/nrow(dt.sbp),
                  adj.sbp = mean((fitted(adj.sbp) - dt.sbp$sbp)^2),
                  adj.sbp.int = mean((fitted(adj.sbp.int) - dt.sbp$sbp)^2),
                  adj.sbp.int2 = mean((fitted(adj.sbp.int2) - dt.sbp$sbp)^2),
+                 modref.sbp = sum((pred-dt$sbp)^2)/nrow(dt),
                  modlasso.sbp.min = sum((predlasso-dt$sbp)^2)/nrow(dt),
-                 modref.sbp = sum((pred-dt$sbp)^2)/nrow(dt)))
+                 modlasso.sbp.min.INT = sum((predlasso.INT-dt$sbp)^2)/nrow(dt)
+))
 colnames(MSE) <- "MSE"
 MSE
 
@@ -392,8 +402,9 @@ R <- t(data.frame(sbp.full = summary(sbp.full)$r.squared,
                      adj.sbp = summary(adj.sbp)$r.squared,
                      adj.sbp.int = summary(adj.sbp.int)$r.squared,
                      adj.sbp.int2 = summary(adj.sbp.int2)$r.squared,
+                     modref.sbp = summary(modref.sbp)$r.squared),
                      modlasso.sbp.min = summary(modlasso.sbp.min)$r.squared,
-                     modref.sbp = summary(modref.sbp)$r.squared)
+                     modlasso.sbp.min.INT = summary(modlasso.sbp.min.INT)$r.squared
 )
 colnames(R) <- "R^2"
 
@@ -403,15 +414,16 @@ AdjR <- t(data.frame(sbp.full = summary(sbp.full)$adj.r.squared,
                    adj.sbp = summary(adj.sbp)$adj.r.squared,
                    adj.sbp.int = summary(adj.sbp.int)$adj.r.squared,
                    adj.sbp.int2 = summary(adj.sbp.int2)$adj.r.squared,
+                   modref.sbp = summary(modref.sbp)$adj.r.squared),
                    modlasso.sbp.min = summary(modlasso.sbp.min)$adj.r.squared,
-                   modref.sbp = summary(modref.sbp)$adj.r.squared)
+                   modlasso.sbp.min.INT = summary(modlasso.sbp.min.INT)$adj.r.squared,
 )
 colnames(AdjR) <- "Adjusted R^2"
 
 
 ## merge all the results
 model.checks <- cbind(aic, bic, MSE, R, AdjR)[, -3]
-rownames(model.checks) <- c("Model 1", "Model 2", "Model 3", "Model 4", "Model 5", "Model 6", "Model 7")
+rownames(model.checks) <- c("Model 1", "Model 2", "Model 3", "Model 4", "Model 5", "Model 6", "Model 7", "Model 8")
 model.checks
 ###-----------------------------------------------
 ## Model comparisons using LRT
