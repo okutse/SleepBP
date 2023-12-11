@@ -161,20 +161,21 @@ workdays". We then categorized this variable into three groups, that is,
 \< 6 h, 6--8 h, ≥ 8 h respectively, and used \< 6 h as the reference
 group in our analysis. -->
 ```
-Our analyses included the following as covariates based on previous literature [@su2022association]: Race divided into
-four groups as Mexican American, white, black and other race. Alcohol
-consumption was grouped into drinking, no drinking, not recorded.
-Smoking status as smoking, not smoking, not recorded. Diabetes was
-defined as yes, no, borderline, or not recorded. Hypertension was
-defined as yes, no, or not recorded. Snorting was defined as yes, no,
-and not recorded. US citizenship status was defined as citizen by birth
-or naturalization, don't know, not a citizen, or refused to answer.
-Education level was grouped into four categories including graduate
-studies, high school, less than grade 12 or some college. Additional
-covariates included marital status, gender, age, albumin,
-creatinine,hemoglobin, total cholesterol (TC), aspertate
-aminotransferase (AST), high-density lipoprotein (HDL), and body mass
-index (BMI). Details about these variables can be found at
+Our analyses included the following as covariates based on previous
+literature [@su2022association]: Race divided into four groups as
+Mexican American, white, black and other race. Alcohol consumption was
+grouped into drinking, no drinking, not recorded. Smoking status as
+smoking, not smoking, not recorded. Diabetes was defined as yes, no,
+borderline, or not recorded. Hypertension was defined as yes, no, or not
+recorded. Snorting was defined as yes, no, and not recorded. US
+citizenship status was defined as citizen by birth or naturalization,
+don't know, not a citizen, or refused to answer. Education level was
+grouped into four categories including graduate studies, high school,
+less than grade 12 or some college. Additional covariates included
+marital status, gender, age, albumin, creatinine,hemoglobin, total
+cholesterol (TC), aspertate aminotransferase (AST), high-density
+lipoprotein (HDL), and body mass index (BMI). Details about these
+variables can be found at
 <https://wwwn.cdc.gov/nchs/nhanes/search/default.aspx>. Age, albumin,
 creatinine, hemoglobin, TC, AST, HDL, and BMI were analyzed as
 continuous variables whereas gender, alcohol consumption, diabetes,
@@ -423,25 +424,27 @@ model.
 
 ## Multivariable Regression Analysis
 
-Table \@ref(tab:multreg) displays the estimated coefficients derived from a multiple
-regression analysis involving variables. We only show sleep during
-Workdays, age, total cholesterol, and the interaction effect between
-total cholesterol and age. Notably, the findings reveal that an increase
-of one year in age is associated with a decrease in systolic
-blood pressure (SBP) by an amount of 0.04 mmHg (95%CI [-0.22 - 0.13], p = 0.60). 
-Conversely, an increase of one unit in total cholesterol is
-linked to a significant reduction in SBP by a factor of 3.5 mmHg (95%CI [-5.2, -1.8], p = 0.01). Furthermore, the interaction
+Table \@ref(tab:multreg) displays the estimated coefficients derived
+from a multiple regression analysis involving variables. We only show
+sleep during Workdays, age, total cholesterol, and the interaction
+effect between total cholesterol and age. Notably, the findings reveal
+that an increase of one year in age is associated with a decrease in
+systolic blood pressure (SBP) by an amount of 0.04 mmHg (95%CI [-0.22 -
+0.13], p = 0.60). Conversely, an increase of one unit in total
+cholesterol is linked to a significant reduction in SBP by a factor of
+3.5 mmHg (95%CI [-5.2, -1.8], p = 0.01). Furthermore, the interaction
 between age and total cholesterol yielded a statistically significant
-coefficient estimate suggesting that as
-both age and total cholesterol concurrently increase by one unit, there
-is an associated elevation in SBP by a factor of 0.11 mmHg (95%CI [0.07 - 0.14], p = 0.001). Additionally,
-the coefficients attributed to sleep duration bear analogous
-interpretations to those observed in the univariate scenario.
+coefficient estimate suggesting that as both age and total cholesterol
+concurrently increase by one unit, there is an associated elevation in
+SBP by a factor of 0.11 mmHg (95%CI [0.07 - 0.14], p = 0.001).
+Additionally, the coefficients attributed to sleep duration bear
+analogous interpretations to those observed in the univariate scenario.
 Specifically, workday sleep durations ranging between 6 and 8 hours
-demonstrate a significant average decrease of 3.0 mmHg (95%CI [-5.3 - -0.67],  p = 0.012) in systolic blood pressure in
-comparison to the reference duration of 6 hours of sleep. Conversely,
-durations exceeding 8 hours exhibit a decrease of 1.4mmHg (95%CI [-3.7- 0.92] p = 0.2]) in systolic
-blood pressure as compared to the 6-hour reference duration.
+demonstrate a significant average decrease of 3.0 mmHg (95%CI [-5.3 -
+-0.67], p = 0.012) in systolic blood pressure in comparison to the
+reference duration of 6 hours of sleep. Conversely, durations exceeding
+8 hours exhibit a decrease of 1.4mmHg (95%CI [-3.7- 0.92] p = 0.2]) in
+systolic blood pressure as compared to the 6-hour reference duration.
 
 ```{=tex}
 
@@ -464,8 +467,6 @@ $6-8$hrs & -3.0 & (-5.3,-0.67) &  0.012\\
 \end{tabular}
 \end{table}
 ```
-
-
 ```{r tabfour, echo=FALSE, eval=FALSE}
 ## Final selected multiple linear regression model
 tbl_regression(adj.sbp.int2,
@@ -506,9 +507,31 @@ tabmodel
 
 ## Discussion and conclusion
 
-The current study investigated the
-intricate interplay between age, sleep, cholestrol levels and systolic blood
-pressure adjusting for other potentially confounding covariates informed by literature. We performed comprehensive model comparisons to explore the association between age, total cholestrol levels, sleep durations and systolic blood pressure. We find based on the best model, that work day sleep durations ranging between 6 and 8 hours and more than 8 hours are associated with a decrease in systolic blood pressure relative to the 6 hour reference group. Additionally, our study reports substantial effect modification of the effect of total cholestrol levels on systolic blood pressure by age whe adjusted for selected confounders within the study population. Previous studies exploring sleep and systolic blood pressure have found similar associations [@su2022association]. 
+<!-- The current study investigated the intricate interplay between age, sleep, cholestrol levels and systolic blood pressure adjusting for other potentially confounding covariates informed by literature. We performed comprehensive model comparisons to explore the association between age, total cholestrol levels, sleep durations and systolic blood pressure. We find based on the best model, that work day sleep durations ranging between 6 and 8 hours and more than 8 hours are associated with a decrease in systolic blood pressure relative to the 6 hour reference group. Additionally, our study reports substantial effect modification of the effect of total cholestrol levels on systolic blood pressure by age whe adjusted for selected confounders within the study population. Previous studies exploring sleep and systolic blood pressure have found similar associations [@su2022association]. -->
+
+The present investigation explote into the settle interplay among age,
+sleep patterns, cholesterol levels, and systolic blood pressure, while
+accounting for various potentially confounding factors gleaned from
+pertinent literature. Our study conducted an exhaustive series of model
+comparisons to elucidate the intricate relationship between age, total
+cholesterol levels, sleep durations, and systolic blood pressure.
+
+In light of our findings derived from the best model based on the
+performance measures in Table \@ref(tab:tabmodel), we observed that
+weekday sleep durations spanning between 6 and 8 hours, as well as
+durations exceeding 8 hours, exhibit a decrease in systolic blood
+pressure in comparison to the reference group of individuals sleeping
+for 6 hours. Furthermore, our investigation revealed a noteworthy effect
+modification regarding the influence of total cholesterol levels on
+systolic blood pressure when adjusted for specific confounding variables
+within the studied cohort, especially in relation to age.
+
+Our study contributes to the existing body of knowledge by
+substantiating the associations uncovered in previous research
+concerning sleep patterns and systolic blood pressure
+[@su2022association]. This correlation underscores the significance of
+sleep parameters as influential factors in understanding blood pressure
+dynamics.
 
 ### Study limitations
 

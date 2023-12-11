@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 23.9) (preloaded format=xelatex 2023.9.26)  11 DEC 2023 17:39
+This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 23.9) (preloaded format=xelatex 2023.9.26)  11 DEC 2023 18:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1101,72 +1101,72 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 6.99925pt on input line 201.
 Missing character: There is no ≥ in font [lmroman10-regular]:mapping=tex-text;!
 
-Overfull \hbox (1.0145pt too wide) in paragraph at lines 265--265
+Overfull \hbox (1.0145pt too wide) in paragraph at lines 266--266
 []|\TU/lmr/bx/n/10 SDMVPSU|  
  []
 
 
-Overfull \hbox (7.4145pt too wide) in paragraph at lines 266--266
+Overfull \hbox (7.4145pt too wide) in paragraph at lines 267--267
 []|\TU/lmr/bx/n/10 WTINT2YR|  
  []
 
 
-Overfull \hbox (9.6245pt too wide) in paragraph at lines 267--267
+Overfull \hbox (9.6245pt too wide) in paragraph at lines 268--268
 []|\TU/lmr/bx/n/10 SDMVSTRA|  
  []
 
 
-Overfull \hbox (7.5045pt too wide) in paragraph at lines 268--268
+Overfull \hbox (7.5045pt too wide) in paragraph at lines 269--269
 []|\TU/lmr/bx/n/10 RIAGENDR|  
  []
 
 
-Overfull \hbox (6.8745pt too wide) in paragraph at lines 270--270
+Overfull \hbox (6.8745pt too wide) in paragraph at lines 271--271
 []|\TU/lmr/bx/n/10 RIDAGEYR|  
  []
 
 
-Overfull \hbox (13.8545pt too wide) in paragraph at lines 271--271
+Overfull \hbox (13.8545pt too wide) in paragraph at lines 272--272
 []|\TU/lmr/bx/n/10 DMDMARTL|  
  []
 
 
-Overfull \hbox (2.5445pt too wide) in paragraph at lines 272--272
+Overfull \hbox (2.5445pt too wide) in paragraph at lines 273--273
 []|\TU/lmr/bx/n/10 INDFMIN2|  
  []
 
 
-Overfull \hbox (3.8445pt too wide) in paragraph at lines 273--273
+Overfull \hbox (3.8445pt too wide) in paragraph at lines 274--274
 []|\TU/lmr/bx/n/10 RIDRETH3|  
  []
 
 
-Overfull \hbox (11.7645pt too wide) in paragraph at lines 274--274
+Overfull \hbox (11.7645pt too wide) in paragraph at lines 275--275
 []|\TU/lmr/bx/n/10 DMDHHSZA|  
  []
 
 
-Overfull \hbox (10.9445pt too wide) in paragraph at lines 276--276
+Overfull \hbox (10.9445pt too wide) in paragraph at lines 277--277
 []|\TU/lmr/bx/n/10 DMDEDUC2|  
  []
 
 
-Overfull \hbox (8.3545pt too wide) in paragraph at lines 277--277
+Overfull \hbox (8.3545pt too wide) in paragraph at lines 278--278
 []|\TU/lmr/bx/n/10 DMDCITZN|  
  []
 
 
-Overfull \hbox (4.4045pt too wide) in paragraph at lines 282--282
+Overfull \hbox (4.4045pt too wide) in paragraph at lines 283--283
 []|\TU/lmr/bx/n/10 LBDHDDSI|  
  []
 
 
-Overfull \hbox (7.9545pt too wide) in paragraph at lines 285--285
+Overfull \hbox (7.9545pt too wide) in paragraph at lines 286--286
 []|\TU/lmr/bx/n/10 hypertension|  
  []
 
 
-Overfull \hbox (0.7445pt too wide) in paragraph at lines 290--290
+Overfull \hbox (0.7445pt too wide) in paragraph at lines 291--291
 []|\TU/lmr/bx/n/10 hemoglobin|  
  []
 
@@ -1174,9 +1174,9 @@ Overfull \hbox (0.7445pt too wide) in paragraph at lines 290--290
 Missing character: There is no ≥ in font [lmroman10-regular]:mapping=tex-text;!
 [4] [5] [6]
 
-LaTeX Warning: Reference `tab:tabthree' on page 7 undefined on input line 557.
+LaTeX Warning: Reference `tab:tabthree' on page 7 undefined on input line 558.
 
-[7] [8] (paper.aux)
+[7] [8] [9] (paper.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
@@ -1194,4 +1194,4 @@ Here is how much of TeX's memory you used:
  1348 hyphenation exceptions out of 8191
  90i,13n,120p,1004b,523s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on paper.pdf (8 pages).
+Output written on paper.pdf (9 pages).
