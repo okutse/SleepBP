@@ -436,7 +436,7 @@ $6-8$hrs & -3.0 & (-5.3,-0.67) &  0.012\\
 \end{table}
 ```
 
-```{r tabfour, echo=FALSE}
+```{r tabfour, echo=FALSE, eval=FALSE}
 ## Final selected multiple linear regression model
 tbl_regression(adj.sbp.int2,
                label = list(bmi ~ "BMI",
