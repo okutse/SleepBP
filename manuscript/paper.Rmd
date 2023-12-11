@@ -88,38 +88,24 @@ multifaceted nature of factors contributing to SBP variability, enabling
 a more comprehensive understanding of its determinants within the
 framework of health and aging.
 
-<!-- Beyond age, the basal metabolic rate (BMI) emerges as a recognized -->
-
-<!-- contributor to systolic blood pressure (SBP), with individuals -->
-
-<!-- exhibiting higher BMI values demonstrating a propensity for elevated -->
-
-<!-- SBP. Gender also holds a discernible association with SBP dynamics. -->
-
-<!-- Empirical evidence in CITE demonstrates that women typically manifest -->
-
-<!-- lower SBP than men until the onset of menopause, after which women -->
-
-<!-- exhibit higher SBP levels compared to men. Additionally, heightened -->
-
-<!-- levels of cholesterol are closely linked to vascular damage. The -->
-
-<!-- accumulation of cholesterol deposits and calcium within arteries -->
-
-<!-- precipitates arterial stiffening, necessitating augmented cardiac -->
-
-<!-- efforts to circulate blood, potentially culminating in elevated blood -->
-
-<!-- pressure. This study endeavors to examine the interrelationships between -->
-
-<!-- age and cholesterol levels, emphasizing consideration of potential -->
-
-<!-- confounding variables. Table 1 comprehensively delineates the array of -->
-
-<!-- variables under scrutiny, ensuring a comprehensive analysis of their -->
-
-<!-- collective impact -->
-
+```{=html}
+<!-- Beyond age, the basal metabolic rate (BMI) emerges as a recognized
+contributor to systolic blood pressure (SBP), with individuals
+exhibiting higher BMI values demonstrating a propensity for elevated
+SBP. Gender also holds a discernible association with SBP dynamics.
+Empirical evidence in CITE demonstrates that women typically manifest
+lower SBP than men until the onset of menopause, after which women
+exhibit higher SBP levels compared to men. Additionally, heightened
+levels of cholesterol are closely linked to vascular damage. The
+accumulation of cholesterol deposits and calcium within arteries
+precipitates arterial stiffening, necessitating augmented cardiac
+efforts to circulate blood, potentially culminating in elevated blood
+pressure. This study endeavors to examine the interrelationships between
+age and cholesterol levels, emphasizing consideration of potential
+confounding variables. Table 1 comprehensively delineates the array of
+variables under scrutiny, ensuring a comprehensive analysis of their
+collective impact. -->
+```
 # Methods
 
 ## Study population
@@ -156,6 +142,8 @@ measurements are taken at least four times on an individual, our
 definition of these outcome is based on an average of the first three
 blood pressure measurements.
 
+```{=html}
+<!-- 
 ### Exposures:
 
 Sleep duration on workdays was evaluated by the questionnaire with the
@@ -165,29 +153,40 @@ workdays". We then categorized this variable into three groups, that is,
 group in our analysis. We also explored the association between total
 cholestrol (in mmol/L) level on systolic blood pressure including
 potential effect modification by other factors.
-
+-->
+```
 ### Covariates:
 
-In addition to the exposure and outcome variables, our analyses included
-the following as covariates: Race divided into four groups as Mexican
-American, white, black and other race. Alcohol consumption was grouped
-into drinking, no drinking, not recorded. Smoking status as smoking, not
-smoking, not recorded. Diabetes was defined as yes, no, borderline, or
-not recorded. Hypertension was defined as yes, no, or not recorded.
-Snorting was defined as yes, no, and not recorded. US citizenship status
-was defined as citizen by birth or naturalization, don't know, not a
-citizen, or refused to answer. Education level was grouped into four
-categories including graduate studies, high school, less than grade 12
-or some college. Additional covariates included marital status, gender,
-age, albumin, creatinine,hemoglobin, total cholesterol (TC), aspertate
+```{=html}
+<!-- Sleep duration on workdays was evaluated by the questionnaire with the
+following questions: "Number of hours usually sleep on weekdays or
+workdays". We then categorized this variable into three groups, that is,
+\< 6 h, 6--8 h, ≥ 8 h respectively, and used \< 6 h as the reference
+group in our analysis. -->
+```
+Our analyses included the following as covariates: Race divided into
+four groups as Mexican American, white, black and other race. Alcohol
+consumption was grouped into drinking, no drinking, not recorded.
+Smoking status as smoking, not smoking, not recorded. Diabetes was
+defined as yes, no, borderline, or not recorded. Hypertension was
+defined as yes, no, or not recorded. Snorting was defined as yes, no,
+and not recorded. US citizenship status was defined as citizen by birth
+or naturalization, don't know, not a citizen, or refused to answer.
+Education level was grouped into four categories including graduate
+studies, high school, less than grade 12 or some college. Additional
+covariates included marital status, gender, age, albumin,
+creatinine,hemoglobin, total cholesterol (TC), aspertate
 aminotransferase (AST), high-density lipoprotein (HDL), and body mass
 index (BMI). Details about these variables can be found at
 <https://wwwn.cdc.gov/nchs/nhanes/search/default.aspx>. Age, albumin,
 creatinine, hemoglobin, TC, AST, HDL, and BMI were analyzed as
 continuous variables whereas gender, alcohol consumption, diabetes,
 smoking, race, hypertension, and snorting were analyzed as categorical
-variables. Table \@ref{tab:tabone} highlights the variable names and
-descriptions as utilized in this study.
+variables. Sleep duration on workdays was also recorded and was
+categorized into three groups, that is, \< 6 h, 6--8 h, ≥ 8 h
+respectively, and used \< 6 h as the reference group in our analysis.
+Table \@ref{tab:tabone} highlights the variable names and descriptions
+as utilized in this study.
 
 ```{=tex}
 \begin{table}[H]
@@ -268,44 +267,6 @@ variable. Subsequently, a $\lambda$ value was strategically chosen to
 ensure a negligible increase of no more than 1% in MSE, ultimately
 leading to the inclusion of 29 variables in the model.
 
-## Model Evaluations
-
-Table \@ref(tab:tabmodel) summarizes the performance metrics across the
-different models fitted to the data in our investigation.
-
-```{=tex}
-\begin{table}
-
-\caption{\label{tab:tabmodel}Summary model performance measures.}
-\centering
-\begin{tabular}[t]{lrrrrrr}
-\toprule
-  & df & AIC & BIC & MSE & $R^2$ & Adjusted $R^2$\\
-\midrule
-Model 1 & 44 & 15888.48 & 16134.41 & 173.17 & 0.36 & 0.34\\
-Model 2 & 45 & 15849.26 & 16100.78 & 169.60 & 0.37 & 0.36\\
-Model 3 & 39 & 15883.76 & 16101.74 & 173.63 & 0.36 & 0.34\\
-Model 4 & 600 & 16156.48 & 19510.09 & 113.00 & 0.58 & 0.40\\
-Model 5 & 40 & 15848.93 & 16072.50 & 170.43 & 0.37 & 0.35\\
-\addlinespace
-Model 6 & 41 & 15888.38 & 16117.55 & 173.69 & 0.36 & 0.34\\
-Model 7 & 25 & 15877.41 & 16017.15 & 2657.01 & 0.35 & 0.34\\
-\bottomrule
-\multicolumn{7}{l}{\textsuperscript{a} df = degrees of freedom}\\
-\multicolumn{7}{l}{\textsuperscript{b} AIC = Akaike Information Criteria}\\
-\multicolumn{7}{l}{\textsuperscript{c} BIC = Bayesian Information Criteria}\\
-\multicolumn{7}{l}{\textsuperscript{d} MSE = Mean Squared Error}\\
-\end{tabular}
-\end{table}
-```
-```{r tabmodel, eval=FALSE, echo=FALSE}
-## Model performance
-tabmodel <- model.checks %>% 
-  kable(format = "latex", caption = "Summary model performance measures.", digits = 2, booktabs = TRUE, col.names = c("df", "AIC", "BIC", "MSE", "R^2", "Adjusted R2"), escape = FALSE) %>% 
-  add_footnote(label = c("df = degrees of freedom", "AIC = Akaike Information Criteria", "BIC = Bayesian Information Criteria", "MSE = Mean Squared Error"))
-tabmodel
-```
-
 # Results
 
 ## Descriptive statistics
@@ -381,8 +342,66 @@ tbl_regression(adj.sbp.int2,
 
 ```
 
+## Model Evaluations
+
+Table \@ref(tab:tabmodel) summarizes the performance metrics across the
+different models fitted to the data in our investigation.
+
+```{=tex}
+\begin{table}[H]
+
+\caption{\label{tab:tabmodel}Summary model performance measures.}
+\centering
+\begin{tabular}[t]{lrrrrrr}
+\toprule
+  & df & AIC & BIC & MSE & $R^2$ & Adjusted $R^2$\\
+\midrule
+Model 1 & 44 & 15888.48 & 16134.41 & 173.17 & 0.36 & 0.34\\
+Model 2 & 45 & 15849.26 & 16100.78 & 169.60 & 0.37 & 0.36\\
+Model 3 & 39 & 15883.76 & 16101.74 & 173.63 & 0.36 & 0.34\\
+Model 4 & 600 & 16156.48 & 19510.09 & 113.00 & 0.58 & 0.40\\
+Model 5 & 40 & 15848.93 & 16072.50 & 170.43 & 0.37 & 0.35\\
+\addlinespace
+Model 6 & 41 & 15888.38 & 16117.55 & 173.69 & 0.36 & 0.34\\
+Model 7 & 25 & 15877.41 & 16017.15 & 2657.01 & 0.35 & 0.34\\
+\bottomrule
+\multicolumn{7}{l}{\textsuperscript{a} df = degrees of freedom}\\
+\multicolumn{7}{l}{\textsuperscript{b} AIC = Akaike Information Criteria}\\
+\multicolumn{7}{l}{\textsuperscript{c} BIC = Bayesian Information Criteria}\\
+\multicolumn{7}{l}{\textsuperscript{d} MSE = Mean Squared Error}\\
+\end{tabular}
+\end{table}
+```
+```{r tabmodel, eval=FALSE, echo=FALSE}
+## Model performance
+tabmodel <- model.checks %>% 
+  kable(format = "latex", caption = "Summary model performance measures.", digits = 2, booktabs = TRUE, col.names = c("df", "AIC", "BIC", "MSE", "R^2", "Adjusted R2"), escape = FALSE) %>% 
+  add_footnote(label = c("df = degrees of freedom", "AIC = Akaike Information Criteria", "BIC = Bayesian Information Criteria", "MSE = Mean Squared Error"))
+tabmodel
+```
+
 ## Subgroup analysis by gender
 
-# Discussion and conclusion
+# Conclussion
+
+## Discussion
+
+## Limitations  
+
+Our study encountered a significant challenge with missing data,
+resulting in a notable reduction in our sample size. Despite initially
+having a sample of \$n=19,225\$, the final analysis was conducted on a
+considerably smaller sample of \$n=1,977\$ observations. This
+substantial reduction in the sample size raises concerns about the
+robustness and reliability of our findings. Addressing this issue
+becomes crucial to ensure the validity of our study outcomes.
+
+In response to this challenge, we propose the implementation of multiple
+imputation techniques. This approach involves generating multiple
+plausible sets of missing values based on observed data patterns. By
+imputing missing values using this method, we aim to enhance the
+completeness of our dataset. This strategy is intended to mitigate
+potential biases resulting from missing data and fortify the reliability
+and accuracy of our analytical outcomes.
 
 # References
