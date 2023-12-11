@@ -250,7 +250,7 @@ including only covariates that had a statistically significant
 association with SBP in univariate analyses excluding HDL, hemoglobin,
 diabetes, survey cycle, and alcohol consumption. Model 4 included
 similar covariates as Model 3 but examined, in addition, all possible
-two-way interactions between the covariates. Model 5 included the same
+two-way interactions between the covariates. This model is essentially overfit to the data. Model 5 included the same
 set of covariates as Model 3 in addition to an interaction term between
 age and total cholesterol levels.
 
@@ -286,9 +286,6 @@ on the outcome variable.
 
 ## Model performance evaluation
 
-<<<<<<< HEAD
-All models fitted to the data in this investigation were nested and evaluations were based on information criteria including Akaike Information Criteria (AIC) and Bayesian Information Criteria (BIC). Additionally, we also used performance measures including the mean squared error (MSE), r-squared, and adjusted r-squared. The likelihood ratio test (LRT) was used in competing model comparisons testing the null hypothesis that the nested models are equivalent, and the extra parameters in the larger model do not improve the fit significantly, that is, these terms have effect sizes equivalent to 0. \@ref(tab:tabmodel) summarizes the model performance metrics compared for all models implemented in this investigation.
-=======
 All models fitted to the data in this investigation were nested and
 evaluations were based on information criteria including Akaike
 Information Criteria (AIC) and Bayesian Information Criteria (BIC). The
@@ -301,12 +298,7 @@ null hypothesis that the nested models are equivalent, and the extra
 parameters in the larger model do not improve the fit significantly,
 that is, these terms have effect sizes equivalent to 0.
 \@ref(tab:tabmodel) summarizes the model performance metrics compared
-for all models implemented in this investigation.
-
-Here is where we add something....
-
-## compare model 5 with model 2 because they have competing BIC and Adj R\^2
->>>>>>> b6ff8790776393797eb8abedc2f623a0fa5e6816
+for all models implemented in this investigation. The final model superiority was based on likelihood ratio tests.
 
 # Results
 
@@ -383,11 +375,10 @@ tbl_regression(adj.sbp.int2,
 
 ```
 
-## Model Evaluations
+## Model performance evaluation
 
 Table \@ref(tab:tabmodel) summarizes the performance metrics across the
 different models fitted to the data in our investigation.
-
 
 
 
@@ -416,6 +407,9 @@ Model 7 & 25 & 15877.41 & 16017.15 & 2657.01 & 0.35 & 0.34\\
 \end{tabular}
 \end{table}
 ```
+
+Likelihood ratio tests showed a statistically significant difference between Model 1 and 2 with evidence of in favor of the latter ($\chi^2_{(1)} = 7064; p>0.05$). Model 2 which adjusted for all potentially confounding covariates in \@ref(tab:tabthree) including an interaction between cholestrol level and age was then compared to Model 3 which adjusted for only covariates we found significant in univariate analyses. Results here similarly showed evidence in favor of Model 2 ($\chi^2_{(1)} = 7979; p>0.05$). Comparing Model 2 to Model 3 revealed a non-statistically difference in model fit suggesting that Model 3, even though smaller performed comparably well. Model 3 was thus selected and compared to Model 4, 5, 6, and 7 with evidence based on the LRT favoring its choice as the best model ($p>0.05$). Additional regression diagnostics for Model 3 including residual versus fitted value plots, Q-Q plots for checking the normality of residuals, Cook's distance for outliers, residual and high leverage point plots did not reveal substantial deviations from linear regression assumptions. Model 3 was thus selected as the best model. Reported results are thus based on this model.
+
 ```{r tabmodel, eval=FALSE, echo=FALSE}
 ## Model performance
 tabmodel <- model.checks %>% 
@@ -424,13 +418,11 @@ tabmodel <- model.checks %>%
 tabmodel
 ```
 
-## 
 
-# Conclussion
+## Discussion and conclusion
 
-## Discussion
 
-## Limitations
+### Study limitations
 
 Our study encountered a significant challenge with missing data,
 resulting in a notable reduction in our sample size. Despite initially

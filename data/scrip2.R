@@ -449,11 +449,12 @@ anova.four
 anova.five <- anova(adj.sbp.int2, modref.sbp, test = "LRT")
 anova.five
 
-
+anova.six <- anova(adj.sbp.int2, modlasso.sbp.min.INT, test = "LRT")
+anova.six
 ##-----------------------------------
 ## Regression diagnostics
 par(mfrow = c(2,2))
 plot(adj.sbp.int2)
 
 
-# Having high cholesterol, especially high LDL (bad) cholesterol or low HDL (good) cholesterol, can increase the risk of atherosclerosis, which is the buildup of plaque in the arteries. Atherosclerosis can lead to heart attack, stroke, and other complications.
+# Having high cholesterol, especially high LDL (bad) cholesterol or low HDL (good) cholesterol, can increase the risk of atherosclerosis, which is the build up of plaque in the arteries. Atherosclerosis can lead to heart attack, stroke, and other complications.
