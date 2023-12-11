@@ -240,6 +240,8 @@ tab.one
 
 ### Variable selection based on univariate regression
 
+Univariate regression analyses were performed on all potentially confounding covariates excluding hypertension. Model 1 was fitted to the data including the exposure variables as well as all potentially confounding covariates from univariate regression analysis. Model 2 was fitted to the same set of covariates including an interaction term between age and total cholesterol levels. Model 3 was fitted to the data including only covariates that had a statistically significant association with SBP in univariate analyses excluding HDL, hemoglobin, diabetes, survey cycle, and alcohol consumption. Model 4 included similar covariates as Model 3 but examined, in addition, all possible two-way interactions between the covariates. Model 5 included the same set of covariates as Model 3 in addition to an interaction term between age and total cholesterol levels.
+
 ### Variable selection based on LASSO and best subsets
 
 With the purpose of identifying influential variables impacting blood
@@ -264,6 +266,15 @@ $\lambda$ value minimizing the MSE resulted in the exclusion of a sole
 variable. Subsequently, a $\lambda$ value was strategically chosen to
 ensure a negligible increase of no more than 1% in MSE, ultimately
 leading to the inclusion of 29 variables in the model.
+
+## Model performance evaluation
+
+All models fitted to the data in this investigation were nested and evaluations were based on information criteria including Akaike Information Criteria (AIC) and Bayesian Information Criteria (BIC). [BIC] Additionally, we also used performance measures including the mean squared error (MSE), r-squared, and adjusted r-squared. The likelihood ratio test (LRT) was used in competing model comparisons testing the null hypothesis that the nested models are equivalent, and the extra parameters in the larger model do not improve the fit significantly, that is, these terms have effect sizes equivalent to 0. \@ref(tab:tabmodel) summarizes the model performance metrics compared for all models implemented in this investigation.
+
+Here is where we add something....
+
+
+## compare model 5 with model 2 because they have competing BIC and Adj R^2
 
 # Results
 
