@@ -377,10 +377,22 @@ tbl_regression(adj.sbp.int2,
 
 ## Model performance evaluation
 
-Table \@ref(tab:tabmodel) summarizes the performance metrics across the
-different models fitted to the data in our investigation.
-
-
+Table \@ref(tab:tabmodel) presents an overview of the performance measures of the various models applied
+to our data set. Model 6, utilizing best subset selection, revealed
+notably high MSE, suggesting limited predictive efficacy. Models 1 and
+2, not including variable selection techniques, highlight the impact of
+incorporating the age-cholesterol interaction term with notable reduction
+in MSE. Models 3, 4, and 5 included solely significant univariate
+regression variables. Model 5, with the lowest AIC and second lowest
+BIC, demonstrates an acceptable MSE. Model 4, with the lowest MSE and
+highest \$R\^2\$, demonstrated a high predictive power, although its extensive number of terms
+raise concerns of potential overfitting. Model 3, based solely on
+significant univariate covariates, performed well but exhibited a higher
+MSE than Models 4 and 5, suggesting the probable influence of
+interaction terms. Models 7 and 8, employing LASSO, exhibited comparable
+performance metrics, with Model 8 displaying reduced BIC and MSE,
+attributed chiefly to the significant inclusion of an age-cholesterol
+interaction term.
 
 ```{=tex}
 \begin{table}[H]
@@ -389,7 +401,7 @@ different models fitted to the data in our investigation.
 \centering
 \begin{tabular}[t]{lrrrrrr}
 \toprule
-  & df & AIC & BIC & MSE & $R^2$ & Adjusted $R^2$\\
+  & $\text{df}^a$ & $\text{AIC}^b$ & $\text{BIC}^c$ & $\text{MSE}^d$ & $R^2$ & Adjusted $R^2$\\
 \midrule
 Model 1 & 44 & 15888.48 & 16134.41 & 173.17 & 0.36 & 0.34\\
 Model 2 & 45 & 15849.26 & 16100.78 & 169.60 & 0.37 & 0.36\\
@@ -397,8 +409,9 @@ Model 3 & 39 & 15883.76 & 16101.74 & 173.63 & 0.36 & 0.34\\
 Model 4 & 600 & 16156.48 & 19510.09 & 113.00 & 0.58 & 0.40\\
 Model 5 & 40 & 15848.93 & 16072.50 & 170.43 & 0.37 & 0.35\\
 \addlinespace
-Model 6 & 41 & 15888.38 & 16117.55 & 173.69 & 0.36 & 0.34\\
-Model 7 & 25 & 15877.41 & 16017.15 & 2657.01 & 0.35 & 0.34\\
+Model 6 & 25 & 15877.41 & 16017.15 & 2657.01 & 0.35 & 0.34\\
+Model 7 & 41 & 15888.38 & 16117.55 & 173.69  & 0.36 & 0.34\\
+Model 8 & 42 & 15849.19 & 16083.94 & 170.11  & 0.37 & 0.36\\
 \bottomrule
 \multicolumn{7}{l}{\textsuperscript{a} df = degrees of freedom}\\
 \multicolumn{7}{l}{\textsuperscript{b} AIC = Akaike Information Criteria}\\
@@ -418,9 +431,7 @@ tabmodel <- model.checks %>%
 tabmodel
 ```
 
-
 ## Discussion and conclusion
-
 
 ### Study limitations
 
@@ -436,8 +447,8 @@ In response to this challenge, we propose the implementation of multiple
 imputation techniques. This approach involves generating multiple
 plausible sets of missing values based on observed data patterns. By
 imputing missing values using this method, we aim to enhance the
-completeness of our dataset. This strategy is intended to mitigate
+completeness of our data set. This strategy is intended to mitigate
 potential biases resulting from missing data and fortify the reliability
 and accuracy of our analytical outcomes.
 
-# Refences
+# References
