@@ -1,5 +1,5 @@
 ---
-title: "Weekday sleep, total cholestrol and the modifying effect of age on systolic blood pressure: An analysis of the 2015-2018 non-obese NHANES population"
+title: "Workday sleep, total cholestrol and the modifying effect of age on systolic blood pressure: An analysis of the 2015-2018 non-obese NHANES population"
 thanks: "Replication files are available on the author's Github account (http://github.com/okutse/sleepBP). **Current version**: `r format(Sys.time(), '%B %d, %Y')`"
 #subtitle: "Short title goes here!"
 author:
@@ -145,7 +145,7 @@ blood pressure measurements.
 ### Exposures:
 
 Sleep duration on workdays was evaluated by the questionnaire with the
-following questions: "Number of hours usually sleep on weekdays or
+following questions: "Number of hours usually sleep on Workdays or
 workdays". We then categorized this variable into three groups, that is,
 \< 6 h, 6--8 h, ≥ 8 h respectively, and used \< 6 h as the reference
 group in our analysis. We also explored the association between total
@@ -156,12 +156,12 @@ potential effect modification by other factors.
 
 ```{=html}
 <!-- Sleep duration on workdays was evaluated by the questionnaire with the
-following questions: "Number of hours usually sleep on weekdays or
+following questions: "Number of hours usually sleep on Workdays or
 workdays". We then categorized this variable into three groups, that is,
 \< 6 h, 6--8 h, ≥ 8 h respectively, and used \< 6 h as the reference
 group in our analysis. -->
 ```
-Our analyses included the following as covariates: Race divided into
+Our analyses included the following as covariates based on previous literature [@su2022association]: Race divided into
 four groups as Mexican American, white, black and other race. Alcohol
 consumption was grouped into drinking, no drinking, not recorded.
 Smoking status as smoking, not smoking, not recorded. Diabetes was
@@ -205,7 +205,7 @@ descriptions as utilized in this study.
 \addlinespace
 \textbf{DMDEDUC2} & \textbf{education level} & What is the highest grade or level of school\{you have/SP has\} completed or the highest degree \{you have/s/he has\} received?\\
 \textbf{DMDCITZN} & \textbf{citizenship status} & \{Are you/Is SP\} a citizen of the United States? [Information about citizenship is being collected by the U.S. Public Health Serv\\
-\textbf{SLD012} & \textbf{sleep} & Number of hours usually sleep on weekdays or workdays\\
+\textbf{SLD012} & \textbf{sleep} & Number of hours usually sleep on Workdays or workdays\\
 \textbf{BMXBMI} & \textbf{bmi} & Body mass index\\
 \textbf{ALQ121} & \textbf{alcohol use} & In the past 12 months, how often did you drink any type of alcoholic beverage?\\
 \addlinespace
@@ -341,7 +341,7 @@ substantial associations between BMI ($\beta = 0.95$ mmHg; 95%CI [0.60 -
 albumin ($\beta = -0.48$ mmHg; 95% CI [-0.68mmHg - -0.27]; p \< 0.05),
 AST ($\beta = 0.12$ mmHg; 95%CI [0.07 - 0.18]; p \<0.05), and age
 (years) ($\beta = 0.49$ mmHg; 95% CI [0.45 - 0.52]; p \<0.05) and
-systolic blood pressure. Weekday sleep duration between 6 and 8 hours
+systolic blood pressure. Workday sleep duration between 6 and 8 hours
 was associated with a 4.0 mmHg (95% CI [-6.8 - -1.2]) decrease in the
 average systolic blood pressure compared to 6 hours of sleep. On the
 other hand, more than 8 hours of sleep was associated with a decrease of
@@ -423,32 +423,30 @@ model.
 
 ## Multivariable Regression Analysis
 
-Table 1 displays the estimated coefficients derived from a multiple
+Table \@ref(tab:multreg) displays the estimated coefficients derived from a multiple
 regression analysis involving variables. We only show sleep during
-weekdays, age, total cholesterol, and the interaction effect between
+Workdays, age, total cholesterol, and the interaction effect between
 total cholesterol and age. Notably, the findings reveal that an increase
-of one year in age is associated with a marginal decrease in systolic
-blood pressure (SBP) by an amount of 0.04mmHg. However, this observed
-reduction is deemed statistically insignificant within the confines of
-this model. Conversely, an increase of one unit in total cholesterol is
-linked to a more pronounced reduction in SBP by a factor of 3.5mmHg,
-which attains statistical significance. Furthermore, the interaction
-between age and total cholesterol yields a statistically significant
-coefficient estimate of 0.11. This interaction effect suggests that as
+of one year in age is associated with a decrease in systolic
+blood pressure (SBP) by an amount of 0.04 mmHg (95%CI [-0.22 - 0.13], p = 0.60). 
+Conversely, an increase of one unit in total cholesterol is
+linked to a significant reduction in SBP by a factor of 3.5 mmHg (95%CI [-5.2, -1.8], p = 0.01). Furthermore, the interaction
+between age and total cholesterol yielded a statistically significant
+coefficient estimate suggesting that as
 both age and total cholesterol concurrently increase by one unit, there
-is an associated elevation in SBP by a factor of 0.11mmHg. Additionally,
+is an associated elevation in SBP by a factor of 0.11 mmHg (95%CI [0.07 - 0.14], p = 0.001). Additionally,
 the coefficients attributed to sleep duration bear analogous
 interpretations to those observed in the univariate scenario.
-Specifically, weekday sleep durations ranging between 6 and 8 hours
-demonstrate an average decrease of 3.0mmHg in systolic blood pressure in
+Specifically, workday sleep durations ranging between 6 and 8 hours
+demonstrate a significant average decrease of 3.0 mmHg (95%CI [-5.3 - -0.67],  p = 0.012) in systolic blood pressure in
 comparison to the reference duration of 6 hours of sleep. Conversely,
-durations exceeding 8 hours exhibit a decrease of 1.4mmHg in systolic
+durations exceeding 8 hours exhibit a decrease of 1.4mmHg (95%CI [-3.7- 0.92] p = 0.2]) in systolic
 blood pressure as compared to the 6-hour reference duration.
 
 ```{=tex}
 
 \begin{table}[H]
-\caption{\label{tab:multreg} Sleep, Age and Cholesterol Coefficients for Model 5}
+\caption{\label{tab:multreg} Sleep, Age and Cholesterol Coefficients based on Model 5. These results are adjusted for other significant potentially confounding factors based on univariate regression analysis.}
 \centering
 \begin{tabular}[t]{lrrr}
 \toprule
@@ -466,6 +464,8 @@ $6-8$hrs & -3.0 & (-5.3,-0.67) &  0.012\\
 \end{tabular}
 \end{table}
 ```
+
+
 ```{r tabfour, echo=FALSE, eval=FALSE}
 ## Final selected multiple linear regression model
 tbl_regression(adj.sbp.int2,
@@ -505,6 +505,10 @@ tabmodel
 ```
 
 ## Discussion and conclusion
+
+The current study investigated the
+intricate interplay between age, sleep, cholestrol levels and systolic blood
+pressure adjusting for other potentially confounding covariates informed by literature. We performed comprehensive model comparisons to explore the association between age, total cholestrol levels, sleep durations and systolic blood pressure. We find based on the best model, that work day sleep durations ranging between 6 and 8 hours and more than 8 hours are associated with a decrease in systolic blood pressure relative to the 6 hour reference group. Additionally, our study reports substantial effect modification of the effect of total cholestrol levels on systolic blood pressure by age whe adjusted for selected confounders within the study population. Previous studies exploring sleep and systolic blood pressure have found similar associations [@su2022association]. 
 
 ### Study limitations
 
