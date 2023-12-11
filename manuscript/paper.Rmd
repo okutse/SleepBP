@@ -411,6 +411,31 @@ model.
 
 ## Multivariable Regression Analysis
 
+Table \@ref(tab:multreg) shows the coefficients of sleep, age, total
+cholesterol and the interaction between total cholesterol and age
+
+```{=tex}
+
+\begin{table}[H]
+\caption{\label{tab:multreg} Sleep, Age and Cholesterol Coefficients for Model 5}
+\centering
+\begin{tabular}[t]{lrrr}
+\toprule
+  \textbf{Variable} & \textbf{Estimate} & \textbf{95\% CI}  & \textbf{p-value} \\
+\midrule
+\textbf{Intercept} & 102.55 &(88.42,116.69) & $<0.001$\\
+\textbf{Sleep} & 0.75 & (0.50, 1.00) & 0.002 \\
+$<6$hrs &  &  &  \\
+$>8$hrs & -1.4 & (-3.7,0.92) & 0.2\\
+$6-8$hrs & -3.0 & (-5.3,-0.67) &  0.012\\
+\textbf{Age} & -0.04& (-0.22, 0.13)	& 0.6 \\
+\textbf{TC} & -3.5	& (-5.2, -1.8) & <0.001 \\
+\textbf{TC*Age} & 0.11	& (0.07, 0.14) & <0.001 \\
+\bottomrule
+\end{tabular}
+\end{table}
+```
+
 ```{r tabfour, echo=FALSE}
 ## Final selected multiple linear regression model
 tbl_regression(adj.sbp.int2,
