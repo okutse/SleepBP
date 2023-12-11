@@ -402,10 +402,9 @@ R <- t(data.frame(sbp.full = summary(sbp.full)$r.squared,
                      adj.sbp = summary(adj.sbp)$r.squared,
                      adj.sbp.int = summary(adj.sbp.int)$r.squared,
                      adj.sbp.int2 = summary(adj.sbp.int2)$r.squared,
-                     modref.sbp = summary(modref.sbp)$r.squared),
+                     modref.sbp = summary(modref.sbp)$r.squared,
                      modlasso.sbp.min = summary(modlasso.sbp.min)$r.squared,
-                     modlasso.sbp.min.INT = summary(modlasso.sbp.min.INT)$r.squared
-)
+                     modlasso.sbp.min.INT = summary(modlasso.sbp.min.INT)$r.squared))
 colnames(R) <- "R^2"
 
 ## Adjusted R^2
@@ -414,10 +413,9 @@ AdjR <- t(data.frame(sbp.full = summary(sbp.full)$adj.r.squared,
                    adj.sbp = summary(adj.sbp)$adj.r.squared,
                    adj.sbp.int = summary(adj.sbp.int)$adj.r.squared,
                    adj.sbp.int2 = summary(adj.sbp.int2)$adj.r.squared,
-                   modref.sbp = summary(modref.sbp)$adj.r.squared),
+                   modref.sbp = summary(modref.sbp)$adj.r.squared,
                    modlasso.sbp.min = summary(modlasso.sbp.min)$adj.r.squared,
-                   modlasso.sbp.min.INT = summary(modlasso.sbp.min.INT)$adj.r.squared,
-)
+                   modlasso.sbp.min.INT = summary(modlasso.sbp.min.INT)$adj.r.squared))
 colnames(AdjR) <- "Adjusted R^2"
 
 
