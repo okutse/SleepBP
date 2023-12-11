@@ -78,7 +78,7 @@ design = svydesign(id = ~psu, weights = ~weights, strata = ~strata,
 
 ##-------------------------------
 ## Univariate regressions (1) sbp
-dt.sbp <- dt %>% select(-c("seq_no", "psu", "strata", "dbp", "weights", "hypertension"))
+dt.sbp <- dt %>% dplyr::select(-c("seq_no", "psu", "strata", "dbp", "weights", "hypertension"))
 sbp.univariate <- tbl_uvregression(data = dt.sbp, y = sbp, method = lm,
                                    hide_n = TRUE,
                                    label = list(bmi ~ "BMI",

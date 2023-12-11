@@ -238,6 +238,10 @@ tab.one
 
 ## Statistical modeling
 
+### Variable selection based on univariate regression
+
+### Variable selection based on LASSO and best subsets
+
 With the purpose of identifying influential variables impacting blood
 pressure, a variable selection process was conducted. The initial
 approach involved employing best subset selection with 10-fold
@@ -374,7 +378,7 @@ tabmodel <- model.checks %>%
 tabmodel
 ```
 
-## Subgroup analysis by gender
+## 
 
 # Conclussion
 
