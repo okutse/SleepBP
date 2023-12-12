@@ -1,5 +1,5 @@
 ---
-title: "Workday sleep, total cholestrol and the modifying effect of age on systolic blood pressure: An analysis of the 2015-2018 non-obese NHANES population"
+title: "Age modifies the effect of total cholesterol level on systolic blood pressure: Analysis of evidence from the 2015 - 2018 NHANES data"
 thanks: "Replication files are available on the author's Github account (http://github.com/okutse/sleepBP). **Current version**: `r format(Sys.time(), '%B %d, %Y')`"
 #subtitle: "Short title goes here!"
 author:
@@ -261,13 +261,15 @@ cholesterol levels.
 Furthermore, we conducted two distinct variable selection methodologies,
 similarly excluding hypertension. Model 6 was based on best subset
 selection with 10-fold cross-validation to ascertain the optimal number
-of subsets. Notably, for systolic blood pressure, the forward best
-subset selection method discerned 13 variables, whereas diastolic blood
-pressure exhibited 19 selected variables. However, a limitation inherent
-in forward best subset selection is its inability to eliminate
-previously selected features, potentially disregarding their relevance
-in light of newly added variables. Consequently, this methodology may
-yield sub-optimal variable selections due to its lack of adaptability.
+of subsets. Best subset selection was selected by identifying the best
+model that contains a given number of predictors yielding lowest RSS.
+Notably, for systolic blood pressure, the forward best subset selection
+method discerned 13 variables, whereas diastolic blood pressure
+exhibited 19 selected variables. However, a limitation inherent in
+forward best subset selection is its inability to eliminate previously
+selected features, potentially disregarding their relevance in light of
+newly added variables. Consequently, this methodology may yield
+sub-optimal variable selections due to its lack of adaptability.
 
 In an effort to mitigate this limitation and introduce regularization,
 LASSO regularization was employed. This involved a 10-fold
