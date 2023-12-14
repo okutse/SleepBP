@@ -268,8 +268,10 @@ method discerned 13 variables, whereas diastolic blood pressure
 exhibited 19 selected variables. However, a limitation inherent in
 forward best subset selection is its inability to eliminate previously
 selected features, potentially disregarding their relevance in light of
-newly added variables. Consequently, this methodology may yield
-sub-optimal variable selections due to its lack of adaptability.
+newly added variables. Foward best subset deos not outperforms shringake
+methods when minimizeing prediction errors [@hastie2009elements] .
+Consequently, this methodology may yield sub-optimal variable selections
+due to its lack of adaptability.
 
 In an effort to mitigate this limitation and introduce regularization,
 LASSO regularization was employed. This involved a 10-fold
@@ -458,7 +460,7 @@ systolic blood pressure as compared to the 6-hour reference duration.
   \textbf{Variable} & \textbf{Estimate} & \textbf{95\% CI}  & \textbf{p-value} \\
 \midrule
 \textbf{Intercept} & 102.55 &(88.42,116.69) & $<0.001$\\
-\textbf{Sleep} & 0.75 & (0.50, 1.00) & 0.002 \\
+\textbf{Sleep} &  &  &  \\
 $<6$hrs &  &  &  \\
 $>8$hrs & -1.4 & (-3.7,0.92) & 0.2\\
 $6-8$hrs & -3.0 & (-5.3,-0.67) &  0.012\\
