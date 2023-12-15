@@ -3,16 +3,28 @@ title: "Age modifies the effect of total cholesterol level on systolic blood pre
 thanks: "Replication files are available on the author's Github account (http://github.com/okutse/sleepBP). **Current version**: `r format(Sys.time(), '%B %d, %Y')`"
 #subtitle: "Short title goes here!"
 author:
-- Amos Okutse, Brown University
-- Monic Colon-Vargas, Brown University
-abstract: "**Introduction:** Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet libero justo. Pellentesque eget nibh ex. Aliquam tincidunt egestas lectus id ullamcorper. 
-
-
-**Methods:** Proin tellus orci, posuere sed cursus at, bibendum ac odio. Nam consequat non ante eget aliquam. Nulla facilisis tincidunt elit. Nunc hendrerit pellentesque quam, eu imperdiet ipsum porttitor ut. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse potenti. Duis vitae nibh mauris. Duis nec sem sit amet ante dictum mattis. Suspendisse diam velit, maximus eget commodo at, faucibus et nisi. Ut a pellentesque eros, sit amet suscipit eros. Nunc tincidunt quis risus suscipit vestibulum. Quisque eu fringilla massa."
+- Amos Okutse$^1$
+- Monica Colon-Vargas$^1$
+- $^1$School of Public Health, Brown University, Providence, RI.
+abstract: | 
+  **Introduction:** Systolic blood pressure (SBP) is a precursor linked with a spectrum of critical health conditions.  This nexus between heightened SBP and these significant health adversities underscores the gravity of SBP as a predictive marker for adverse health outcomes.
+  
+  **Objective:** To explore the intricate interplay between SBP dynamics within non-obese aging populations with self-reported workday sleep duration, total cholesterol levels, and the total cholesterol-age dependence adjusting for selected potentially confounding factors.
+  
+  **Methods:** Cross-sectional data spanning two survey cycles (2015 – 2018) was obtained from the National Health and Nutrition Examination Survey (NHANES) database. We performed multivariable regressions to examine the interplay between age, total cholesterol levels, self-reported workday sleep duration, and SBP. Potentially confounding covariates adjusted for in analyses were selected using univariate regressions, best-subsets selection, and the Least Absolute Shrinkage and Selection Operator (LASSO). Model performance evaluation was based on information criteria, mean squared error (MSE), adjusted R-squared, and likelihood ratio tests.
+  
+  **Results:** Our results are based on a complete-case analysis of data on n = 1977 participants. We found a statistically significant association between workday sleep duration and SBP comparing $6 – 8$ hours sleep category to < $6$ hour sleep category [$\beta$ = -3.0; 95\% Confidence Interval (CI): -5.3,-0.67), p = 0.012] and a substantial effect modification of age on the effect of total cholesterol levels on SBP [$\beta$ = 0.11; 95\%CI: 0.07 - 0.14;  p <0.001].
+  
+  **Conclusion:** Workday sleep duration between 6-8 hours is associated with an optimal decrease in SBP. Age significantly modifies the effect of total cholesterol levels on SBP, adjusting for other potentially confounding factors.
+  
+  
+  
+  
+  ***Keywords:*** *Systolic blood pressure*, *Sleep duration*, *Age*, *Total cholestrol level*, *Effect modification.*
 keywords: "pandoc, r markdown, knitr"
-date: "  `r format(Sys.time(), '%d %B, %Y')` "
+#date: "  `r format(Sys.time(), '%d %B, %Y')` "
 geometry: margin=1in
-#mainfont: cochineal
+mainfont: cochineal
 header-includes:
 - \usepackage{pdflscape}
 - \newcommand{\blandscape}{\begin{landscape}}
@@ -51,9 +63,9 @@ editor_options:
 
 ```{r source-file, echo=FALSE, include=FALSE}
 # source file 
-source(file = "C:/Users/monic/OneDrive/Desktop/SleepBP/data/scrip2.R")
+#source(file = "C:/Users/monic/OneDrive/Desktop/SleepBP/data/scrip2.R")
 
-#source("/Users/aokutse/Desktop/PhD/Fall 2023/PHP2601 Linear Models/SleepBP/data/scrip2.R")
+source("/Users/aokutse/Desktop/PhD/Fall 2023/PHP2601 Linear Models/SleepBP/data/scrip2.R")
 ```
 
 # Introduction
@@ -71,10 +83,10 @@ the natural aging process, a trajectory observed ubiquitously across
 diverse populations.
 
 In western societies aged 40 years and above, a demonstrable pattern
-emerges, revealing an approximate elevation of 7 mmHg in SBP per decade
+emerges, revealing an approximate elevation of about 7 mmHg in SBP per decade
 among individuals above 40 years. This discernible and consistent
-increment in SBP with advancing age accentuates its profound impact
-within the broader context of aging-related health dynamics. Similarly,
+increase in SBP with advancing age accentuates its profound impact
+within the broader context of age-related health dynamics. Similarly,
 while diastolic blood pressure (DBP), demonstrates a concurrent rise
 correlating with age, presents a substantially lower rate of increase
 when juxtaposed against the ascending trajectory observed in SBP
@@ -334,7 +346,8 @@ citizenship status, and the cycle of the survey.
 tabsum %>%
   as_kable_extra(booktabs = TRUE, 
                  caption = "Unweighted summary characteristics of the participants in the NHANES 2015 - 2018 survey cycles stratified by gender. BMI = Body Mass Index; HDL = High Density Lipoprotein, TC = Total Cholestrol level; AST = aspertate aminotransferase. SBP = Systolic blood pressure, DBP = Diastolic blood pressure.", 
-                 longtable = TRUE)
+                 longtable = TRUE) %>% 
+  kable_styling(font_size = 8)
 ```
 
 ## Univariate regression analysis
@@ -410,7 +423,7 @@ Model 8 & 42 & 15849.19 & 16083.94 & 170.11  & 0.37 & 0.36\\
 Likelihood ratio tests showed a statistically significant difference
 between Model 1 and 2 with evidence of in favor of the latter
 ($\chi^2_{(1)} = 7064; p>0.05$). Model 2 which adjusted for all
-potentially confounding covariates in \@ref(tab:tabthree) including an
+potentially confounding covariates including an
 interaction between cholestrol level and age was then compared to Model
 3 which adjusted for only covariates we found significant in univariate
 analyses. Results here similarly showed evidence in favor of Model 2
@@ -509,18 +522,13 @@ tabmodel <- model.checks %>%
 tabmodel
 ```
 
-## Discussion and conclusion
+# Discussion and conclusion
 
-<!-- The current study investigated the intricate interplay between age, sleep, cholestrol levels and systolic blood pressure adjusting for other potentially confounding covariates informed by literature. We performed comprehensive model comparisons to explore the association between age, total cholestrol levels, sleep durations and systolic blood pressure. We find based on the best model, that work day sleep durations ranging between 6 and 8 hours and more than 8 hours are associated with a decrease in systolic blood pressure relative to the 6 hour reference group. Additionally, our study reports substantial effect modification of the effect of total cholestrol levels on systolic blood pressure by age whe adjusted for selected confounders within the study population. Previous studies exploring sleep and systolic blood pressure have found similar associations [@su2022association]. -->
-
-The present investigation explote into the settle interplay among age,
-sleep patterns, cholesterol levels, and systolic blood pressure, while
-accounting for various potentially confounding factors gleaned from
-pertinent literature. Our study conducted an exhaustive series of model
+The present investigation explores the subtle interplay between age,
+workday sleep patterns, cholesterol levels, and systolic blood pressure, while
+accounting for various potentially confounding factors informed by literature. We conducted an exhaustive series of model
 comparisons to elucidate the intricate relationship between age, total
-cholesterol levels, sleep durations, and systolic blood pressure.
-
-In light of our findings derived from the best model based on the
+cholesterol levels, workday sleep duration, and systolic blood pressure. In light of our findings derived from the best model based on the
 performance measures in Table \@ref(tab:tabmodel), we observed that
 weekday sleep durations spanning between 6 and 8 hours, as well as
 durations exceeding 8 hours, exhibit a decrease in systolic blood
@@ -535,24 +543,10 @@ substantiating the associations uncovered in previous research
 concerning sleep patterns and systolic blood pressure
 [@su2022association]. This correlation underscores the significance of
 sleep parameters as influential factors in understanding blood pressure
-dynamics.
+dynamics [@fuchs2020high]. In this way, the study explores factors that bear substantial weight in understanding disease risk within the aging US population. Findings from this study could inform public health policies and interventions towards healthy diet as well as sleep patterns, personalized medicine, and healthy aging promotion. 
 
-### Study limitations
-
-Our study encountered a significant challenge with missing data,
-resulting in a notable reduction in our sample size. Despite initially
-having a sample of \$n=19,225\$, the final analysis was conducted on a
-considerably smaller sample of \$n=1,977\$ observations. This
-substantial reduction in the sample size raises concerns about the
-robustness and reliability of our findings. Addressing this issue
-becomes crucial to ensure the validity of our study outcomes.
-
-In response to this challenge, we propose the implementation of multiple
+While our study used a representative sample of the US population, missing data on variables of interest in analyses presented a significant challenge. Our results are based on complete case analysis where all individuals with missing data on the variables of interest were excluded. While complete case analysis ensures that the analysis is based on comprehensive and complete information for each participant, the notable reduction in sample size has potential to result in low statistical power and bias when the assumption of missing completely at random does not hold [@baraldi2010introduction]. Future studies can address this challenge through such methods as multiple
 imputation techniques. This approach involves generating multiple
-plausible sets of missing values based on observed data patterns. By
-imputing missing values using this method, we aim to enhance the
-completeness of our data set. This strategy is intended to mitigate
-potential biases resulting from missing data and fortify the reliability
-and accuracy of our analytical outcomes.
+plausible sets of missing values based on observed data patterns [@baraldi2010introduction]. 
 
 # References

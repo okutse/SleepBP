@@ -11,11 +11,11 @@ library(ggcorrplot)
 library(kableExtra)
 
 ## Load Data
-dt <- read.csv("C:/Users/monic/OneDrive/Desktop/SleepBP/data/dt.csv")
-##dt <- read.csv("/Users/aokutse/Desktop/PhD/Fall 2023/PHP2601 Linear Models/SleepBP/data/dt.csv")
+## dt <- read.csv("C:/Users/monic/OneDrive/Desktop/SleepBP/data/dt.csv")
+dt <- read.csv("/Users/aokutse/Desktop/PhD/Fall 2023/PHP2601 Linear Models/SleepBP/data/dt.csv")
 
-## load the variable name file
-vars <- read.csv("C:/Users/monic/OneDrive/Desktop/SleepBP/data/vars.csv")
+## load the variable name file [no need to load these names]
+## vars <- read.csv("C:/Users/monic/OneDrive/Desktop/SleepBP/data/vars.csv")
 ## vars <- read.csv("/Users/aokutse/Desktop/PhD/Fall 2023/PHP2601 Linear Models/SleepBP/data/vars.csv")
 
 dt$cycle <- as.factor(dt$cycle)
@@ -266,7 +266,7 @@ print(significant_sbp)
 ##-------------------------------------
 ## Systolic Blood Pressure
 ## Load variables selected by LASSO
-lasso.coef.min <- read.csv("C:/Users/monic/OneDrive/Desktop/SleepBP/data/lasso_res_sbp_min.csv")
+## lasso.coef.min <- read.csv("C:/Users/monic/OneDrive/Desktop/SleepBP/data/lasso_res_sbp_min.csv")
 ## lasso.coef.min$x
 names.lasso.min <- c("bmi", "hdl", "total_chol","AST",
                      "creatinine", "diabetes", "citizenship_status",
@@ -295,7 +295,7 @@ predlasso.INT <- predict(modlasso.sbp.min.INT, newdata = dt %>% select(all_of(na
 ## Diastolic Blood Pressure
 ##---------------------------------------------
 ## Load variables selected by LASSO
-lasso.coef.min <- read.csv("C:/Users/monic/OneDrive/Desktop/SleepBP/data/lasso_res_dbp_min.csv")
+## lasso.coef.min <- read.csv("C:/Users/monic/OneDrive/Desktop/SleepBP/data/lasso_res_dbp_min.csv")
 ## lasso.coef.min$x
 names.lasso.min <- c("bmi","total_chol", "hemoglobin", "albumin", "AST",
                      "diabetes", "citizenship_status",
@@ -324,7 +324,7 @@ tab.lasso <- tbl_merge(tbls = list(tab1.lasso, tab2.lasso),tab_spanner = c("**Sy
 ## Best Subset
 ## Systolic
 ## Load selected coefficients
-reg.coef.sbp <- read.csv("C:/Users/monic/OneDrive/Desktop/SleepBP/data/reg.sbp.csv") #K=13
+## reg.coef.sbp <- read.csv("C:/Users/monic/OneDrive/Desktop/SleepBP/data/reg.sbp.csv") #K=13
 ## reg.coef.sbp$X
 names.reg <- c("bmi","total_chol", "creatinine", "educ_level", "gender", "age_yr", 
                "marital_status","sleep", "race", "income_category")
@@ -342,7 +342,7 @@ sum((pred-modref.sbp$fitted.values)^2)/nrow(dt)
 ## Best Subset
 ## Diastolic
 ## Load selected coefficients
-reg.coef.dbp <- read.csv("C:/Users/monic/OneDrive/Desktop/SleepBP/data/reg.dbp.csv") #K=19
+## reg.coef.dbp <- read.csv("C:/Users/monic/OneDrive/Desktop/SleepBP/data/reg.dbp.csv") #K=19
 ## reg.coef.dbp$X
 names.reg <- c("bmi","total_chol", "hemoglobin", "albumin", "AST", "diabetes",
                "children..5", "marital_status",
